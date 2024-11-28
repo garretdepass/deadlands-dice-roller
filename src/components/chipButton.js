@@ -1,5 +1,10 @@
-const chipButton = (props) => {
+import * as React from 'react'
+import { buttonStyling } from './chipButton.module.css'
+
+const ChipButton = (props) => {
     return (
-        <button></button>
+        <button className={buttonStyling}>{props.text}</button>
     )
 }
+
+export default ChipButton
