@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import ChipButton from '../components/chipButton'
+import { StaticImage } from 'gatsby-plugin-image'
 
 // Step 2: Define your component
 const IndexPage = () => {
@@ -11,6 +12,9 @@ const IndexPage = () => {
       <Link to="/diceRoller">go to dice roller</Link>
       <p>I'm making this by following the Gatsby Tutorial.</p>
       <ChipButton text="test"></ChipButton>
+      <StaticImage
+        alt="test alt text"
+        src="../images/peteyBarnum.png" />
     </main>
   )
 }
