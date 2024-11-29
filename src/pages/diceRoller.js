@@ -2,19 +2,42 @@
 import * as React from 'react'
 import Layout from '../components/layout.js'
 import Seo from '../components/seo'
+import { useStaticQuery, graphql } from 'gatsby'
 
 // Step 2: Define your component
-const DiceRoller = () => {
+const DiceRoller = ({ data }) => {
   return (
     <Layout pageTitle="Dice Roller">
         <div id="character-sheet">
-            this is where the character sheet will go. The cognition trait is...
-            <div id="cognition"></div>
+            {
+              data.allMdx.nodes.map((node) => (
+                <article key={node.id}>
+                  <h2>{node.frontmatter.playerName}</h2>
+                  <p>Posted: {node.frontmatter.date}</p>
+                  <p>{node.excerpt}</p>
+                </article>
+              ))
+            }
         </div>
     </Layout>
   )
 }
 
+export const query = graphql`
+query {
+  allMdx {
+    nodes {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        playerName
+        slug
+      }
+      excerpt
+      id
+    }
+  }
+}
+`
 
 export const Head = () => (
     <>

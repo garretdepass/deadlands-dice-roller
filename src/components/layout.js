@@ -5,6 +5,7 @@ import Header from './header'
     
 
 const Layout = ({ pageTitle, children }) => {
+
     const data = useStaticQuery(graphql`
         query MyQuery {
         site {
@@ -17,7 +18,6 @@ const Layout = ({ pageTitle, children }) => {
 
     return (
         <div>
-        <header>{data.site.siteMetadata.title}</header>
         <div id="panelLayout">
             <div id="leftPanel">
                 <div id="characterSelector">

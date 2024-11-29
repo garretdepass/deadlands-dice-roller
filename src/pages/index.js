@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => {
       {
         data.allFile.nodes.map(node => (
           <li key={node.name}>
-            <Link to='../pages/diceRoller.js'>{node.name}</Link>
+            <Link to='/diceRoller'>{node.name}</Link>
           </li>
         ))
       }
@@ -39,6 +39,7 @@ query MyQuery {
   }
 }
 `
+
 
 export const Head = () => (
   <>

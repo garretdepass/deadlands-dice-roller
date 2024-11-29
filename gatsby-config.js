@@ -15,6 +15,7 @@ module.exports = {
         name: `character-sheets`,
         path: `${__dirname}/character-sheets`,
       }
-    }
+    },
+    "gatsby-plugin-mdx",
   ],
 }
