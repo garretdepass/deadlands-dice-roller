@@ -1,20 +1,24 @@
 // Step 1: Import React
 import * as React from 'react'
-import { Link } from 'gatsby'
 import Layout from '../components/layout.js'
+import Seo from '../components/seo'
 
 // Step 2: Define your component
 const DiceRoller = () => {
   return (
     <Layout pageTitle="Dice Roller">
-        <p>this is the overall vibe.</p>
+        <div id="character-sheet">
+            this is where the character sheet will go. The cognition trait is...
+            <div id="cognition"></div>
+        </div>
     </Layout>
   )
 }
 
+
 export const Head = () => (
     <>
-      <title>Dice Roller</title>
+      <Seo title="Dice Roller" />
       <meta name="description" content="Your description" />
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>

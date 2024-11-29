@@ -1,15 +1,26 @@
 // Step 1: Import React
 import * as React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql, } from 'gatsby'
 import ChipButton from '../components/chipButton'
 import { StaticImage } from 'gatsby-plugin-image'
+import Seo from '../components/seo'
 
 // Step 2: Define your component
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+
   return (
     <main>
       <h1>Welcome to my Gatsby site!</h1>
-      <Link to="/diceRoller">go to dice roller</Link>
+      <ul>
+      {
+        data.allFile.nodes.map(node => (
+          <li key={node.name}>
+            <Link to='../pages/diceRoller.js'>{node.name}</Link>
+          </li>
+        ))
+      }
+
+      </ul>
       <p>I'm making this by following the Gatsby Tutorial.</p>
       <ChipButton text="test"></ChipButton>
       <StaticImage
@@ -19,9 +30,19 @@ const IndexPage = () => {
   )
 }
 
+export const query = graphql`
+query MyQuery {
+  allFile {
+    nodes {
+      name
+    }
+  }
+}
+`
+
 export const Head = () => (
   <>
-      <title>Dice Roller</title>
+      <Seo title="Home Page" />
       <meta name="description" content="Your description" />
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>

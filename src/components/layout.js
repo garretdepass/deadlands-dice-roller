@@ -1,15 +1,29 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import { container } from './layout.module.css'
+import Header from './header'
+    
 
 const Layout = ({ pageTitle, children }) => {
+    const data = useStaticQuery(graphql`
+        query MyQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `)
+
     return (
         <div>
+        <header>{data.site.siteMetadata.title}</header>
         <div id="panelLayout">
             <div id="leftPanel">
                 <div id="characterSelector">
                     <Link to="/">Change character</Link>
                 </div>
+                <Header></Header>
                 {children}
                 {/* This is the ID that would be the target for rendering the player character sheet.
                 Replacing this with a {children} property.
