@@ -1,49 +1,68 @@
 // Step 1: Import React
 import * as React from 'react'
 import { Link, graphql, } from 'gatsby'
-import ChipButton from '../components/chipButton'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Seo from '../components/seo'
+import { bodyBold, characterCardName, characterList, characterCard, indexMain } from '../components/index.module.css'
 
 // Step 2: Define your component
 const IndexPage = ({ data }) => {
-
+ 
   return (
-    <main>
-      <h1>Welcome to my Gatsby site!</h1>
-      <ul>
+    <main className={indexMain}>
+      <h2>Deadlands: Worldly Wickedness</h2>
+      <h3>Dice Roller</h3>
+      <h1 className={bodyBold}>Select your character</h1>
+
+      <div className={characterList}>
       {
-        data.allFile.nodes.map(node => (
-          <li key={node.name}>
-            <Link to='/diceRoller'>{node.name}</Link>
-          </li>
+        data.allMdx.nodes.map(node => (
+            <Link className={characterCard} key={node.slug} to={`../characters/${node.frontmatter.slug}`}>
+            <GatsbyImage
+              image={getImage(node.frontmatter.avatar)}
+              alt="some text"
+              />
+            <p className={characterCardName}>
+              {node.frontmatter.characterName}
+            </p>
+            </Link>
         ))
       }
-
-      </ul>
-      <p>I'm making this by following the Gatsby Tutorial.</p>
-      <ChipButton text="test"></ChipButton>
-      <StaticImage
-        alt="test alt text"
-        src="../images/peteyBarnum.png" />
+      </div>
     </main>
   )
 }
 
+// trying to just get a printed version of what I'm making the img src out of
+// export const imageSlug = ({ data }) => (`../images/${node.frontmatter.slug}.png`)
+// console.log(`this is the url for images: ${imageSlug}`)
+
 export const query = graphql`
-query MyQuery {
-  allFile {
+query {
+    allMdx {
     nodes {
-      name
+      frontmatter {
+        characterName
+        playerName
+        slug
+        avatar {
+          childrenImageSharp {
+            gatsbyImageData(
+            width: 100,
+            height: 100, 
+            placeholder: BLURRED, 
+            formats: NO_CHANGE)
+          }
+        }
+      }
     }
   }
 }
 `
 
-
 export const Head = () => (
   <>
-      <Seo title="Home Page" />
+      <Seo pageTitle="Home Page" />
       <meta name="description" content="Your description" />
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>

@@ -41,7 +41,7 @@ query {
 
 export const Head = () => (
     <>
-      <Seo title="Dice Roller" />
+      <Seo pageTitle="Dice Roller" />
       <meta name="description" content="Your description" />
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
