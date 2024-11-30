@@ -20,7 +20,7 @@ const IndexPage = ({ data }) => {
             <Link className={characterCard} key={node.slug} to={`../characters/${node.frontmatter.slug}`}>
             <GatsbyImage
               image={getImage(node.frontmatter.avatar)}
-              alt="some text"
+              alt={node.frontmatter.slug}
               />
             <p className={characterCardName}>
               {node.frontmatter.characterName}
@@ -40,24 +40,25 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
 query {
     allMdx {
-    nodes {
-      frontmatter {
-        characterName
-        playerName
-        slug
-        avatar {
-          childrenImageSharp {
-            gatsbyImageData(
-            width: 100,
-            height: 100, 
-            placeholder: BLURRED, 
-            formats: NO_CHANGE)
+      nodes {
+        frontmatter {
+          playerName
+          characterName
+          slug
+          avatar {
+            childImageSharp {
+              gatsbyImageData(
+                width: 100, 
+                height: 100, 
+                formats: PNG, 
+                placeholder: BLURRED
+              )
+            }
           }
         }
       }
     }
   }
-}
 `
 
 export const Head = () => (
