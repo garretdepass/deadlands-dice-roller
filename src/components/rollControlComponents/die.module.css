@@ -1,0 +1,23 @@
+.dieContainer {
+    display: flex;
+    width: 40px;
+    padding: 4px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rollResult {
+    position: relative;
+    color: var(--main-gray-3 #828282);
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    top: -44px;
+    height: 0px;
+}
+
+.shapeContainer {
+}

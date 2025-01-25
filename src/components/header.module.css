@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    padding: 0px 24px;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.headerTabs {
+    display: flex;
+    padding: 16px 4px;
+    align-items: center;
+    gap: 32px;
+    flex: 1 0 0;
+}

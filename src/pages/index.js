@@ -2,8 +2,9 @@
 import * as React from 'react'
 import { Link, graphql, } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { bodyBold, characterCardName, quote, characterList, characterCardStyling, indexMain } from '../components/index.module.css'
 import Seo from '../components/seo'
-import { bodyBold, characterCardName, characterList, characterCard, indexMain } from '../components/index.module.css'
+import CharacterCard from '../components/characterCard'
 
 // Step 2: Define your component
 const IndexPage = ({ data }) => {
@@ -17,15 +18,7 @@ const IndexPage = ({ data }) => {
       <div className={characterList}>
       {
         data.allMdx.nodes.map(node => (
-            <Link className={characterCard} key={node.slug} to={`../characters/${node.frontmatter.slug}`}>
-            <GatsbyImage
-              image={getImage(node.frontmatter.avatar)}
-              alt={node.frontmatter.slug}
-              />
-            <p className={characterCardName}>
-              {node.frontmatter.characterName}
-            </p>
-            </Link>
+            <CharacterCard node={node}></CharacterCard>
         ))
       }
       </div>
@@ -33,9 +26,6 @@ const IndexPage = ({ data }) => {
   )
 }
 
-// trying to just get a printed version of what I'm making the img src out of
-// export const imageSlug = ({ data }) => (`../images/${node.frontmatter.slug}.png`)
-// console.log(`this is the url for images: ${imageSlug}`)
 
 export const query = graphql`
 query {
@@ -45,6 +35,7 @@ query {
           playerName
           characterName
           slug
+          quote
           avatar {
             childImageSharp {
               gatsbyImageData(

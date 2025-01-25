@@ -1,0 +1,10 @@
+.rollRowContainer {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+}
+
+.diceRow {
+    display: flex;
+    gap: 32px;
+}
