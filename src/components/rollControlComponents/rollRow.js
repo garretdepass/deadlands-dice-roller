@@ -10,6 +10,7 @@ function RollRow ({sides, dieCount}) {
     for (let i = dieCount; i > 0; i --) {
         dice.push(<Die sides={sides}/>)
     }
+
     return (
         <div className={rollRowContainer}>
             <div class="roll result area">Highest result</div>

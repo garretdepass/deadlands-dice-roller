@@ -2,6 +2,9 @@ import React, { Children } from "react";
 import D4 from "./dice/d4";
 import D6 from "./dice/d6";
 import D8 from "./dice/d8";
+import D10 from "./dice/d10";
+import D12 from "./dice/d12";
+import D20 from "./dice/d20";
 import {
     dieContainer,
     rollResult,
@@ -22,6 +25,18 @@ function Die ({sides}) {
         {
             dieSides: 8,
             returnedElement: <D8/>
+        },
+        {
+            dieSides: 10,
+            returnedElement: <D10/>
+        },
+        {
+            dieSides: 12,
+            returnedElement: <D12/>
+        },
+        {
+            dieSides: 20,
+            returnedElement: <D20/>
         }
     ]
 

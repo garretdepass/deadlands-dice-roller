@@ -8,7 +8,7 @@
     align-self: stretch;
     flex-wrap: wrap;
     overflow: scroll;
-    background: var(--main-blue-2, #06152A);
+    background: var(--panel-background, #06152A);
     padding: 12px;
 }
 

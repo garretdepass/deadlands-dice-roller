@@ -2,7 +2,7 @@ import React from "react";
 
 function D6 () {
     return (
-        <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="40" height="40" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M54.0968 0.0322266C56.3059 0.0322266 58.0968 1.82309 58.0968 4.03223V54.0968C58.0968 56.3059 56.3059 58.0968 54.0968 58.0968H4.03223C1.82309 58.0968 0.0322266 56.3059 0.0322266 54.0968V4.03223C0.0322266 1.82309 1.82309 0.0322266 4.03223 0.0322266H54.0968Z" fill="#4F4F4F"/>
         </svg>
     );

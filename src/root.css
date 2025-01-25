@@ -6,16 +6,19 @@
     --main-gray-5: #E0E0E0;
     --main-gray-6: #F5F5F5;
     --main-blue-1: #051122;
-    --main-blue-2: #06152A;
-    --main-blue-3: #0F213B;
-    --main-blue-4: #0C1F39;
+    --main-blue-2: #081932;
+    --main-blue-3: #142A48;
+    --main-blue-4: #223E65;
     --main-blue-5: #43689B;
     --main-blue-6: #84B1F0;
     --button-blue: #004CB3;
     --button-red: #980000;
     --button-white: #CCCCCC;
     font-family: sans-serif;
-    --headerHeight: x;
+
+    /* aliases */
+    --panel-background: var(--main-blue-2);
+    --panel-background-hover: var(--main-blue-3);
 }
 
 html {

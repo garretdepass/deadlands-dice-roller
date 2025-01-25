@@ -31,7 +31,7 @@ const CharacterSheet = ({ data, children }) => {
             </div>
             <div class={layoutPanelRight}>
                 <div class="rolling section">
-                  <RollRow sides='8' dieCount='3'/>
+                  <RollRow sides='4' dieCount='3'/>
                   <button>Roll</button>
                 </div>
                 <div className={chipsAndTips}>

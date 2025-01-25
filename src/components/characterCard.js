@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { bodyBold, characterCardName, quote, characterList, characterCardStyling, indexMain } from '../components/index.module.css'
+import { characterCardName, quote, characterCardStyling } from '../components/characterCard.module.css'
 
 const CharacterCard = ({ node }) => {
 
     return (
                 <div 
-                onClick={event =>  window.location.href=`../characters/${node.frontmatter.slug}`}
-                className={characterCardStyling} 
+                className={characterCardStyling}
+                onClick={event =>  window.location.href=`../characters/${node.frontmatter.slug}`} 
                 key={node.slug} >
                     <GatsbyImage
                     image={getImage(node.frontmatter.avatar)}
