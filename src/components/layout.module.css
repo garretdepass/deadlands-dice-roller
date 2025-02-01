@@ -91,20 +91,20 @@
     align-self: stretch;
 }
 
-.chipsAndTips {
-    display: flex;
-    height: 149px;
-    align-items: flex-start;
-    align-self: stretch;
-}
-
 .diceRoller {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex: 1 0 0;
     align-self: stretch;
-    height: calc(100% - 50.5px)
+    height: calc(100% - 50.5px);
+}
+
+.chipsAndTips {
+    display: flex;
+    height: 149px;
+    align-items: flex-start;
+    align-self: stretch;
 }
 
 ul {

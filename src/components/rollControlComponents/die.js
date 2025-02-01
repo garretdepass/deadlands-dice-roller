@@ -7,11 +7,11 @@ import D12 from "./dice/d12";
 import D20 from "./dice/d20";
 import {
     dieContainer,
-    rollResult,
+    rollResultContainer,
     shapeContainer
 } from './die.module.css'
 
-function Die ({sides}) {
+function Die ({sides, rollResult}) {
     
     let diceArray = [
         {
@@ -58,8 +58,8 @@ function Die ({sides}) {
             <div className={shapeContainer}>
             {currentDie}
             </div>
-            <div className={rollResult}>
-                8
+            <div className={rollResultContainer}>
+                {rollResult}
             </div>
         </div>
     )

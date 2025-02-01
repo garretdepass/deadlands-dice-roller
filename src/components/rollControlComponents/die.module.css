@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.rollResult {
+.rollResultContainer {
     position: relative;
     color: var(--main-gray-3 #828282);
     text-align: center;
@@ -16,7 +16,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    top: -30px;
+    top: -31px;
     height: 0px;
 }
 
