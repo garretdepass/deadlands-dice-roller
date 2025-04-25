@@ -12,6 +12,3 @@ node_modules
 /build
 .netlify
 .env*
-node_modules/
-.cache/
-public
