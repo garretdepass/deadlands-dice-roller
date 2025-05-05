@@ -10,6 +10,7 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "mongodb": "^6.3.0",
     "netlify-cli": "^3.0.0",
     "react": "^18.2.0",
