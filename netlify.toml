@@ -39,9 +39,9 @@
   publish = "dist"
 
 [template.environment]
-  MONGODB_URI = "Your MongoDB URI"
-  MONGODB_DATABASE = "A database name to host the tasks (eg. tasks_netlify)"
-  MONGODB_COLLECTION = "A collection name to store the tasks (eg. tasks)"
+  MONGODB_URI = "mongodb+srv://garretdepass:h8eBhzYtIf5cOogp@cluster0.gtgwvgx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  MONGODB_DATABASE = "tasks_netlify"
+  MONGODB_COLLECTION = "tasks"
 
 
 
