@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import {render} from '@testing-library/react'
-import App from './App.jsx';
+import App from '../src/App.js';
 import { getCharacters } from '../functions/get_characters.mjs';
-import { seedTestData, clearTestData } from '../test/setup_test_db';
+import { seedTestData, clearTestData } from './setup_test_db.js';
 
 
 const testDataArray = [

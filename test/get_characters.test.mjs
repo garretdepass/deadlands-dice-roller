@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { handler } from './get_characters.mjs';
-import { seedTestData, clearTestData } from '../test/setup_test_db';
+import { handler } from '../functions/get_characters.mjs';
+import { seedTestData, clearTestData } from './setup_test_db';
 
 
 const testDataArray = [
