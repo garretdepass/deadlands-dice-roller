@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { getCharacters } from './get_characters.mjs';
-import { seedTestData } from '../test/setup_test_db';
+import { handler } from './get_characters.mjs';
+import { seedTestData, clearTestData } from '../test/setup_test_db';
 
 
 const testDataArray = [
@@ -8,14 +8,21 @@ const testDataArray = [
     { name: "PLAYER 2", strength: 10 }
 ]
 
-beforeAll(async () => {
-});
+beforeEach( async () => {
+    await clearTestData();
+    await seedTestData(testDataArray);
+})
+
+afterEach( async () => {
+  await clearTestData()
+})
+
+
 
 describe("getCharacters", () => {
     it("gets all documents from characters collection and returns as a usable array", async () => {
         
-        await seedTestData(testDataArray);
-        const response = await getCharacters();
+        const response = await handler();
         const parsedBody = JSON.parse(response.body)
         console.log(parsedBody)
 

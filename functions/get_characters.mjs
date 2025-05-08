@@ -1,6 +1,7 @@
 import getConnection from "../lib/db.mjs";
 
-export async function getCharacters() {
+export async function handler(event, context) {
+// export async function getCharacters() {
     
     try {
         const client = await getConnection();

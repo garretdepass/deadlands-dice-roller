@@ -1,16 +1,32 @@
 import { describe, it, expect } from 'vitest';
-import App from './App.jsx';
 import {render} from '@testing-library/react'
+import App from './App.jsx';
+import { getCharacters } from '../functions/get_characters.mjs';
+import { seedTestData, clearTestData } from '../test/setup_test_db';
 
-describe("App", () =>{
-    it("renders Hello, world! heading", () => {
-    const {asFragment, getByText} = render(<App />)
-  expect(getByText('Hello, world!')).toBeInTheDocument()
-//   expect(asFragment()).toMatchInlineSnapshot(`
-//     <h1>Hello, World!</h1>
-//   `)
-    })
+
+const testDataArray = [
+    { name: "PLAYER 1", strength: 5 },
+    { name: "PLAYER 2", strength: 10 }
+]
+
+beforeEach( async () => {
+    await clearTestData();
+    await seedTestData(testDataArray);
+})
+
+afterEach( async () => {
+    await clearTestData()
 })
 
 
-// basic test to see if I can tell whether something is rendering passed! Now I can do UI tests on App.jsx 🚀🚀🚀
+describe("App", () =>{
+    it("renders all characters from the database", async () => {
+        // need to make sure that when the app renders it's pulling from the test data. 
+        // This might just be taken care of by test.env but I should make sure.
+        const {getByText} = render(<App />)
+        testDataArray.forEach((character) => {
+            expect(getByText(character.name)).toBeInTheDocument()
+        })
+    })
+})

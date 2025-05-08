@@ -11,6 +11,7 @@
   # path "root/project/build-output"
 
   publish = "build/"
+  command = "npm run build"
 
 
 
@@ -37,6 +38,7 @@
 [dev]
   port = 8888
   publish = "dist"
+  command = "npm run start"
 
 [template.environment]
   MONGODB_URI = "mongodb+srv://garretdepass:h8eBhzYtIf5cOogp@cluster0.gtgwvgx.mongodb.net/?retryWrites=true&w=majority"
