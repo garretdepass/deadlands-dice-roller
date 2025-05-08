@@ -18,9 +18,9 @@ const HomeView = () => {
   return (
     <div>
       <h1>Who's Playing?</h1>
-      { (characters.length === 0) && <div>No Characters...</div> || <div class="restaurant-grid">
+      { (characters.length === 0) && <div>No Characters...</div> || <div className="restaurant-grid">
         {characters.map(character => (
-          <Link to={"/" + character.name} key={character.name} class="restaurant-tile">
+          <Link to={"/" + character.name} key={character.name} className="restaurant-tile">
             <img src={character.imageSrc} style={{height: "200px", width: "200px"}} />
             <h2>{character.name}</h2>
           </Link>

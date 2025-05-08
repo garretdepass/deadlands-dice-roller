@@ -19,10 +19,11 @@ function App() {
   
   
   
+  
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route path="/" element={<HomeView />} />
+        <Route index element={<HomeView />} />
         {characters.map(character => (
           <Route
           key={character.name} 
@@ -32,11 +33,10 @@ function App() {
           />
         ))}
       </Routes>
-        {window.onload = () => {
+        {/* {window.onload = () => {
           let navigate = useNavigate;
           navigate("/")
-          console.log('function completed')
-        }}
+        }} */}
     </BrowserRouter> 
   );
 }
