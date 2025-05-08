@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import CharacterView from './components/character_view.js';
+import HomeView from './components/home_view.js';
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -7,27 +10,34 @@ function App() {
     const fetchData = async () => {
       const response = await fetch('/.netlify/functions/get_characters');
       const data = await response.json();
-      console.log(`in app.jsx, the data variable is ${data}`)
       setCharacters(data);
     }
     fetchData();
   }, []);
 
-
-
+  
+  
+  
+  
   return (
-    <div className="App">
-      <h1>Who's Playing?</h1>
-      { (characters.length === 0) && <div>No Characters...</div> || <div class="restaurant-grid">
+    <BrowserRouter className="App">
+      <Routes>
+        <Route path="/" element={<HomeView />} />
         {characters.map(character => (
-          <div key={character.id} class="restaurant-tile">
-            <img src={character.imageSrc} style={{height: "200px", width: "200px"}} />
-            <h2>{character.name}</h2>
-          </div>
+          <Route
+          key={character.name} 
+          path={"/" + character.name} 
+          element={<CharacterView character={character} />} 
+          class="restaurant-tile"
+          />
         ))}
-        </div>
-      }
-    </div> 
+      </Routes>
+        {window.onload = () => {
+          let navigate = useNavigate;
+          navigate("/")
+          console.log('function completed')
+        }}
+    </BrowserRouter> 
   );
 }
 

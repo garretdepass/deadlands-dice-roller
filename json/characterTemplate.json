@@ -1,0 +1,99 @@
+{
+    "name": "Peter B. Arnum",
+    "stats": {
+        "pace": 0,
+        "size": 0,
+        "grit": 0,
+        "traits": [
+            { "name": "Cognition", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Artillery", "dieCount": 0 },
+                    { "name": "Arts", "dieCount": 0 },
+                    { "name": "Scrutinize", "dieCount": 0 },
+                    { "name": "Search", "dieCount": 0 },
+                    { "name": "Trackin'", "dieCount": 0 }
+            ]
+            },
+            { "name": "Deftness", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Bow", "dieCount": 0 },
+                    { "name": "Filchin'", "dieCount": 0 },
+                    { "name": "Lockpickin'", "dieCount": 0 },
+                    { "name": "Shootin'", "dieCount": 0 },
+                    { "name": "Sleight of hand", "dieCount": 0 },
+                    { "name": "Speed load", "dieCount": 0 },
+                    { "name": "Throwin'", "dieCount": 0 }
+                ]
+            },
+            { "name": "Knowledge", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Academia", "dieCount": 0 },
+                    { "name": "Area knowledge", "dieCount": 0},
+                    { "name": "Demolition", "dieCount": 0 },
+                    { "name": "Disguise", "dieCount": 0 },
+                    { "name": "Language", "dieCount": 0 },
+                    { "name": "Mad Science", "dieCount": 0 },
+                    { "name": "Medicine", "dieCount": 0 },
+                    { "name": "Professional", "dieCount": 0 },
+                    { "name": "Science", "dieCount": 0 },
+                    { "name": "Trade", "dieCount": 0 }
+                ]
+            },
+            { "name": "Mien", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Animal wranglin'", "dieCount": 0 },
+                    { "name": "Leadership", "dieCount": 0 },
+                    { "name": "Overawe", "dieCount": 0 },
+                    { "name": "Performin'", "dieCount": 0 },
+                    { "name": "Persuasion", "dieCount": 0 },
+                    { "name": "Tale Tellin'", "dieCount": 0 }
+                ]
+            },
+            { "name": "Nimbleness", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Climbin'", "dieCount": 0 },
+                    { "name": "Dodge", "dieCount": 0 },
+                    { "name": "Drivin'", "dieCount": 0 },
+                    { "name": "Fightin'", "dieCount": 0 },
+                    { "name": "Horse ridin'", "dieCount": 0 },
+                    { "name": "Sneak", "dieCount": 0 },
+                    { "name": "Swimmin'", "dieCount": 0 },
+                    { "name": "Teamster", "dieCount": 0 }
+                ]
+            },
+            { "name": "Quickness", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Quick Draw", "dieCount": 0 }
+                ]
+            },
+            { "name": "Smarts", "dieCount": 0, "dieSides": 0,
+                "attributes": [
+                    { "name": "Bluff", "dieCount": 0 },
+                    { "name": "Gamblin'", "dieCount": 0 },
+                    { "name": "Ridicule", "dieCount": 0 },
+                    { "name": "Scroungin'", "dieCount": 0 },
+                    { "name": "Streetwise", "dieCount": 0 },
+                    { "name": "Survival", "dieCount": 0 },
+                    { "name": "Tinkerin'", "dieCount": 0 }
+                ]
+            },
+            { "name": "Spirit", "dieCount": 0, "dieSides": 0, "attributes": [
+                { "name": "Faith", "dieCount": 0 },
+                { "name": "Guts", "dieCount": 0 }
+            ]
+            },
+            { "name": "Strength", "dieCount": 0, "dieSides": 0, "type": "trait" },
+            { "name": "Vigor", "dieCount": 0, "dieSides": 0, "type": "trait" }
+        ]
+    },
+    "fateChips": {
+        "white": 0,
+        "red": 0,
+        "blue": 0,
+        "legendary": 0
+    },
+    "bountyPoints": 0,
+    "edges": [],
+    "hindrances": [],
+    "inventory": []
+}
