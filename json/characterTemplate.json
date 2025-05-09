@@ -82,8 +82,8 @@
                 { "name": "Guts", "dieCount": 0 }
             ]
             },
-            { "name": "Strength", "dieCount": 0, "dieSides": 0, "type": "trait" },
-            { "name": "Vigor", "dieCount": 0, "dieSides": 0, "type": "trait" }
+            { "name": "Strength", "dieCount": 0, "dieSides": 0 },
+            { "name": "Vigor", "dieCount": 0, "dieSides": 0 }
         ]
     },
     "fateChips": {
