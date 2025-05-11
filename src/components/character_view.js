@@ -1,30 +1,43 @@
 // import { forEach } from "cypress/types/lodash";
-import React from "react";
+import {React, useState} from "react";
 import { Link } from 'react-router-dom';
+import RollPanel from "./roll_panel.js";
+import './character_view.css';
 
 const CharacterView = ({character}) => {
+    
+    const [statNameToRoll, setStatNameToRoll] = useState("")
+    const [dieCountToRoll, setDieCountToRoll] = useState("")
+    const [dieSidesToRoll, setDieSidesToRoll] = useState("")
+
+    const handleStatClick = (clickedStat, clickedTrait) => {
+        setStatNameToRoll(clickedStat.name)
+        setDieCountToRoll(clickedStat.dieCount)
+        setDieSidesToRoll(clickedTrait.dieSides)
+    }
+    
+
+    const returnStats = (stat, trait) => {
+        return (
+            <div key={stat.name} className="stat" onClick={() => handleStatClick(stat, trait)}>
+                {stat.name} {stat.dieCount}d{trait.dieSides}
+            </div>
+        )
+    }
+
+    const returnTotalWind = () => {
+        const spiritIndex = character.stats.traits.findIndex((object) => object.name === "Spirit");
+        const vigorIndex = character.stats.traits.findIndex((object) => object.name === "Vigor");
+        return (
+            character.stats.traits[spiritIndex].dieSides + character.stats.traits[vigorIndex].dieSides
+        )
+    }
 
 
-const returnStats = (stat, trait) => {
     return (
         <div>
-            {stat.name} {stat.dieCount}d{trait.dieSides}
-        </div>
-    )
-}
-
-const returnTotalWind = () => {
-    const spiritIndex = character.stats.traits.findIndex((object) => object.name === "Spirit");
-    const vigorIndex = character.stats.traits.findIndex((object) => object.name === "Vigor");
-    console.log(`the index of spirit is ${spiritIndex}`);
-    return (
-        character.stats.traits[spiritIndex].dieSides + character.stats.traits[vigorIndex].dieSides
-    )
-}
-
-    return (
-        <div>
-            <div>{character.name}</div>
+            <RollPanel statNameToRoll={statNameToRoll} dieCountToRoll={dieCountToRoll} dieSidesToRoll={dieSidesToRoll} />
+            <div>{character.name} <Link to="/">Change Character</Link></div>            
             <div>Grit: {character.stats.grit}</div>
             <div>Pace: {character.stats.pace}</div>
             <div>Size: {character.stats.size}</div>
@@ -52,8 +65,7 @@ const returnTotalWind = () => {
                     <br></br>
                 </div>
             )
-            }                
-            <Link to="/">Change Character</Link>
+        } 
         </div>
             )
 
