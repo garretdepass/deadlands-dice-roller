@@ -1,28 +1,46 @@
 {
-  "name": "first-gatsby-site",
+  "name": "netlify-template-mongodb-atlas",
   "version": "1.0.0",
-  "private": true,
-  "description": "first-gatsby-site",
-  "author": "Garret DePass",
-  "keywords": [
-    "gatsby"
-  ],
+  "description": "A Netlify template for MongoDB Atlas integration",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "vitest"
   },
   "dependencies": {
-    "@mdx-js/react": "^2.3.0",
-    "gatsby": "^5.14.0",
-    "gatsby-plugin-image": "^3.14.0",
-    "gatsby-plugin-mdx": "^5.14.0",
-    "gatsby-plugin-sharp": "^5.14.0",
-    "gatsby-source-filesystem": "^5.14.0",
-    "gatsby-transformer-sharp": "^5.14.0",
+    "@testing-library/react": "^16.3.0",
+    "dotenv": "^16.5.0",
+    "mongodb": "^6.3.0",
+    "netlify-cli": "^3.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.6.0",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^14.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "cypress": "^13.6.4",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.3"
   }
 }

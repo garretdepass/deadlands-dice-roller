@@ -1,49 +1,36 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# Netlify and MongoDB Starter template
 
-## 🚀 Quick start
+This is a template for integrating MongoDB Atlas with a Netlify site using serverless functions.
 
-1.  **Create a Gatsby site.**
+![Netlift and MongoDB](./images/netlify+mdb.png)
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mongodb-developer/netlify-mongodb-starter)
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+[![End-to-End Tests](https://github.com/mongodb-developer/netlify-mongodb-starter/actions/workflows/main.yml/badge.svg)](https://github.com/mongodb-developer/netlify-mongodb-starter/actions/workflows/main.yml)
 
-2.  **Start developing.**
+## Setup
 
-    Navigate into your new site’s directory and start it up.
+1. Clone this repository.
+2. Install dependencies with `npm install`.
+3. Set up your MongoDB Atlas database and get your URI. (Verify IP access is appropriate for your website IP)
+   - You will need to setup the needed envioronment variables in `.env.local` or your site secrets:
+```
+ MONGODB_URI = "<YOUR MONGODB | MONGODB ATLAS URI>"
+ MONGODB_DATABASE = "tasks_netlify"
+ MONGODB_COLLECTION = "tasks"
+```
+5. Configure your environment variables in `netlify.toml`.
+6. Run `netlify dev` to start your local server.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Deploying to Netlify
 
-3.  **Open the code and start customizing!**
+### Set website secrets from .env.local
+```
+netlify env:import .env.local
+```
 
-    Your site is now running at http://localhost:8000!
+Or use the Netlify ui ince web site is available and redeploy.
 
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+Click the deploy button above and connect to your website.
+`-OR-`
+Push this repository to your GitHub and link it to a new Netlify site. Set up environment variables in the Netlify UI.
