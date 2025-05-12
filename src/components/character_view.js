@@ -15,6 +15,8 @@ const CharacterView = ({character}) => {
         setDieCountToRoll(clickedStat.dieCount)
         setDieSidesToRoll(clickedTrait.dieSides)
     }
+
+    const generateKey = () => `${Date.now()}-${Math.random()}`;
     
 
     const returnStats = (stat, trait) => {
@@ -41,19 +43,18 @@ const CharacterView = ({character}) => {
             <div>Grit: {character.stats.grit}</div>
             <div>Pace: {character.stats.pace}</div>
             <div>Size: {character.stats.size}</div>
-            <div>Wind: {returnTotalWind()} </div>
-            <br></br>
+            <div >Wind: {returnTotalWind()} </div>
             {character.stats.traits.map(
                 trait =>  
-                <div>
+                <div key={generateKey()}>
                     {returnStats(trait, trait)}
 
                     {Array.isArray(trait.attributes) && trait.attributes.map(
-                        attribute => <div>
+                        attribute => <div key={generateKey()}>
                             {returnStats(attribute, trait)}
                         
                         {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                            concentration => <div>
+                            concentration => <div key={generateKey()}>
                                 {returnStats(concentration, trait)}
                             </div>
                         )

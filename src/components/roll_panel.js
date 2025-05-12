@@ -5,50 +5,85 @@ import "./roll_panel.css"
 
 const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
 
-    const [isUntrained, setIsUntrained] = useState (false)
-
-    const [diceSection, setDiceSection] = useState(null)
+    let isUntrained = false;
+    const [diceSection, setDiceSection] = useState(null);
+    const generateKey = () => `${Date.now()}-${Math.random()}`;
 
     const returnDice = (dieCountToRoll, dieSidesToRoll) => {
         const dice = [];
-        for (let i = 0; i < dieCountToRoll; i++ ) {
-            dice.push(<Die dieSides={dieSidesToRoll} dieFace={dieSidesToRoll}/>);
-            setIsUntrained(false);
-        };
-        if (dieCountToRoll === 0) {
-            dice.push(<Die dieSides={dieSidesToRoll} dieFace={dieSidesToRoll}/>);
-            setIsUntrained(true);
+        let dieCount = dieCountToRoll;
+
+        if (dieCount === 0) {
+            dieCount = 1
+            isUntrained = true
+            // setIsUntrained(true)
+        } else {
+            isUntrained = false
+            // setIsUntrained(false)
         }
+        console.log(dieCount)
+        for (let i = 0; i < dieCount; i++ ) {
+            dice.push(<Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={dieSidesToRoll}/>);
+        };
         return dice;
-    }
+    };
     
     
     useEffect(() => {
         if (statNameToRoll && dieSidesToRoll) {
-            setDiceSection(returnDice(dieCountToRoll, dieSidesToRoll))
+            setDiceSection(returnDice(dieCountToRoll, dieSidesToRoll));
         } else {
             setDiceSection(null);
         }
-    }, [statNameToRoll])
+    }, [statNameToRoll]);
     
     
     const rollDice = (dieCountToRoll, dieSidesToRoll) => {
-        console.log(`die count is ${dieCountToRoll} and die sides are ${dieSidesToRoll}`)
-        const newRoll = [];
-        const currentRollCount = dieCountToRoll
-        // need to handle explosions on untrained rolls
-        // should probably turn this into switch / case — I'll need to use this for going bust too
-        for (let i = 0; i < currentRollCount; i++ ) {
-            // should turn this into a function and pull it out of the loop, then call it on dieFace
-            const rollResult = Math.ceil(Math.random() * dieSidesToRoll)
-            newRoll.push(<Die dieSides={dieSidesToRoll} dieFace={rollResult} />);
-            if (rollResult === dieSidesToRoll) {i = i - 1}
+        let dieCount = dieCountToRoll
+        const newRollList = [];
+        const rollTotals = []
+        const rollSingleDie = (totalSides) => {return(Math.ceil(Math.random() * totalSides))}
+        
+        for (let currentDieRow = 0; currentDieRow < dieCount; currentDieRow++ ) {
+            const newRollRow = [];
+            let rollRowTotal = 0;
+            const rollResult = rollSingleDie(dieSidesToRoll)
+            rollRowTotal += rollResult
+            newRollRow.push(<Die dieSides={dieSidesToRoll} dieFace={rollResult} />);
+            
+            if (rollResult === dieSidesToRoll) {
+                let isExploding = true
+                while (isExploding === true) {
+                    const aceRollResult = rollSingleDie(dieSidesToRoll)
+                    rollRowTotal += aceRollResult
+                    newRollRow.push(<Die dieSides={dieSidesToRoll} dieFace={aceRollResult} />);
+                    if (aceRollResult !== dieSidesToRoll) {isExploding = false}
+                }
+            }
+            rollTotals.push(rollRowTotal);
+            newRollList.push(
+                <div key={generateKey()} id={`rollRow${currentDieRow}`}>
+                    <div>
+                        text stating this is the highest value
+                    </div>
+                    <div>
+                        {newRollRow}
+                    </div>
+                </div>);
         };
-        if (currentRollCount === 0) {
-            const rollResult = Math.ceil(Math.random() * dieSidesToRoll)
-            newRoll.push(<Die dieSides={dieSidesToRoll} dieFace={rollResult} />);
-        }
-        return newRoll;
+        console.log(`rollTotals array is ${rollTotals}`)
+
+        //find the index of the highest value
+        let highestRollTotal = 0
+        let highestRollIndex = 0
+        rollTotals.forEach((value, index) => {
+            if (value > highestRollTotal) {
+                highestRollTotal = value;
+                highestRollIndex = index
+            }
+        })
+
+        return newRollList;
     }
     
     const handleRollDice = (dieCountToRoll, dieSidesToRoll) => {
