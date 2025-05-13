@@ -21,7 +21,7 @@ const CharacterView = ({character}) => {
 
     const returnStats = (stat, trait, className) => {
         return (
-            <div key={stat.name} className={`.stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+            <div key={generateKey()} className={`.stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
                 {stat.name} {stat.dieCount}d{trait.dieSides}
             </div>
         )
@@ -37,10 +37,12 @@ const CharacterView = ({character}) => {
 
 
     return (
-        <div>
+        <div className="view">
             <header className="header">
                 <div className="header__character-name">
-                    <img className="header__character-image" src={character.imageSrc} />
+                    <div className="header__character-image-container">
+                        <img className="header__character-image" src={character.imageSrc} />
+                    </div>
                     {character.name} 
                     <Link to="/">Change Character</Link>
                 </div>
@@ -67,17 +69,15 @@ const CharacterView = ({character}) => {
                         trait =>  
                         <div className="stat-group" key={generateKey()}>
                             {returnStats(trait, trait, "stat-group__item_stat")}
-                            <div className="stat-group__attribute-list">
+                            <div className="stat-group__list">
                             {Array.isArray(trait.attributes) && trait.attributes.map(
                                 attribute => <div key={generateKey()}>
                                     {returnStats(attribute, trait, "stat-group__item_attribute")}
-                                
+                                <div className="stat-group__list">
                                 {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                                    concentration => <div key={generateKey()}>
-                                        {returnStats(concentration, trait, "stat-group__item_concentration")}
-                                    </div>
-                                )
-                                }
+                                    concentration => returnStats(concentration, trait, "stat-group__item_concentration")
+                                )}
+                                </div>
                                 </div>
                             )
                             }

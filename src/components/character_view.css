@@ -23,10 +23,18 @@
     gap: 8px;
 }
 
-.header__character-image {
-    width: 32px;
-    height: 32px;
+
+
+.header__character-image-container {
+    width: 40px;
+    height: 40px;
     border-radius: 100px;
+    overflow: hidden;
+    border: solid 2px var(--blue-4, #F5F5F5);
+}
+
+.header__character-image {
+    width: inherit;
 }
 
 .non-rollable-stats {
@@ -69,11 +77,11 @@
 
 .character-sheet__inner{
     display: grid;
-    row-gap: 16px;
+    row-gap: 64px;
     column-gap: 16px;
     flex: 1 0 0;
     align-self: stretch;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
     grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
@@ -92,15 +100,29 @@
     align-items: center;
     gap: 16px;
     align-self: stretch;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
-.stat-group__attribute-list {
+.stat-group__list {
     display: flex;
-    padding-left: 12px;
+    padding-left: 16px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 8px;
     align-self: stretch;
+}
+
+.stat-group__item_concentration {
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 4px;
 }
 
 .stat:hover {

@@ -1,8 +1,16 @@
 :root {
   --blue-1: #051122;
   --blue-2: #081932;
+  --blue-3: #142A48;
+  --blue-4: #223E65;
+  --blue-5: #43689B;
+  --blue-6: #84B1F0;
 
   --Gray-6: #F5F5F5;
+
+  --buttons-button-blue: #004CB3;
+
+
 }
 
 
@@ -15,6 +23,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--Gray-6, #F5F5F5);
   background: var(--blue-1, #051122);
+}
+
+.view {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 code {
