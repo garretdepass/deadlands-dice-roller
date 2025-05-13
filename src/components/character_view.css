@@ -29,6 +29,20 @@
     border-radius: 100px;
 }
 
+.non-rollable-stats {
+    display: flex;
+    padding: 0px 24px;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.non-rollable-stats__inner-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
 .horizontal-block {
     display: flex;
     padding: 16px;
@@ -71,7 +85,7 @@
     gap: 8px;
 }
 
-.stat-group__stat {
+.stat-group__item_stat {
     display: flex;
     height: 23px;
     padding: 2px 4px;

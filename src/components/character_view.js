@@ -19,9 +19,9 @@ const CharacterView = ({character}) => {
     const generateKey = () => `${Date.now()}-${Math.random()}`;
     
 
-    const returnStats = (stat, trait) => {
+    const returnStats = (stat, trait, className) => {
         return (
-            <div key={stat.name} className="stat-group__stat" onClick={() => handleStatClick(stat, trait)}>
+            <div key={stat.name} className={`.stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
                 {stat.name} {stat.dieCount}d{trait.dieSides}
             </div>
         )
@@ -50,11 +50,15 @@ const CharacterView = ({character}) => {
                     <div>nav element</div>
                 </nav>
             </header>
-            <div>
-                <div>Grit: {character.stats.grit}</div>
-                <div>Pace: {character.stats.pace}</div>
-                <div>Size: {character.stats.size}</div>
-                <div >Wind: {returnTotalWind()} </div>
+            <div className="non-rollable-stats">
+                <div className="non-rollable-stats__inner-left">
+                    <div>Grit: {character.stats.grit}</div>
+                    <div>Pace: {character.stats.pace}</div>
+                    <div>Size: {character.stats.size}</div>
+                    <div >Wind: {returnTotalWind()} </div>
+                </div>
+                <div className="non-rollable-stats__inner-left">Fate chip section</div>
+
             </div>
             <div className="horizontal-block">
                 <div className="panel character-sheet">
@@ -62,15 +66,15 @@ const CharacterView = ({character}) => {
                     {character.stats.traits.map(
                         trait =>  
                         <div className="stat-group" key={generateKey()}>
-                            {returnStats(trait, trait)}
+                            {returnStats(trait, trait, "stat-group__item_stat")}
                             <div className="stat-group__attribute-list">
                             {Array.isArray(trait.attributes) && trait.attributes.map(
                                 attribute => <div key={generateKey()}>
-                                    {returnStats(attribute, trait)}
+                                    {returnStats(attribute, trait, "stat-group__item_attribute")}
                                 
                                 {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
                                     concentration => <div key={generateKey()}>
-                                        {returnStats(concentration, trait)}
+                                        {returnStats(concentration, trait, "stat-group__item_concentration")}
                                     </div>
                                 )
                                 }
