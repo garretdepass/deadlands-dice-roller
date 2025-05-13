@@ -21,7 +21,7 @@ const CharacterView = ({character}) => {
 
     const returnStats = (stat, trait, className) => {
         return (
-            <div key={generateKey()} className={`.stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+            <div key={generateKey()} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
                 {stat.name} {stat.dieCount}d{trait.dieSides}
             </div>
         )
@@ -71,13 +71,14 @@ const CharacterView = ({character}) => {
                             {returnStats(trait, trait, "stat-group__item_stat")}
                             <div className="stat-group__list">
                             {Array.isArray(trait.attributes) && trait.attributes.map(
-                                attribute => <div key={generateKey()}>
+                                attribute => 
+                                <div className="stat-group__item-container" key={generateKey()}>
                                     {returnStats(attribute, trait, "stat-group__item_attribute")}
-                                <div className="stat-group__list">
-                                {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                                    concentration => returnStats(concentration, trait, "stat-group__item_concentration")
-                                )}
-                                </div>
+                                    <div className="stat-group__list">
+                                        {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
+                                        concentration => returnStats(concentration, trait, "stat-group__item_concentration")
+                                        )}
+                                    </div>
                                 </div>
                             )
                             }

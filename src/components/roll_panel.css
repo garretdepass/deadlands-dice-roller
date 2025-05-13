@@ -31,6 +31,11 @@
     gap: 2px;
     flex: 1 0 0;
     align-self: stretch;
+    border-radius: 4px;
+}
+
+.dice-section__die-thread_highest {
+    background-color: #0E2950;
 }
 
 .button-row {
@@ -66,7 +71,7 @@
 .button__button-primary:hover {
     background: #0060e8;
     border: 2px solid #0060e8;
-    color: #F5F5F5;
+    color: #FFFFFF;
 }
 
 .button__button-secondary {
@@ -79,8 +84,3 @@
     background: var(--blue-3, #142A48);
     color: var(--Gray-6, #F5F5F5);
 }
-
-/* --blue-3: #142A48;
---blue-4: #223E65;
---blue-5: #43689B;
---blue-6: #84B1F0; */

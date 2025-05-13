@@ -102,9 +102,20 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
 
     const renderDiceThreads = (array, newHighestThread) => {
         const jsx = Array.isArray(array) ? array.map((thread, threadIndex) => (
+            newHighestThread.index === threadIndex ?
+
+            <div key={`thread-${threadIndex}`} className="dice-section__die-thread dice-section__die-thread_highest">
+                {returnDie(thread)}
+                <div>Highest roll</div>    
+            </div>
+
+            :
+
             <div key={`thread-${threadIndex}`} className="dice-section__die-thread">
                 {returnDie(thread)}    
-            </div>)) : <div>missing array</div>
+            </div>
+            
+        )) : <div>missing array</div>
         return jsx
     }
 
@@ -128,17 +139,22 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
         setDiceSection(renderDiceThreads(threads, newHighestThread))
     }
 
+    // const handleClearDice = () => {
+    //     setDiceSection(null);
+    //     statNameToRoll = null;
+    // }
+
     return (
         <div className="panel roll-panel">
             <div>{statNameToRoll? `Rolling ${statNameToRoll}` : "Select a trait to roll."}</div>
-            <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
             <div className="dice-section">{diceSection}</div>
             <div>{highestRollResult ? `Roll result: ${highestRollResult}` : ''}</div>
+            <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
             <div>{isBust === true ? `Too many 1's. You've gone bust!` : ``}</div>
             <div className="button-row">
-                <button className="button button__button-secondary" onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}}>
+                {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>
                     Clear
-                </button>
+                </button> */}
                 <button className="button button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}}>
                     Roll Dice
                 </button>

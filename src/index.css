@@ -31,6 +31,11 @@ body {
   flex-direction: column;
 }
 
+.panel {
+  border-radius: 4px;
+  background: var(--blue-2, #081932);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -60,11 +60,6 @@
     align-self: stretch;
 }
 
-.panel {
-    border-radius: 4px;
-    background: var(--blue-2, #081932);
-}
-
 .character-sheet {
     display: flex;
     padding: 12px;
@@ -93,18 +88,11 @@
     gap: 8px;
 }
 
-.stat-group__item_stat {
+.stat-group__item-container {
     display: flex;
-    height: 23px;
-    padding: 2px 4px;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
     align-self: stretch;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 }
 
 .stat-group__list {
@@ -116,16 +104,27 @@
     align-self: stretch;
 }
 
-.stat-group__item_concentration {
+.stat-group__item {
+    display: flex;
+    height: 23px;
+    padding: 2px 4px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
-    padding-top: 4px;
 }
 
-.stat:hover {
-    color: rgb(0, 8, 255);
+.stat-group__item:hover {
+    background-color: var(--blue-4, #142A48);
+}
+
+.stat-group__item_stat {
     font-weight: 700;
+}
+
+.stat-group__item_concentration {
+    padding-top: 4px;
 }
