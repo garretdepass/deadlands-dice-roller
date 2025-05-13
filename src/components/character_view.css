@@ -77,7 +77,13 @@
     flex: 1 0 0;
     align-self: stretch;
     grid-template-rows: auto;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-set {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .stat-group {
@@ -86,6 +92,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+}
+
+.stat-group_knowledge{
+    grid-column: 4;
+    grid-row: 1 / 3;
 }
 
 .stat-group__item-container {

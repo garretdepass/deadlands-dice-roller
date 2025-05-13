@@ -17,9 +17,8 @@ const CharacterView = ({character}) => {
     }
 
     const generateKey = () => `${Date.now()}-${Math.random()}`;
-    
 
-    const returnStats = (stat, trait, className) => {
+    const renderStat = (stat, trait, className) => {
         return (
             <div key={generateKey()} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
                 {stat.name} {stat.dieCount}d{trait.dieSides}
@@ -33,6 +32,30 @@ const CharacterView = ({character}) => {
         return (
             character.stats.traits[spiritIndex].dieSides + character.stats.traits[vigorIndex].dieSides
         )
+    }
+
+    const renderStatGroup = (traitName) => {
+        const traitIndex = character.stats.traits.findIndex((object) => object.name === traitName)
+        const trait = character.stats.traits[traitIndex]
+        console.log(trait.name)
+        return (
+            <div className={traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"}>
+                    {renderStat(trait, trait, "stat-group__item_stat")}
+                <div className="stat-group__list">
+                    {Array.isArray(trait.attributes) && trait.attributes.map(
+                        attribute => 
+                            <div className="stat-group__item-container" key={generateKey()}>
+                            {renderStat(attribute, trait, "stat-group__item_attribute")}
+                            <div className="stat-group__list">
+                                {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
+                                    concentration => renderStat(concentration, trait, "stat-group__item_concentration")
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        )                        
     }
 
 
@@ -65,26 +88,18 @@ const CharacterView = ({character}) => {
             <div className="horizontal-block">
                 <div className="panel character-sheet">
                     <div className="character-sheet__inner">
-                    {character.stats.traits.map(
-                        trait =>  
-                        <div className="stat-group" key={generateKey()}>
-                            {returnStats(trait, trait, "stat-group__item_stat")}
-                            <div className="stat-group__list">
-                            {Array.isArray(trait.attributes) && trait.attributes.map(
-                                attribute => 
-                                <div className="stat-group__item-container" key={generateKey()}>
-                                    {returnStats(attribute, trait, "stat-group__item_attribute")}
-                                    <div className="stat-group__list">
-                                        {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                                        concentration => returnStats(concentration, trait, "stat-group__item_concentration")
-                                        )}
-                                    </div>
-                                </div>
-                            )
-                            }
-                            </div>               
+                        {renderStatGroup(`Cognition`)}
+                        {renderStatGroup(`Deftness`)}
+                        {renderStatGroup(`Mien`)}
+                        {renderStatGroup(`Knowledge`)}
+                        {renderStatGroup(`Smarts`)}
+                        {renderStatGroup(`Nimbleness`)}
+                        <div className="stat-set">
+                            {renderStatGroup(`Quickness`)}
+                            {renderStatGroup(`Spirit`)}
+                            {renderStatGroup(`Strength`)}
+                            {renderStatGroup(`Vigor`)}
                         </div>
-                    )} 
                     </div>
                 </div>
                 <RollPanel statNameToRoll={statNameToRoll} dieCountToRoll={dieCountToRoll} dieSidesToRoll={dieSidesToRoll} />
