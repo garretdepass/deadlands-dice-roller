@@ -21,7 +21,7 @@ const CharacterView = ({character}) => {
 
     const returnStats = (stat, trait) => {
         return (
-            <div key={stat.name} className="stat" onClick={() => handleStatClick(stat, trait)}>
+            <div key={stat.name} className="stat-group__stat" onClick={() => handleStatClick(stat, trait)}>
                 {stat.name} {stat.dieCount}d{trait.dieSides}
             </div>
         )
@@ -38,35 +38,52 @@ const CharacterView = ({character}) => {
 
     return (
         <div>
-            <RollPanel statNameToRoll={statNameToRoll} dieCountToRoll={dieCountToRoll} dieSidesToRoll={dieSidesToRoll} />
-            <div>{character.name} <Link to="/">Change Character</Link></div>            
-            <div>Grit: {character.stats.grit}</div>
-            <div>Pace: {character.stats.pace}</div>
-            <div>Size: {character.stats.size}</div>
-            <div >Wind: {returnTotalWind()} </div>
-            {character.stats.traits.map(
-                trait =>  
-                <div key={generateKey()}>
-                    {returnStats(trait, trait)}
-
-                    {Array.isArray(trait.attributes) && trait.attributes.map(
-                        attribute => <div key={generateKey()}>
-                            {returnStats(attribute, trait)}
-                        
-                        {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                            concentration => <div key={generateKey()}>
-                                {returnStats(concentration, trait)}
-                            </div>
-                        )
-                        }
-                        </div>
-                    )
-                    }               
-                        
-                    <br></br>
+            <header className="header">
+                <div className="header__character-name">
+                    <img className="header__character-image" src={character.imageSrc} />
+                    {character.name} 
+                    <Link to="/">Change Character</Link>
                 </div>
-            )
-        } 
+                <nav className="nav">
+                    <div>nav element</div>
+                    <div>nav element</div>
+                    <div>nav element</div>
+                </nav>
+            </header>
+            <div>
+                <div>Grit: {character.stats.grit}</div>
+                <div>Pace: {character.stats.pace}</div>
+                <div>Size: {character.stats.size}</div>
+                <div >Wind: {returnTotalWind()} </div>
+            </div>
+            <div className="horizontal-block">
+                <div className="panel character-sheet">
+                    <div className="character-sheet__inner">
+                    {character.stats.traits.map(
+                        trait =>  
+                        <div className="stat-group" key={generateKey()}>
+                            {returnStats(trait, trait)}
+                            <div className="stat-group__attribute-list">
+                            {Array.isArray(trait.attributes) && trait.attributes.map(
+                                attribute => <div key={generateKey()}>
+                                    {returnStats(attribute, trait)}
+                                
+                                {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
+                                    concentration => <div key={generateKey()}>
+                                        {returnStats(concentration, trait)}
+                                    </div>
+                                )
+                                }
+                                </div>
+                            )
+                            }
+                            </div>               
+                        </div>
+                    )} 
+                    </div>
+                </div>
+                <RollPanel statNameToRoll={statNameToRoll} dieCountToRoll={dieCountToRoll} dieSidesToRoll={dieSidesToRoll} />
+            </div>
         </div>
             )
 

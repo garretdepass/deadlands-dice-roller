@@ -4,96 +4,134 @@ import "./roll_panel.css"
 
 
 const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
-
-    let isUntrained = false;
+    
     const [diceSection, setDiceSection] = useState(null);
-    const generateKey = () => `${Date.now()}-${Math.random()}`;
+    const [isUnskilled, setIsUnskilled] = useState(false);
+    const [isBust, setIsBust] = useState(false);
 
-    const returnDice = (dieCountToRoll, dieSidesToRoll) => {
+    const generateKey = () => `${Date.now()}-${Math.random()}`;
+    
+    const generateDiceArray = (dieCountToRoll, dieSidesToRoll) => {
         const dice = [];
         let dieCount = dieCountToRoll;
 
         if (dieCount === 0) {
             dieCount = 1
-            isUntrained = true
-            // setIsUntrained(true)
+            setIsUnskilled(true)
         } else {
-            isUntrained = false
-            // setIsUntrained(false)
+            setIsUnskilled(false)
         }
-        console.log(dieCount)
         for (let i = 0; i < dieCount; i++ ) {
-            dice.push(<Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={dieSidesToRoll}/>);
+            dice.push(dieSidesToRoll);
         };
         return dice;
-    };
+    }; 
     
+    const returnRolledDieValue = (totalSides) => {return(Math.ceil(Math.random() * totalSides))}
     
-    useEffect(() => {
-        if (statNameToRoll && dieSidesToRoll) {
-            setDiceSection(returnDice(dieCountToRoll, dieSidesToRoll));
-        } else {
-            setDiceSection(null);
-        }
-    }, [statNameToRoll]);
-    
-    
-    const rollDice = (dieCountToRoll, dieSidesToRoll) => {
-        let dieCount = dieCountToRoll
-        const newRollList = [];
-        const rollTotals = []
-        const rollSingleDie = (totalSides) => {return(Math.ceil(Math.random() * totalSides))}
+    const returnRolledDiceArray = (dieCountToRoll, dieSidesToRoll) => {
+        let threadCount = 0;
+        isUnskilled === true ? threadCount = 1 : threadCount = dieCountToRoll;
+        const allRolledThreads = [];
         
-        for (let currentDieRow = 0; currentDieRow < dieCount; currentDieRow++ ) {
-            const newRollRow = [];
-            let rollRowTotal = 0;
-            const rollResult = rollSingleDie(dieSidesToRoll)
-            rollRowTotal += rollResult
-            newRollRow.push(<Die dieSides={dieSidesToRoll} dieFace={rollResult} />);
+        for (let currentThread = 0; currentThread < threadCount; currentThread++ ) {
+            const newThread = [];
+            const rollResult = returnRolledDieValue(dieSidesToRoll)
+            newThread.push(rollResult)
             
             if (rollResult === dieSidesToRoll) {
                 let isExploding = true
                 while (isExploding === true) {
-                    const aceRollResult = rollSingleDie(dieSidesToRoll)
-                    rollRowTotal += aceRollResult
-                    newRollRow.push(<Die dieSides={dieSidesToRoll} dieFace={aceRollResult} />);
+                    const aceRollResult = returnRolledDieValue(dieSidesToRoll)
+                    newThread.push(aceRollResult)
                     if (aceRollResult !== dieSidesToRoll) {isExploding = false}
                 }
             }
-            rollTotals.push(rollRowTotal);
-            newRollList.push(
-                <div key={generateKey()} id={`rollRow${currentDieRow}`}>
-                    <div>
-                        text stating this is the highest value
-                    </div>
-                    <div>
-                        {newRollRow}
-                    </div>
-                </div>);
+            allRolledThreads.push(newThread);
         };
-        console.log(`rollTotals array is ${rollTotals}`)
-
-        //find the index of the highest value
-        let highestRollTotal = 0
-        let highestRollIndex = 0
-        rollTotals.forEach((value, index) => {
-            if (value > highestRollTotal) {
-                highestRollTotal = value;
-                highestRollIndex = index
-            }
-        })
-
-        return newRollList;
+        return allRolledThreads;
     }
     
+    const findHighestThread = (array) => {
+        const allThreadTotals = [];
+        
+        array.forEach(thread => {
+            let threadTotal = 0;
+            thread.forEach((value, index) => {
+                threadTotal += value;
+            })
+            allThreadTotals.push(threadTotal)
+        })
+        
+        const highestThread = {};
+        highestThread.total = 0;
+        
+        allThreadTotals.forEach((value, index) => {
+            if (value > highestThread.total) {
+                highestThread.total = value;
+                highestThread.index = index
+            }
+        })
+        return highestThread   
+    }
+
+    const checkForBust = (array) => {
+        let totalDice = 0;
+        let numberOfOnes = 0;
+        array.forEach(thread => {
+            thread.forEach(die => {
+                totalDice ++;;
+                if (thread[0] === 1) {numberOfOnes ++};
+            })
+        });
+        if (numberOfOnes > Math.floor(totalDice / 2)) {
+            setIsBust(true);
+        } else {
+            setIsBust(false);
+        };
+    }
+
+    const returnDie = (thread) => {
+        const die = Array.isArray(thread) ? thread.map((value, valueIndex) => (
+            <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={value}/>
+        )) : <div>{thread}</div>
+        return die;
+    }
+
+    const renderDiceThreads = (array, newHighestThread) => {
+        let adjustedTotal = newHighestThread.total
+        if (isUnskilled) {adjustedTotal -= 4}
+        if (adjustedTotal < 0) {adjustedTotal = 0}
+        const jsx = Array.isArray(array) ? array.map((thread, threadIndex) => (
+            <div key={`thread-${threadIndex}`}>
+                <div>{(threadIndex === newHighestThread.index) ? `Highest roll: ${adjustedTotal}` : ''}</div>
+                {returnDie(thread)}    
+            </div>)) : <div>missing array</div>
+        return jsx
+    }
+
+    useEffect(() => {
+        const newHighestThread = {index: null, total: null}
+        if (statNameToRoll && dieSidesToRoll) {
+            setDiceSection(renderDiceThreads(generateDiceArray(dieCountToRoll, dieSidesToRoll), newHighestThread));
+        } else {
+            setDiceSection(null);
+        }
+    }, [statNameToRoll]);
+
     const handleRollDice = (dieCountToRoll, dieSidesToRoll) => {
-        setDiceSection(rollDice(dieCountToRoll, dieSidesToRoll))
+        const threads = returnRolledDiceArray(dieCountToRoll, dieSidesToRoll)
+        const newHighestThread = findHighestThread(threads)
+        checkForBust(threads)
+        setDiceSection(renderDiceThreads(threads, newHighestThread))
     }
 
     return (
-        <div>
+        <div className="panel roll-panel">
             <div>{statNameToRoll? `Rolling ${statNameToRoll}` : "Select a trait to roll."}</div>
+            <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
             <div className="dice-section">{diceSection}</div>
+            <div>{isBust === true ? `Too many 1's. You've gone bust!` : ``}</div>
             <button 
             onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}}
             >Roll Dice</button>
