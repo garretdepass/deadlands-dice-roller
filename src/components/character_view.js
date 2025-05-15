@@ -149,7 +149,7 @@ const CharacterView = ({character}) => {
                     <div >Wind: <span className="stat-accent-color">{returnTotalWind()}</span></div>
                 </div>
                 <div className="non-rollable-stats__inner-left">
-                    <ChipCounterContainer />
+                    <ChipCounterContainer character={character}/>
                 </div>
 
             </div>
