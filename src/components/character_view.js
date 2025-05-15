@@ -2,6 +2,7 @@
 import {React, useState} from "react";
 import { Link } from 'react-router-dom';
 import RollPanel from "./roll_panel.js";
+import ChipCounterContainer from "./chip_counters_container.js";
 import './character_view.css';
 
 const CharacterView = ({character}) => {
@@ -147,7 +148,9 @@ const CharacterView = ({character}) => {
                     <div>Size: <span className="stat-accent-color">{character.stats.size}</span></div>
                     <div >Wind: <span className="stat-accent-color">{returnTotalWind()}</span></div>
                 </div>
-                <div className="non-rollable-stats__inner-left">Fate chip section</div>
+                <div className="non-rollable-stats__inner-left">
+                    <ChipCounterContainer />
+                </div>
 
             </div>
             <div className="horizontal-block">
