@@ -19,12 +19,74 @@ const CharacterView = ({character}) => {
     const generateKey = () => `${Date.now()}-${Math.random()}`;
 
     const renderStat = (stat, trait, className) => {
-        return (
-            <div key={generateKey()} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
-                {stat.name} {stat.dieCount}d{trait.dieSides}
-            </div>
-        )
+        switch (stat.name) {
+            case ("Language"):
+            case ("Area Knowledge"):
+                return (
+                    <div key={stat.name} className="stat-group__item-non-rollable">{stat.name}</div>
+                )
+                break;
+            case ("Home County"):
+                return (
+                    <div key={stat.name} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+                    <div className="stat-group__item-name">
+                        {stat.location} 
+                    </div>
+                    <div className="stat-group__item-die-info">
+                        <span className="stat-accent-color">
+                            {stat.dieCount} 
+                        </span>
+                        d
+                        <span className="stat-accent-color">
+                            {trait.dieSides}
+                        </span>
+                    </div>
+                </div>
+                )
+            default:
+                return (
+                    <div key={stat.name} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+                    <div className="stat-group__item-name">
+                        {stat.name} 
+                    </div>
+                    <div className="stat-group__item-die-info">
+                        <span className="stat-accent-color">
+                            {stat.dieCount} 
+                        </span>
+                        d
+                        <span className="stat-accent-color">
+                            {trait.dieSides}
+                        </span>
+                    </div>
+                </div>
+                )
+        }
     }
+
+    // const renderStat = (stat, trait, className) => {
+    //     if (stat.name === "Language" || stat.name === "Area Knowledge") {
+    //         return (
+    //             <div className="stat-group__item-non-rollable">{stat.name}</div>
+    //         )
+    //     } else {
+    //         return (
+    //             <div key={generateKey()} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+    //             <div className="stat-group__item-name">
+    //                 {stat.name} 
+    //             </div>
+    //             <div className="stat-group__item-die-info">
+    //                 <span className="stat-accent-color">
+    //                     {stat.dieCount} 
+    //                 </span>
+    //                 d
+    //                 <span className="stat-accent-color">
+    //                     {trait.dieSides}
+    //                 </span>
+    //             </div>
+    //         </div>
+    //         )
+    //     }
+    // }
 
     const returnTotalWind = () => {
         const spiritIndex = character.stats.traits.findIndex((object) => object.name === "Spirit");
@@ -37,7 +99,6 @@ const CharacterView = ({character}) => {
     const renderStatGroup = (traitName) => {
         const traitIndex = character.stats.traits.findIndex((object) => object.name === traitName)
         const trait = character.stats.traits[traitIndex]
-        console.log(trait.name)
         return (
             <div className={traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"}>
                     {renderStat(trait, trait, "stat-group__item_stat")}
@@ -62,12 +123,16 @@ const CharacterView = ({character}) => {
     return (
         <div className="view">
             <header className="header">
-                <div className="header__character-name">
-                    <div className="header__character-image-container">
-                        <img className="header__character-image" src={character.imageSrc} />
+                <div className="character-indicator">
+                    <div className="character-indicator__image-container">
+                        <img className="character-indicator__image" src={character.imageSrc} />
                     </div>
-                    {character.name} 
-                    <Link to="/">Change Character</Link>
+                    <div className="character-indicator__name-container">
+                        <span className="character-indicator__name">
+                            {character.name} 
+                        </span>
+                        <Link className="character-indicator__change-character" to="/">Change Character</Link>
+                    </div>
                 </div>
                 <nav className="nav">
                     <div>nav element</div>
@@ -77,10 +142,10 @@ const CharacterView = ({character}) => {
             </header>
             <div className="non-rollable-stats">
                 <div className="non-rollable-stats__inner-left">
-                    <div>Grit: {character.stats.grit}</div>
-                    <div>Pace: {character.stats.pace}</div>
-                    <div>Size: {character.stats.size}</div>
-                    <div >Wind: {returnTotalWind()} </div>
+                    <div>Grit: <span className="stat-accent-color">{character.stats.grit}</span></div>
+                    <div>Pace: <span className="stat-accent-color">{character.stats.pace}</span></div>
+                    <div>Size: <span className="stat-accent-color">{character.stats.size}</span></div>
+                    <div >Wind: <span className="stat-accent-color">{returnTotalWind()}</span></div>
                 </div>
                 <div className="non-rollable-stats__inner-left">Fate chip section</div>
 

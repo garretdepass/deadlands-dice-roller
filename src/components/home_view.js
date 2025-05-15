@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './home_view.css';
 
 const HomeView = () => {
   const [characters, setCharacters] = useState([]);
@@ -13,20 +14,46 @@ const HomeView = () => {
     fetchData();
   }, []);
 
+  const renderCharacterGrid = () => {
+    return (
+      (characters.length === 0) && <div>Characters loading...</div> || <div className="character-grid-inner">
+        {characters.map(character => (
+          <Link className="panel character-card" to={"/" + character.name} key={character.name}>
+            <div className="character-card__character-image" style={{backgroundImage: `url(${character.imageSrc})`}}></div>
+            <h2 className="character-card__character-name">{character.name}</h2>
+          </Link>
+        ))}
+        {/* just here to show more characters until I get other sheets loaded */}
+        {characters.map(character => (
+          <Link className="panel character-card" to={"/" + character.name} key={character.name}>
+            <div className="character-card__character-image" style={{backgroundImage: `url(${character.imageSrc})`}}></div>
+            <h2 className="character-card__character-name">{character.name}</h2>
+          </Link>
+        ))}
+        {characters.map(character => (
+          <Link className="panel character-card" to={"/" + character.name} key={character.name}>
+            <div className="character-card__character-image" style={{backgroundImage: `url(${character.imageSrc})`}}></div>
+            <h2 className="character-card__character-name">{character.name}</h2>
+          </Link>
+        ))}
+        {characters.map(character => (
+          <Link className="panel character-card" to={"/" + character.name} key={character.name}>
+            <div className="character-card__character-image" style={{backgroundImage: `url(${character.imageSrc})`}}></div>
+            <h2 className="character-card__character-name">{character.name}</h2>
+          </Link>
+        ))}
+        </div>
+    )
+  }
+
 
 
   return (
     <div>
       <h1>Who's Playing?</h1>
-      { (characters.length === 0) && <div>No Characters...</div> || <div className="restaurant-grid">
-        {characters.map(character => (
-          <Link to={"/" + character.name} key={character.name} className="restaurant-tile">
-            <img src={character.imageSrc} style={{height: "200px", width: "200px"}} />
-            <h2>{character.name}</h2>
-          </Link>
-        ))}
-        </div>
-      }
+      <div className="character-grid">
+        {renderCharacterGrid()}
+      </div>
     </div> 
   );
 }

@@ -6,14 +6,14 @@
 
 .roll-panel {
     display: flex;
-    width: 304px;
+    width: 400px;
     padding: 12px;
     flex-direction: column;
     align-items: center;
     gap: 16px;
     align-self: stretch;
 }
-.dice-section {
+/* .dice-section {
     display: grid;
     row-gap: 32px;
     column-gap: 8px;
@@ -21,21 +21,63 @@
     align-self: stretch;
     grid-template-rows: repeat(2, minmax(0, 1fr));
     grid-template-columns: repeat(4, minmax(0, 1fr));
+} */
+
+.dice-section {
+    justify-content: center;
+    flex: 1 0 0;
+}
+
+.dice-section-inner {
+    display: flex;
+    gap: 32px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: stretch;
+    justify-content: flex-start;
 }
 
 .dice-section__die-thread {
     display: flex;
-    padding: 8px 4px;
+}
+
+.dice-section__die-thread-inner {
+    display: flex;
+    padding: 16px 4px;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 12px;
     flex: 1 0 0;
-    align-self: stretch;
+    align-self: flex-start;
     border-radius: 4px;
 }
 
-.dice-section__die-thread_highest {
+.dice-section__die-thread-inner_highest {
     background-color: #0E2950;
+}
+
+.dice-section_highest-roll-text {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.result-section {
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+}
+
+.result-section__roll-result {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.result-section__bust-indicator {
+    color: orange;
+    padding: 16px 0;
+    font-weight: 700;
 }
 
 .button-row {
@@ -72,6 +114,12 @@
     background: #0060e8;
     border: 2px solid #0060e8;
     color: #FFFFFF;
+}
+
+.button__button-primary:disabled {
+    background-color: #484660;
+    border: 2px solid #484660;
+    opacity: 75%;
 }
 
 .button__button-secondary {

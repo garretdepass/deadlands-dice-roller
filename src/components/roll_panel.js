@@ -9,11 +9,13 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
     const [isUnskilled, setIsUnskilled] = useState(false);
     const [isBust, setIsBust] = useState(false);
     const [highestRollResult, setHighestRollResult] = useState(null)
+    const [isRollButtonDisabled, setIsRollButtonDisabled] = useState(true)
 
     const generateKey = () => `${Date.now()}-${Math.random()}`;
     
     const generateDiceArray = (dieCountToRoll, dieSidesToRoll) => {
         setHighestRollResult(null)
+        setIsBust(false)
         const dice = [];
         let dieCount = dieCountToRoll;
 
@@ -93,10 +95,10 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
         };
     }
 
-    const returnDie = (thread) => {
+    const returnDie = (thread, isInHighThread) => {
         const die = Array.isArray(thread) ? thread.map((value, valueIndex) => (
-            <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={value}/>
-        )) : <div>{thread}</div>
+            <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={value} isInHighThread={isInHighThread} />
+        )) : <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={thread} isInHighThread={isInHighThread}/>
         return die;
     }
 
@@ -104,15 +106,18 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
         const jsx = Array.isArray(array) ? array.map((thread, threadIndex) => (
             newHighestThread.index === threadIndex ?
 
-            <div key={`thread-${threadIndex}`} className="dice-section__die-thread dice-section__die-thread_highest">
-                {returnDie(thread)}
-                <div>Highest roll</div>    
+            <div key={`thread-${threadIndex}`} className="dice-section__die-thread">
+                <div className="dice-section__die-thread-inner dice-section__die-thread-inner_highest">
+                    {returnDie(thread, true)}
+                    <div className="dice-section_highest-roll-text">Highest roll</div>    
+                </div>
             </div>
 
             :
-
             <div key={`thread-${threadIndex}`} className="dice-section__die-thread">
-                {returnDie(thread)}    
+                <div className="dice-section__die-thread-inner">
+                {returnDie(thread, false)}    
+                </div>
             </div>
             
         )) : <div>missing array</div>
@@ -123,8 +128,10 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
         const newHighestThread = {index: null, total: null}
         if (statNameToRoll && dieSidesToRoll) {
             setDiceSection(renderDiceThreads(generateDiceArray(dieCountToRoll, dieSidesToRoll), newHighestThread));
+            setIsRollButtonDisabled(false);
         } else {
             setDiceSection(null);
+            setIsRollButtonDisabled(true);
         }
     }, [statNameToRoll]);
 
@@ -147,16 +154,22 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
     return (
         <div className="panel roll-panel">
             <div>{statNameToRoll? `Rolling ${statNameToRoll}` : "Select a trait to roll."}</div>
-            <div className="dice-section">{diceSection}</div>
-            <div>{highestRollResult ? `Roll result: ${highestRollResult}` : ''}</div>
-            <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
-            <div>{isBust === true ? `Too many 1's. You've gone bust!` : ``}</div>
+            <div className="dice-section">
+                <div className="dice-section-inner">
+                    {diceSection}
+                </div>
+            </div>
+            <div className="result-section">
+                <div className="result-section__bust-indicator">{isBust === true ? `More than half the dice are 1's. You've gone bust!` : ``}</div>
+                <div className="result-section__roll-result">{highestRollResult !== null ? `Roll result: ${highestRollResult}` : ''}</div>
+                <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
+            </div>
             <div className="button-row">
                 {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>
                     Clear
                 </button> */}
-                <button className="button button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}}>
-                    Roll Dice
+                <button className="button button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}} disabled={isRollButtonDisabled}>
+                    {isRollButtonDisabled ? "Select a stat to roll" : "Roll Dice"}
                 </button>
             </div>
         </div>

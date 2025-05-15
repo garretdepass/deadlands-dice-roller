@@ -9,6 +9,7 @@
   --Gray-6: #F5F5F5;
 
   --buttons-button-blue: #004CB3;
+  --buttons-button-red: #980000;
 
 
 }
@@ -41,10 +42,7 @@ code {
     monospace;
 }
 
-.restaurant-grid{
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-}
+
 .app{
   display: flex;
   flex-direction: column;
@@ -65,22 +63,4 @@ code {
   gap:20px;
 }
 
-.restaurant-tile{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-  margin: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-}
 
-.restaurant-delete-button button {
-  display: flex;
-  justify-content: flex-end;
-  background-color: lightcoral
-
-}
