@@ -43,20 +43,28 @@ const handleChipDecrementClick = (color) => {
     let newLegendChipCount = legendChipCount
     switch (color) {
         case "red":
-            newRedChipCount --;
-            setRedChipCount(newRedChipCount);
+            if (redChipCount) {
+                newRedChipCount --;
+                setRedChipCount(newRedChipCount);
+            }
             break;
         case "blue":
-            newBlueChipCount --;
-            setBlueChipCount(newBlueChipCount);
+            if (blueChipCount) {
+                newBlueChipCount --;
+                setBlueChipCount(newBlueChipCount);
+            }
             break;
         case "white":
-            newWhiteChipCount --;
-            setWhiteChipCount(newWhiteChipCount);
+            if (whiteChipCount) {
+                newWhiteChipCount --;
+                setWhiteChipCount(newWhiteChipCount);
+            }
             break;
         case "legend":
-            newLegendChipCount --;
-            setLegendChipCount(newLegendChipCount);
+            if (legendChipCount) {
+                newLegendChipCount --;
+                setLegendChipCount(newLegendChipCount);
+            }
             break;
         default:
             console.log(`not passing color correctly`)
