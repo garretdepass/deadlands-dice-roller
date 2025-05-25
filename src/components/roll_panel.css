@@ -4,15 +4,6 @@
     gap: 16px;
 }
 
-.roll-panel {
-    display: flex;
-    width: 400px;
-    padding: 12px;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    align-self: stretch;
-}
 /* .dice-section {
     display: grid;
     row-gap: 32px;
@@ -78,13 +69,6 @@
     color: orange;
     padding: 16px 0;
     font-weight: 700;
-}
-
-.button-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
 }
 
 .button {

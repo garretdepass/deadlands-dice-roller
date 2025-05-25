@@ -9,7 +9,16 @@ const [blueChipCount, setBlueChipCount] = useState(character.fateChips.blue);
 const [whiteChipCount, setWhiteChipCount] = useState(character.fateChips.white);
 const [legendChipCount, setLegendChipCount] = useState(character.fateChips.legendary);
 
-const handleChipIncrementClick = (color) => {
+const updateCharacterChips = async (_id, key, value) => {
+    // Call the Netlify function
+    const response = await fetch('/.netlify/functions/update_character', {
+      method: 'POST',
+      body: JSON.stringify({ _id, key, value })
+    });
+    const data = await response.json();
+}
+
+const handleChipIncrementClick = async (color) => {
     let newWhiteChipCount = whiteChipCount;
     let newRedChipCount = redChipCount;
     let newBlueChipCount = blueChipCount
@@ -18,25 +27,29 @@ const handleChipIncrementClick = (color) => {
         case "red":
             newRedChipCount ++;
             setRedChipCount(newRedChipCount);
+            await updateCharacterChips(character._id, "fateChips.red", newRedChipCount)
             break;
         case "blue":
             newBlueChipCount ++;
             setBlueChipCount(newBlueChipCount);
+            await updateCharacterChips(character._id, "fateChips.blue", newBlueChipCount)
             break;
         case "white":
             newWhiteChipCount ++;
             setWhiteChipCount(newWhiteChipCount);
+            await updateCharacterChips(character._id, "fateChips.white", newWhiteChipCount)
             break;
         case "legend":
             newLegendChipCount ++;
             setLegendChipCount(newLegendChipCount);
+            await updateCharacterChips(character._id, "fateChips.legendary", newLegendChipCount)
             break;
         default:
             console.log(`not passing color correctly`)
     }
 }
 
-const handleChipDecrementClick = (color) => {
+const handleChipDecrementClick = async (color) => {
     let newWhiteChipCount = whiteChipCount;
     let newRedChipCount = redChipCount;
     let newBlueChipCount = blueChipCount
@@ -46,24 +59,28 @@ const handleChipDecrementClick = (color) => {
             if (redChipCount) {
                 newRedChipCount --;
                 setRedChipCount(newRedChipCount);
+                await updateCharacterChips(character._id, "fateChips.red", newRedChipCount)     
             }
             break;
         case "blue":
             if (blueChipCount) {
                 newBlueChipCount --;
                 setBlueChipCount(newBlueChipCount);
+                await updateCharacterChips(character._id, "fateChips.blue", newBlueChipCount)
             }
             break;
         case "white":
             if (whiteChipCount) {
                 newWhiteChipCount --;
                 setWhiteChipCount(newWhiteChipCount);
+                await updateCharacterChips(character._id, "fateChips.white", newWhiteChipCount)
             }
             break;
         case "legend":
             if (legendChipCount) {
                 newLegendChipCount --;
                 setLegendChipCount(newLegendChipCount);
+                await updateCharacterChips(character._id, "fateChips.legendary", newLegendChipCount)
             }
             break;
         default:

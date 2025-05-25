@@ -7,7 +7,8 @@
 }
 
 .nav {
-    display: flex;
+    display: none;
+    /* display: flex; */
     padding: 0px 4px;
     justify-content: flex-end;
     align-items: center;
@@ -77,6 +78,12 @@
     display: flex;
     align-items: center;
     gap: 32px;
+}
+
+.non-rollable-stats__bounty-points {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .horizontal-block {
@@ -186,7 +193,11 @@
     flex-grow: 1;
 }
 
-.stat-group__item_stat {
+.stat-group__item_stat .stat-group__item-name {
+    font-weight: 700;
+}
+
+.stat-group__item_stat .stat-group__item-die-info {
     font-weight: 700;
 }
 

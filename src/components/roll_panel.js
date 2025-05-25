@@ -152,7 +152,7 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
     // }
 
     return (
-        <div className="panel roll-panel">
+        <div className="panel panel__panel-right">
             <div>{statNameToRoll? `Rolling ${statNameToRoll}` : "Select a trait to roll."}</div>
             <div className="dice-section">
                 <div className="dice-section-inner">
@@ -164,7 +164,7 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
                 <div className="result-section__roll-result">{highestRollResult !== null ? `Roll result: ${highestRollResult}` : ''}</div>
                 <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
             </div>
-            <div className="button-row">
+            <div className="panel-right__button-row">
                 {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>
                     Clear
                 </button> */}

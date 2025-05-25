@@ -24,11 +24,11 @@ function App() {
     <BrowserRouter className="App">
       <Routes>
         <Route index element={<HomeView />} />
-        {characters.map(character => (
+        {characters.map((character, characterIndex) => (
           <Route
           key={character.name} 
           path={"/" + character.name} 
-          element={<CharacterView character={character} />} 
+          element={<CharacterView character={character} characterIndex={characterIndex} />} 
           class="restaurant-tile"
           />
         ))}

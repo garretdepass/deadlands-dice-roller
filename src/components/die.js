@@ -30,7 +30,7 @@ const Die = ({dieSides, dieFace, isInHighThread}) => {
                 return (<D20Shape />);
                 break;
             default:
-                console.log("some issue")
+                console.log("no recognized die type")
         }
     }
     return (

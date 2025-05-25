@@ -80,9 +80,9 @@ function App() {
       
 
 
-    { (characters.length === 0) && <div>No Characters...</div>  || <div class="restaurant-grid">
-        {characters.map(character => (
-          <div key={character._id} class="restaurant-tile">
+    { (tasks.length === 0) && <div>No tasks...</div>  || <div class="restaurant-grid">
+        {tasks.map(task => (
+          <div key={task._id} class="restaurant-tile">
             <div class="restaurant-delete-button">
               <button  onClick={async () => { await deleteTask(task._id) }} >X</button>
             </div>

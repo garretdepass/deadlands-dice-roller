@@ -1,0 +1,36 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 4px;
+    background: var(--blue-4, #223E65);
+    position: relative;
+    right: 170px;
+    top: 5px;
+    color: var(--Gray-6, #F5F5F5);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+    width:fit-content;
+    overflow: hidden;
+}
+
+.menu__menu-item {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu__menu-item:hover {
+    background: var(--blue-5)
+}
+
+.menu__menu-item-label {
+    font-weight: 700;
+    width: 152px;
+}
+
+.menu__menu-item-cost {}
