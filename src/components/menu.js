@@ -29,7 +29,6 @@ const Menu = ({
 
         let upgradeCost
         if (cost() > remainingBountyPoints) {
-            console.log(remainingBountyPoints)
         } else {
             if (upgradeType === "dieCount") {
                 upgradeCost = dieCountUpgradeCost

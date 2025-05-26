@@ -17,9 +17,10 @@ const CharacterView = ({character, characterIndex}) => {
     const [upgradesArray, setUpgradesArray] = useState([])
     const [hasEnoughBountyPoints, setHasEnoughBountyPoints] = useState(true)
     const [remainingBountyPoints, setRemainingBountyPoints] = useState(character.bountyPoints)
+    const [bountyPoints, setBountyPoints] = useState(currentCharacter.bountyPoints)
     
     useEffect (() => {
-
+        
         const fetchData = async () => {
             const response = await fetch('/.netlify/functions/get_characters');
             const data = await response.json();
@@ -36,7 +37,7 @@ const CharacterView = ({character, characterIndex}) => {
         if (isSpendingBountyPoints) {
             setSpendButtonText("Stop Spending")
         } else {
-            setSpendButtonText("Spend")
+            setSpendButtonText("Spend Bounty Points")
         }
         
         if (currentCharacter) {
@@ -44,14 +45,14 @@ const CharacterView = ({character, characterIndex}) => {
             setCharacterSheet(updatedCharacterSheet);
         }
     }, [currentCharacter, isSpendingBountyPoints, upgradesArray])
-
+    
     
     
     const [statNameToRoll, setStatNameToRoll] = useState("")
     const [dieCountToRoll, setDieCountToRoll] = useState("")
     const [dieSidesToRoll, setDieSidesToRoll] = useState("")
-
-
+    
+    
     const returnTotalWind = () => {
         const spiritIndex = currentCharacter.stats.traits.findIndex((object) => object.name === "Spirit");
         const vigorIndex = currentCharacter.stats.traits.findIndex((object) => object.name === "Vigor");
@@ -59,6 +60,7 @@ const CharacterView = ({character, characterIndex}) => {
             currentCharacter.stats.traits[spiritIndex].dieSides + currentCharacter.stats.traits[vigorIndex].dieSides
         )
     }
+    const [currentWind, setCurrentWind] = useState(returnTotalWind)
     
     const generateKey = () => `${Date.now()}-${Math.random()}`;
 
@@ -78,6 +80,45 @@ const CharacterView = ({character, characterIndex}) => {
         }
     }
 
+    const updateStat = async (_id, key, value) => {
+        // Call the Netlify function
+        const response = await fetch('/.netlify/functions/update_character', {
+          method: 'POST',
+          body: JSON.stringify({ _id, key, value })
+        });
+        const data = await response.json();
+    }
+
+    const handleIncrementClick = async (stat) => {
+        let newWind = currentWind
+        let newBountyPoints = bountyPoints
+        if (stat === "bountyPoints") {
+            newBountyPoints ++
+            setBountyPoints(newBountyPoints)
+            await updateStat(character._id, "bountyPoints", newBountyPoints)
+        } else if (stat === "wind") {
+            if (returnTotalWind() > currentWind) {
+                newWind ++
+                setCurrentWind(newWind)
+            }
+        }
+    }
+
+    const handleDecrementClick = async (stat) => {
+        let newWind = currentWind
+        let newBountyPoints = bountyPoints
+        if (stat === "bountyPoints") {
+            newBountyPoints --
+            setBountyPoints(newBountyPoints)
+            await updateStat(character._id, "bountyPoints", newBountyPoints)
+        } else if (stat === "wind") {
+            if (currentWind > 0) {
+                newWind --
+                setCurrentWind(newWind)
+            }
+        } else {
+        }
+    }
 
 
 
@@ -216,7 +257,11 @@ const CharacterView = ({character, characterIndex}) => {
                 <nav className="nav">
                     {/* <div>Stats and Attributes</div> */}
                     <div className="non-rollable-stats__bounty-points">
-                        Bounty Points: <span className="stat-accent-color">{currentCharacter.bountyPoints}</span>
+                        Bounty Points: <span className="stat-accent-color">{bountyPoints}</span>
+                        <div className="chip-counter__button-container">
+                            <button className="chip-counter__button" onClick={() => handleIncrementClick("bountyPoints")}>+</button>
+                            <button className="chip-counter__button" onClick={() => handleDecrementClick("bountyPoints")}>-</button>
+                        </div>
                         <button id="spendButton" className="button button__button-secondary" onClick={handleClickSpend}>{spendButtonText}</button>
                     </div>
                     {/* <div>nav element</div>
@@ -228,7 +273,17 @@ const CharacterView = ({character, characterIndex}) => {
                     <div>Grit: <span className="stat-accent-color">{currentCharacter.stats.grit}</span></div>
                     <div>Pace: <span className="stat-accent-color">{currentCharacter.stats.pace}</span></div>
                     <div>Size: <span className="stat-accent-color">{currentCharacter.stats.size}</span></div>
-                    <div >Wind: <span className="stat-accent-color">{returnTotalWind()}</span></div>
+                    <div className="non-rollable-stats__wind-container">
+                        <div>
+                            Wind:
+                            <span className="stat-accent-color"> {currentWind}</span> / 
+                            <span className="stat-accent-color">{returnTotalWind()}</span>
+                        </div>
+                        <div className="chip-counter__button-container">
+                            <button className="chip-counter__button" onClick={() => handleIncrementClick("wind")}>+</button>
+                            <button className="chip-counter__button" onClick={() => handleDecrementClick("wind")}>-</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="non-rollable-stats__inner-left">
                     <ChipCounterContainer character={currentCharacter}/>
@@ -244,8 +299,10 @@ const CharacterView = ({character, characterIndex}) => {
                         character={currentCharacter}
                         hasEnoughBountyPoints={hasEnoughBountyPoints}
                         setHasEnoughBountyPoints={setHasEnoughBountyPoints}
+                        bountyPoints={bountyPoints}
+                        setBountyPoints={setBountyPoints}
                         remainingBountyPoints={remainingBountyPoints}
-                        setRemainingBountyPoints={setRemainingBountyPoints}/> 
+                        setRemainingBountyPoints={setRemainingBountyPoints}/>
                     : <RollPanel 
                         statNameToRoll={statNameToRoll} 
                         dieCountToRoll={dieCountToRoll} 

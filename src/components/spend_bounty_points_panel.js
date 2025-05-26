@@ -8,6 +8,8 @@ const SpendBountyPointsPanel = ({
     character, 
     hasEnoughBountyPoints, 
     setHasEnoughBountyPoints,
+    bountyPoints,
+    setBountyPoints,
     remainingBountyPoints, 
     setRemainingBountyPoints
     }) => {
@@ -77,22 +79,24 @@ const SpendBountyPointsPanel = ({
     const handleSpendPointsClick = async () => {
 
         if (hasEnoughBountyPoints) { 
-            const spentPoints = character.bountyPoints - totalBountyPointsToSpend  
+            const remainingBountyPoints = character.bountyPoints - totalBountyPointsToSpend  
             for (let i = 0; i < upgradesArray.length; i++) {
                 const currentUpgrade = upgradesArray[i]
                 const statToUpdate = `${currentUpgrade.jsonStatIndex}.${currentUpgrade.upgradeType}`
                 const valueToUpdate = returnValueToUpdate(currentUpgrade)
                 await updateCharacterStats(character._id, statToUpdate, valueToUpdate)
             }
-            await updateCharacterStats(character._id, `bountyPoints`, spentPoints)
+            await updateCharacterStats(character._id, `bountyPoints`, remainingBountyPoints)
+            setBountyPoints(remainingBountyPoints)
             setUpgradesArray([])
             setTotalBountyPointsToSpend(0)
+            setRemainingBountyPoints(0)
         }
     }
 
     useEffect(() => {
-        setRemainingBountyPoints(character.bountyPoints - totalBountyPointsToSpend)
-    }, [totalBountyPointsToSpend])
+        setRemainingBountyPoints(bountyPoints - totalBountyPointsToSpend)
+    }, [totalBountyPointsToSpend, bountyPoints])
 
     return (
         <div className="panel panel__panel-right">

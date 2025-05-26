@@ -85,6 +85,11 @@
     gap: 8px;
 }
 
+.non-rollable-stats__wind-container {
+    display: flex;
+    gap: 8px;
+}
+
 .horizontal-block {
     display: flex;
     padding: 16px;
