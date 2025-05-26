@@ -2,7 +2,17 @@ import React, { useEffect, useState, useRef } from "react";
 import Menu from "./menu.js";
 import './stat_upgrade_button.css'
 
-const StatUpgradeButton = ({stat, statType, trait, upgradesArray, setUpgradesArray, character}) => {
+const StatUpgradeButton = ({
+    stat, 
+    statType, 
+    trait, 
+    upgradesArray, 
+    setUpgradesArray, 
+    character, 
+    hasEnoughBountyPoints,
+    remainingBountyPoints, 
+    }) => {
+    
     
     const returnButtonText = () => {
         switch (statType) {
@@ -105,12 +115,21 @@ const StatUpgradeButton = ({stat, statType, trait, upgradesArray, setUpgradesArr
         }
     }
 
+    const isButtonDisabled = () => {
+        const cost = dieCountUpgradeCost()
+        
+        if (cost > remainingBountyPoints) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     if (statType === "trait") {
         return (
-            // need to have button container class set to a set height, so that 
-            // the menu can move around without changing the overall div size
             <div className="stat-upgrade-button-container" ref={wrapperRef}>
-                <button className="chip-counter__button" onClick={() => handleTraitClick()}>{returnButtonText()}</button>
+                <button className="chip-counter__button" onClick={() => handleTraitClick()} >{returnButtonText()}</button>
+                {/* need to make each menu item disable-able if insufficient BP */}
                 {isMenuVisible && <Menu 
                                     dieSidesUpgradeCost={dieSidesUpgradeCost()} 
                                     dieCountUpgradeCost={dieCountUpgradeCost()} 
@@ -120,13 +139,14 @@ const StatUpgradeButton = ({stat, statType, trait, upgradesArray, setUpgradesArr
                                     statType={statType}
                                     character={character}
                                     jsonStatIndex={jsonStatIndex()}
+                                    remainingBountyPoints={remainingBountyPoints}
                                     />
                 }
             </div>
         )
     } else {
         return (
-            <button className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)}>{returnButtonText()}</button>
+            <button className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)} disabled={isButtonDisabled()}>{returnButtonText()}</button>
         )
     }
 }

@@ -1,4 +1,8 @@
 .bounty-points-cart {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
     flex: 1 0 0;
+    width: 100%;
+    gap: 8px
 }

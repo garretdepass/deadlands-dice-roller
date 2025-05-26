@@ -15,6 +15,8 @@ const CharacterView = ({character, characterIndex}) => {
     const [spendButtonText, setSpendButtonText] = useState("Spend")
     const [statUpgradeButton, setStatUpgradeButton] = useState(null)
     const [upgradesArray, setUpgradesArray] = useState([])
+    const [hasEnoughBountyPoints, setHasEnoughBountyPoints] = useState(true)
+    const [remainingBountyPoints, setRemainingBountyPoints] = useState(character.bountyPoints)
     
     useEffect (() => {
 
@@ -110,6 +112,7 @@ const CharacterView = ({character, characterIndex}) => {
                                                             upgradesArray={upgradesArray} 
                                                             setUpgradesArray={setUpgradesArray} 
                                                             character={character}
+                                                            remainingBountyPoints={remainingBountyPoints}
                                                     />
                         }
                     </div>
@@ -136,6 +139,7 @@ const CharacterView = ({character, characterIndex}) => {
                                                             upgradesArray={upgradesArray} 
                                                             setUpgradesArray={setUpgradesArray} 
                                                             character={character}
+                                                            remainingBountyPoints={remainingBountyPoints}
                                                         />
                             }
                     </div>
@@ -209,9 +213,13 @@ const CharacterView = ({character, characterIndex}) => {
                     </div>
                 </div>
                 <nav className="nav">
-                    <div>nav element</div>
-                    <div>nav element</div>
-                    <div>nav element</div>
+                    {/* <div>Stats and Attributes</div> */}
+                    <div className="non-rollable-stats__bounty-points">
+                        Bounty Points: <span className="stat-accent-color">{currentCharacter.bountyPoints}</span>
+                        <button id="spendButton" className="button button__button-secondary" onClick={handleClickSpend}>{spendButtonText}</button>
+                    </div>
+                    {/* <div>nav element</div>
+                    <div>nav element</div> */}
                 </nav>
             </header>
             <div className="non-rollable-stats">
@@ -220,10 +228,6 @@ const CharacterView = ({character, characterIndex}) => {
                     <div>Pace: <span className="stat-accent-color">{currentCharacter.stats.pace}</span></div>
                     <div>Size: <span className="stat-accent-color">{currentCharacter.stats.size}</span></div>
                     <div >Wind: <span className="stat-accent-color">{returnTotalWind()}</span></div>
-                    <div className="non-rollable-stats__bounty-points">
-                        Bounty Points: <span className="stat-accent-color">{currentCharacter.bountyPoints}</span>
-                        <button id="spendButton" className="button button__button-secondary" onClick={handleClickSpend}>{spendButtonText}</button>
-                    </div>
                 </div>
                 <div className="non-rollable-stats__inner-left">
                     <ChipCounterContainer character={currentCharacter}/>
@@ -232,7 +236,19 @@ const CharacterView = ({character, characterIndex}) => {
             </div>
             <div className="horizontal-block">
                 {characterSheet}
-                {isSpendingBountyPoints ? <SpendBountyPointsPanel upgradesArray={upgradesArray} setUpgradesArray={setUpgradesArray} character={currentCharacter}/> : <RollPanel statNameToRoll={statNameToRoll} dieCountToRoll={dieCountToRoll} dieSidesToRoll={dieSidesToRoll} />}
+                {isSpendingBountyPoints ? 
+                    <SpendBountyPointsPanel 
+                        upgradesArray={upgradesArray} 
+                        setUpgradesArray={setUpgradesArray} 
+                        character={currentCharacter}
+                        hasEnoughBountyPoints={hasEnoughBountyPoints}
+                        setHasEnoughBountyPoints={setHasEnoughBountyPoints}
+                        remainingBountyPoints={remainingBountyPoints}
+                        setRemainingBountyPoints={setRemainingBountyPoints}/> 
+                    : <RollPanel 
+                        statNameToRoll={statNameToRoll} 
+                        dieCountToRoll={dieCountToRoll} 
+                        dieSidesToRoll={dieSidesToRoll} />}
             </div>
         </div>
             )

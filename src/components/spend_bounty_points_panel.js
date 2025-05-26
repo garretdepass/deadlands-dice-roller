@@ -1,7 +1,16 @@
 import React, {useEffect, useState} from "react";
+import UpgrageRow from "./upgrade_row.js";
 import './spend_bounty_points_panel.css'
 
-const SpendBountyPointsPanel = ({upgradesArray, setUpgradesArray, character}) => {
+const SpendBountyPointsPanel = ({
+    upgradesArray, 
+    setUpgradesArray, 
+    character, 
+    hasEnoughBountyPoints, 
+    setHasEnoughBountyPoints,
+    remainingBountyPoints, 
+    setRemainingBountyPoints
+    }) => {
 
     const [displayedUpgrades, setDisplayedUpgrades] = useState([])
     
@@ -16,10 +25,17 @@ const SpendBountyPointsPanel = ({upgradesArray, setUpgradesArray, character}) =>
 
     useEffect(() => {
         const renderUpgrades = upgradesArray.map(element => {
-            return <div key={`${Date.now()}-${Math.random()}`}>{`Upgrading ${element.stat.name} ${element.upgradeType} for ${element.cost}.`}</div>
+            return <UpgrageRow key={`${Date.now()}-${Math.random()}`} element={element}/>
         })
 
         if (upgradesArray.length > 0) {
+            
+            const runningCost = returnTotalCost()
+            if (runningCost < character.bountyPoints) {
+                setHasEnoughBountyPoints(true)
+            } else {
+                setHasEnoughBountyPoints(false)
+            }
             setDisplayedUpgrades(renderUpgrades)
             setTotalBountyPointsToSpend(returnTotalCost)
 
@@ -32,6 +48,7 @@ const SpendBountyPointsPanel = ({upgradesArray, setUpgradesArray, character}) =>
     const handleBountyPointsPanelCancel = () => {
         setUpgradesArray([])
         setTotalBountyPointsToSpend(0)
+        setHasEnoughBountyPoints(true)
     }
 
 
@@ -59,31 +76,33 @@ const SpendBountyPointsPanel = ({upgradesArray, setUpgradesArray, character}) =>
 
     const handleSpendPointsClick = async () => {
 
-        for (let i = 0; i < upgradesArray.length; i++) {
-            const currentUpgrade = upgradesArray[i]
-            const statToUpdate = `${currentUpgrade.jsonStatIndex}.${currentUpgrade.upgradeType}`
-            const valueToUpdate = returnValueToUpdate(currentUpgrade)
-            await updateCharacterStats(character._id, statToUpdate, valueToUpdate)
+        if (hasEnoughBountyPoints) { 
+            const spentPoints = character.bountyPoints - totalBountyPointsToSpend  
+            for (let i = 0; i < upgradesArray.length; i++) {
+                const currentUpgrade = upgradesArray[i]
+                const statToUpdate = `${currentUpgrade.jsonStatIndex}.${currentUpgrade.upgradeType}`
+                const valueToUpdate = returnValueToUpdate(currentUpgrade)
+                await updateCharacterStats(character._id, statToUpdate, valueToUpdate)
+            }
+            await updateCharacterStats(character._id, `bountyPoints`, spentPoints)
             setUpgradesArray([])
             setTotalBountyPointsToSpend(0)
         }
-        // 
-        // 
-        // update character sheet with:
-        // deduct bounty points
     }
+
+    useEffect(() => {
+        setRemainingBountyPoints(character.bountyPoints - totalBountyPointsToSpend)
+    }, [totalBountyPointsToSpend])
 
     return (
         <div className="panel panel__panel-right">
-            <div>Spend Bounty Points</div>
-            <div>Spending: {totalBountyPointsToSpend}</div>
+            <div>Remaining Bounty Points: {remainingBountyPoints}</div>
             <div className="bounty-points-cart">
                 {displayedUpgrades}
-                {/* {upgradesArray ? displayedUpgrades : "Your cart is currently empty."} */}
             </div>
             <div className="panel-right__button-row">
                 <button className="button button__button-secondary" onClick={handleBountyPointsPanelCancel}>Cancel</button>
-                <button className="button button__button-primary"onClick={handleSpendPointsClick}>Spend Points</button>
+                <button disabled={!hasEnoughBountyPoints || upgradesArray.length === 0} className="button button__button-primary"onClick={handleSpendPointsClick}>Spend Points</button>
             </div>
         </div>
     )

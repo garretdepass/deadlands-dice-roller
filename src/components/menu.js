@@ -2,26 +2,53 @@ import React, {useState} from "react";
 import './menu.css';
 import { use } from "react";
 
-const Menu = ({menuRef, dieCountUpgradeCost, dieSidesUpgradeCost, stat, upgradesArray, setUpgradesArray, statType, character, jsonStatIndex}) => {
+const Menu = ({
+    menuRef, 
+    dieCountUpgradeCost, 
+    dieSidesUpgradeCost, 
+    stat, 
+    upgradesArray, 
+    setUpgradesArray, 
+    statType, 
+    character, 
+    jsonStatIndex, 
+    remainingBountyPoints
+    }) => {
 
 
 
     const handleMenuUpgradeClick = (upgradeType) => {
+
+        const cost = () => {
+            if (upgradeType === "dieCount") {
+                return dieCountUpgradeCost
+            } else if (upgradeType === "dieSides") {
+                return dieSidesUpgradeCost
+            }
+        }
+
         let upgradeCost
-        if (upgradeType === "dieCount") {
-            upgradeCost = dieCountUpgradeCost
+        if (cost() > remainingBountyPoints) {
+            console.log(remainingBountyPoints)
         } else {
-            upgradeCost = dieSidesUpgradeCost
-        }
+            if (upgradeType === "dieCount") {
+                upgradeCost = dieCountUpgradeCost
+            } else {
+                upgradeCost = dieSidesUpgradeCost
+            }
+            
+            const newUpgrade = {
+                cost: upgradeCost,
+                stat: stat,
+                jsonStatIndex: jsonStatIndex,
+                upgradeType: upgradeType
+            }
+            console.log(remainingBountyPoints)
+            setUpgradesArray([...upgradesArray, newUpgrade])
         
-        const newUpgrade = {
-            cost: upgradeCost,
-            stat: stat,
-            jsonStatIndex: jsonStatIndex,
-            upgradeType: upgradeType
         }
-        setUpgradesArray([...upgradesArray, newUpgrade])
     }
+
 
     return (
         <div className="menu" ref={menuRef}>
