@@ -27,9 +27,10 @@ const CharacterView = ({character, characterIndex}) => {
         };
         fetchData();
         
+        setRemainingBountyPoints(currentCharacter.bountyPoints)
     }, [upgradesArray])
-
-
+    
+    
     useEffect(() => {
         
         if (isSpendingBountyPoints) {

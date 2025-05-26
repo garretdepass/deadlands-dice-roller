@@ -25,7 +25,7 @@ const SpendBountyPointsPanel = ({
 
     useEffect(() => {
         const renderUpgrades = upgradesArray.map(element => {
-            return <UpgrageRow key={`${Date.now()}-${Math.random()}`} element={element}/>
+            return <UpgrageRow key={`${Date.now()}-${Math.random()}`} upgradesArray={upgradesArray} setUpgradesArray={setUpgradesArray} element={element}/>
         })
 
         if (upgradesArray.length > 0) {

@@ -43,7 +43,6 @@ const Menu = ({
                 jsonStatIndex: jsonStatIndex,
                 upgradeType: upgradeType
             }
-            console.log(remainingBountyPoints)
             setUpgradesArray([...upgradesArray, newUpgrade])
         
         }
