@@ -100,13 +100,13 @@ const SpendBountyPointsPanel = ({
 
     return (
         <div className="panel panel__panel-right">
-            <div>Remaining Bounty Points: {remainingBountyPoints}</div>
+            <div className="">Remaining Bounty Points: {remainingBountyPoints}</div>
             <div className="bounty-points-cart">
                 {displayedUpgrades}
             </div>
             <div className="panel-right__button-row">
-                <button className="button button__button-secondary" onClick={handleBountyPointsPanelCancel}>Cancel</button>
-                <button disabled={!hasEnoughBountyPoints || upgradesArray.length === 0} className="button button__button-primary"onClick={handleSpendPointsClick}>Spend Points</button>
+                <button className="button button_large button_fill-width button__button-secondary" onClick={handleBountyPointsPanelCancel}>Cancel</button>
+                <button disabled={!hasEnoughBountyPoints || upgradesArray.length === 0} className="button button_large button_fill-width button__button-primary"onClick={handleSpendPointsClick}>Spend Points</button>
             </div>
         </div>
     )

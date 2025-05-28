@@ -16,19 +16,21 @@ const Menu = ({
     }) => {
 
 
-
-    const handleMenuUpgradeClick = (upgradeType) => {
-
-        const cost = () => {
+        const cost = (upgradeType) => {
             if (upgradeType === "dieCount") {
                 return dieCountUpgradeCost
             } else if (upgradeType === "dieSides") {
                 return dieSidesUpgradeCost
             }
         }
+        const popover = document.getElementById("toast")
+
+    const handleMenuUpgradeClick = (upgradeType) => {
+
 
         let upgradeCost
-        if (cost() > remainingBountyPoints) {
+        if (cost(upgradeType) > remainingBountyPoints) {
+            popover.showPopover()
         } else {
             if (upgradeType === "dieCount") {
                 upgradeCost = dieCountUpgradeCost
@@ -58,6 +60,7 @@ const Menu = ({
                 <div className="menu__menu-item-label" >Upgrade die type</div>
                 <div className="menu__menu-item-cost">{dieSidesUpgradeCost}</div>
             </div>
+            <div id="toast" popover="auto">Not enough bounty points</div>
         </div>
 )
 };

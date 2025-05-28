@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Die from "./die.js";
 import "./roll_panel.css"
+import "../App.css"
 
 
 const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
@@ -168,7 +169,7 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
                 {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>
                     Clear
                 </button> */}
-                <button className="button button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}} disabled={isRollButtonDisabled}>
+                <button className="button button_large button_fill-width button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}} disabled={isRollButtonDisabled}>
                     {isRollButtonDisabled ? "Select a stat to roll" : "Roll Dice"}
                 </button>
             </div>

@@ -86,15 +86,17 @@ const StatUpgradeButton = ({
     }
 
     const handleAttributeOrConcentrationClick = () => {
-        
-        const newUpgrade = {
-            cost: dieCountUpgradeCost(),
-            stat: stat,
-            statType: statType,
-            jsonStatIndex: jsonStatIndex(),
-            upgradeType: "dieCount"
+        const cost = dieCountUpgradeCost()
+        if (cost <= remainingBountyPoints) {
+            const newUpgrade = {
+                cost: dieCountUpgradeCost(),
+                stat: stat,
+                statType: statType,
+                jsonStatIndex: jsonStatIndex(),
+                upgradeType: "dieCount"
+            }
+            setUpgradesArray([...upgradesArray, newUpgrade])
         }
-        setUpgradesArray([...upgradesArray, newUpgrade])
     }
 
     const dieTypeArray = [4, 6, 8, 10, 12, 20, 100]
@@ -146,7 +148,11 @@ const StatUpgradeButton = ({
         )
     } else {
         return (
-            <button className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)} disabled={isButtonDisabled()}>{returnButtonText()}</button>
+            <>
+            <button popovertarget={isButtonDisabled() ? "toast" : ''} className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)} 
+            >{returnButtonText()}</button>
+            <div id="toast" popover="auto">Not enough bounty points</div>
+            </>
         )
     }
 }

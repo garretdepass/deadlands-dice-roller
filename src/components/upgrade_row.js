@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './upgrade_row.css'
+import "../App.css"
 
 const UpgrageRow = ({element, upgradesArray, setUpgradesArray}) => {
 
@@ -21,12 +22,18 @@ const UpgrageRow = ({element, upgradesArray, setUpgradesArray}) => {
     return (
         <div className="upgrade-row">
             <div className="upgrade-row__content">
-                {element.stat.name}
-                <button onClick={() => {handleDeleteClick(element)}}>remove</button>
+                <span className="upgrade-row__stat-name">
+                    {element.stat.name}
+                </span>
+                <div className="upgrade-row__cost-and-cancel-container">
+                <span>
+                    <span className="upgrade-row__cost">{element.cost}</span> BP
+                </span>
+                <button className="button button_small button__button-tertiary" onClick={() => {handleDeleteClick(element)}}>x</button>
+                </div>
             </div>
-            <div className="upgrade-row__content">
+            <div className="upgrade-row__upgrade-details">
                 {returnUpgradeDetails()}
-                {element.cost}BP
             </div>
         </div>
     )

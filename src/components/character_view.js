@@ -5,7 +5,9 @@ import RollPanel from "./roll_panel.js";
 import ChipCounterContainer from "./chip_counters_container.js";
 import StatUpgradeButton from "./stat_upgrade_button.js";
 import SpendBountyPointsPanel from "./spend_bounty_points_panel.js";
+
 import './character_view.css';
+import "../App.css";
 
 
 const CharacterView = ({character, characterIndex}) => {
@@ -129,12 +131,12 @@ const CharacterView = ({character, characterIndex}) => {
             case ("Language"):
             case ("Area Knowledge"):
                 return (
-                    <div key={stat.name} className="stat-group__item-non-rollable">{stat.name}</div>
+                    <div key={stat.name} className={`stat-group__item ${className}`}>{stat.name}</div>
                 )
                 break;
             case ("Home County"):
                 return (
-                    <div key={stat.name} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+                    <div key={stat.name} className={`stat-group__item ${isSpendingBountyPoints ? '' : 'stat-group__item_is-hoverable'} ${className}`} onClick={() => handleStatClick(stat, trait)}>
                         <div className="stat-group__item-name">
                             {stat.location} 
                         </div>
@@ -161,7 +163,7 @@ const CharacterView = ({character, characterIndex}) => {
                 )
             default:
                 return (
-                    <div key={stat.name} className={`stat-group__item ${className}`} onClick={() => handleStatClick(stat, trait)}>
+                    <div key={stat.name} className={`stat-group__item ${isSpendingBountyPoints ? '' : 'stat-group__item_is-hoverable'} ${className}`} onClick={() => handleStatClick(stat, trait)}>
                         <div className="stat-group__item-name">
                             {stat.name} 
                         </div>
@@ -190,24 +192,27 @@ const CharacterView = ({character, characterIndex}) => {
     }
 
 
+    const renderConcentrations = (attribute) => {
+        
+    }
 
     const renderStatGroup = (traitName) => {
         const traitIndex = currentCharacter.stats.traits.findIndex((object) => object.name === traitName)
         const trait = currentCharacter.stats.traits[traitIndex]
         return (
-            <div className={traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"}>
+            <div className={`${traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"} ${isSpendingBountyPoints ? "stat-group_spend-mode" : "stat-group_roll-mode"}`}>
                     {renderStat(trait, "trait", trait, "stat-group__item_stat")}
                 <div className="stat-group__list">
                     {Array.isArray(trait.attributes) && trait.attributes.map(
                         attribute => 
                             <div className="stat-group__item-container" key={generateKey()}>
                             {renderStat(attribute, "attribute", trait, "stat-group__item_attribute")}
-                            <div className="stat-group__list">
-                                {Array.isArray(attribute.concentrations) && attribute.concentrations.map(
-                                    concentration => 
-                                        renderStat(concentration, "concentration", trait, "stat-group__item_concentration")
-                                )}
-                            </div>
+                                {Array.isArray(attribute.concentrations) && 
+                                    <div className="stat-group__list">
+                                        {attribute.concentrations.map(concentration => renderStat(concentration, "concentration", trait, "stat-group__item_concentration")
+                                        )}
+                                    </div>
+                                }
                         </div>
                     )}
                 </div>
@@ -262,7 +267,7 @@ const CharacterView = ({character, characterIndex}) => {
                             <button className="chip-counter__button" onClick={() => handleIncrementClick("bountyPoints")}>+</button>
                             <button className="chip-counter__button" onClick={() => handleDecrementClick("bountyPoints")}>-</button>
                         </div>
-                        <button id="spendButton" className="button button__button-secondary" onClick={handleClickSpend}>{spendButtonText}</button>
+                        <button id="spendButton" className="button button_large button__button-secondary" onClick={handleClickSpend}>{spendButtonText}</button>
                     </div>
                     {/* <div>nav element</div>
                     <div>nav element</div> */}
@@ -294,19 +299,19 @@ const CharacterView = ({character, characterIndex}) => {
                 {characterSheet}
                 {isSpendingBountyPoints ? 
                     <SpendBountyPointsPanel 
-                        upgradesArray={upgradesArray} 
-                        setUpgradesArray={setUpgradesArray} 
-                        character={currentCharacter}
-                        hasEnoughBountyPoints={hasEnoughBountyPoints}
-                        setHasEnoughBountyPoints={setHasEnoughBountyPoints}
-                        bountyPoints={bountyPoints}
-                        setBountyPoints={setBountyPoints}
-                        remainingBountyPoints={remainingBountyPoints}
-                        setRemainingBountyPoints={setRemainingBountyPoints}/>
+                    upgradesArray={upgradesArray} 
+                    setUpgradesArray={setUpgradesArray} 
+                    character={currentCharacter}
+                    hasEnoughBountyPoints={hasEnoughBountyPoints}
+                    setHasEnoughBountyPoints={setHasEnoughBountyPoints}
+                    bountyPoints={bountyPoints}
+                    setBountyPoints={setBountyPoints}
+                    remainingBountyPoints={remainingBountyPoints}
+                    setRemainingBountyPoints={setRemainingBountyPoints}/>
                     : <RollPanel 
-                        statNameToRoll={statNameToRoll} 
-                        dieCountToRoll={dieCountToRoll} 
-                        dieSidesToRoll={dieSidesToRoll} />}
+                    statNameToRoll={statNameToRoll} 
+                    dieCountToRoll={dieCountToRoll} 
+                    dieSidesToRoll={dieSidesToRoll} />}
             </div>
         </div>
             )

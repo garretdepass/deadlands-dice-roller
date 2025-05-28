@@ -131,10 +131,17 @@
 
 .stat-group {
     display: flex;
-    max-width: 250px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+}
+
+.stat-group_roll-mode {
+    max-width: 250px;
+}
+
+.stat-group_spend-mode {
+    max-width: 280px;
 }
 
 .stat-group_knowledge{
@@ -144,7 +151,6 @@
 
 .stat-group__list {
     display: flex;
-    padding-left: 16px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
@@ -156,6 +162,7 @@
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
+    gap: 8px;
 }
 
 .stat-group__item {
@@ -172,6 +179,10 @@
     border-radius: 4px;
 }
 
+.stat-group__item_attribute {
+    padding-left: 16px;
+}
+
 .stat-group__item-non-rollable {
     display: flex;
     height: 23px;
@@ -185,7 +196,7 @@
     line-height: normal;
 }
 
-.stat-group__item:hover {
+.stat-group__item_is-hoverable:hover {
     background-color: var(--blue-4, #142A48);
 }
 
@@ -206,5 +217,5 @@
 }
 
 .stat-group__item_concentration {
-    padding-top: 4px;
+    padding-left: 32px;
 }

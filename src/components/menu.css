@@ -5,23 +5,24 @@
     border-radius: 4px;
     background: var(--blue-4, #223E65);
     position: relative;
-    right: 170px;
+    right: 160px;
     top: 5px;
     color: var(--Gray-6, #F5F5F5);
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
     line-height: normal;
-    width:fit-content;
+    width: 200px;
     overflow: hidden;
 }
 
 .menu__menu-item {
     display: flex;
     padding: 8px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
+    width: 184px;
 }
 
 .menu__menu-item:hover {
