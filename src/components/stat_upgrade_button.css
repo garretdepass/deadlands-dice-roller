@@ -2,34 +2,3 @@
     height: 24px;
     width: 40px;
 }
-
-[popover]:popover-open {
-    opacity: 1;
-    transform: translateX(-25px);
-    inset: unset;
-    position: absolute;
-    right: 80px;
-    bottom: 100px;
-}
-
-[popover] {
-    opacity: 0;
-    transform: translateX(0px);
-    background: var(--blue-3);
-    color: var(--blue-6);
-    border: 1px solid var(--blue-6);
-    border-radius: 8px;
-    padding: 16px 16px;
-    /* width: 280px; */
-    /* position: absolute;
-    bottom: 50;
-    left: 50; */
-    transition: opacity 300ms, transform 300ms;
-}
-
-@starting-style {
-    [popover]:popover-open {
-        opacity: 0;
-        transform: translateX(0px);
-    }
-}

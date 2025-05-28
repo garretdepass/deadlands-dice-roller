@@ -154,16 +154,19 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
 
     return (
         <div className="panel panel__panel-right">
-            <div>{statNameToRoll? `Rolling ${statNameToRoll}` : "Select a trait to roll."}</div>
+            <div className="roll-panel__title">{statNameToRoll? `Rolling for ${statNameToRoll}` : "Select a trait to roll."}</div>
             <div className="dice-section">
                 <div className="dice-section-inner">
                     {diceSection}
                 </div>
             </div>
+            <div className="roll-panel__modifier-section">
+                {isBust === true ? <div className="result-section__penalty-indicator">More than half the dice are 1's. <span className="result-section__penalty-impact">You've gone bust!</span></div> : ``}
+                {isUnskilled === true ? <div className="result-section__penalty-indicator">Untrained penalty. <span className="result-section__penalty-impact">-4 modifier</span> applied to roll result.</div> : ``}
+                <div className="divider__horizontal" />
+            </div>
             <div className="result-section">
-                <div className="result-section__bust-indicator">{isBust === true ? `More than half the dice are 1's. You've gone bust!` : ``}</div>
-                <div className="result-section__roll-result">{highestRollResult !== null ? `Roll result: ${highestRollResult}` : ''}</div>
-                <div>{isUnskilled === true ? `Untrained. -4 modifier applied to roll total` : ``}</div>
+                <div className="result-section__roll-result">Roll result: {highestRollResult !== null ? <span className="result-section__roll-result-value">{highestRollResult}</span> : ""} </div>
             </div>
             <div className="panel-right__button-row">
                 {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>

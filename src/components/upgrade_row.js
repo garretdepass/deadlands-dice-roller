@@ -6,9 +6,9 @@ const UpgrageRow = ({element, upgradesArray, setUpgradesArray}) => {
 
     const returnUpgradeDetails = () => {
         if (element.upgradeType === "dieSides") {
-            return <div>Die type: d{element.stat.dieSides} → d{element.cost / 3} </div>
+            return <div>Die type: d{element.stat.dieSides} → <span className="upgrade-row__new-stat">d{element.cost / 3}</span></div>
         } else {
-            return <div>Die count: {element.stat.dieCount} → {element.stat.dieCount + 1}</div>
+            return <div>Die count: {element.stat.dieCount} → <span className="upgrade-row__new-stat">{element.stat.dieCount + 1}</span></div>
         }
     }
     const handleDeleteClick = () => {

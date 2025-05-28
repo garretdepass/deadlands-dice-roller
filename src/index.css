@@ -1,6 +1,7 @@
 :root {
-  --blue-1: #051122;
-  --blue-2: #081932;
+  --blue-0: #000812;
+  --blue-1: #010e22;
+  --blue-2: #06162e;
   --blue-3: #142A48;
   --blue-4: #223E65;
   --blue-5: #43689B;
@@ -23,7 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--Gray-6, #F5F5F5);
-  background: var(--blue-1, #051122);
+  background: var(--blue-0, #010914);
 }
 
 .view {
@@ -34,16 +35,16 @@ body {
 
 .panel {
   border-radius: 4px;
-  background: var(--blue-2, #081932);
+  padding: 24px;
+  background: var(--blue-1, #081932);
 }
 
 .panel__panel-right {
   display: flex;
   width: 400px;
-  padding: 12px;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
   align-self: stretch;
 }
 
@@ -90,7 +91,7 @@ code {
   border-radius: 4px;
   text-align: center;
   font-family: Inter;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -151,3 +152,7 @@ code {
   background: var(--blue-5);
 }
 
+.divider__horizontal {
+  width: 100%;
+  border-top: 1px solid var(--blue-4);
+}

@@ -8,7 +8,7 @@
     padding: 16px;
     gap: 6px;
     border: 1px solid var(--blue-4);
-    background: var(--blue-3);
+    background: var(--blue-2);
 }
 
 .upgrade-row__details {
@@ -40,6 +40,10 @@
     justify-content: space-between;
     font-size: 14px;
     font-weight: 400;
+}
+
+.upgrade-row__new-stat {
+    color: orange;
 }
 
 .upgrade-row__cost-and-cancel-container {
