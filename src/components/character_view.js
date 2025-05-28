@@ -200,7 +200,7 @@ const CharacterView = ({character, characterIndex}) => {
         const traitIndex = currentCharacter.stats.traits.findIndex((object) => object.name === traitName)
         const trait = currentCharacter.stats.traits[traitIndex]
         return (
-            <div className={`${traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"} ${isSpendingBountyPoints ? "stat-group_spend-mode" : "stat-group_roll-mode"}`}>
+            <div className={traitName === "Knowledge" ? "stat-group stat-group_knowledge" : "stat-group"}>
                     {renderStat(trait, "trait", trait, "stat-group__item_stat")}
                 <div className="stat-group__list">
                     {Array.isArray(trait.attributes) && trait.attributes.map(

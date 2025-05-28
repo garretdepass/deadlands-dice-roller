@@ -33,7 +33,7 @@ const SpendBountyPointsPanel = ({
         if (upgradesArray.length > 0) {
             
             const runningCost = returnTotalCost()
-            if (runningCost < character.bountyPoints) {
+            if (runningCost <= character.bountyPoints) {
                 setHasEnoughBountyPoints(true)
             } else {
                 setHasEnoughBountyPoints(false)
@@ -42,7 +42,7 @@ const SpendBountyPointsPanel = ({
             setTotalBountyPointsToSpend(returnTotalCost)
 
         } else {
-            setDisplayedUpgrades(<div>Select a stat to update</div>)
+            setDisplayedUpgrades(<div className="bounty-points-cart__empty-state">Select stats you'd like to upgrade</div>)
         }
         }, [upgradesArray])
 
@@ -100,7 +100,7 @@ const SpendBountyPointsPanel = ({
 
     return (
         <div className="panel panel__panel-right">
-            <div className="">Remaining Bounty Points: {remainingBountyPoints}</div>
+            <div className="bounty-points-cart__remaining-points">Remaining Bounty Points: <span className="bounty-points-cart__remaining-points-value">{remainingBountyPoints}</span></div>
             <div className="bounty-points-cart">
                 {displayedUpgrades}
             </div>

@@ -105,9 +105,9 @@ code {
   padding: 8px 16px;
 }
 
-.button_small {
+.button_square {
   min-width: 16px;
-  padding: 4px 8px;
+  padding: 6px 10px;
 }
 
 .button__button-primary {
@@ -141,13 +141,13 @@ code {
 
 .button__button-tertiary {
   border-radius: 4px;
-  background: var(--blue-3);
+  background: var(--blue-4);
   border: solid 0px;
   color: var(--Gray-6);
   font-size: 12px;
 }
 
 .button__button-tertiary:hover {
-  background: #1d4070;
+  background: var(--blue-5);
 }
 

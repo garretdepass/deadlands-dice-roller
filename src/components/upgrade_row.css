@@ -1,19 +1,23 @@
 .upgrade-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 4px;
     align-self: stretch;
     padding: 16px;
-    gap: 2px;
+    gap: 6px;
+    border: 1px solid var(--blue-4);
+    background: var(--blue-3);
 }
 
-.upgrade-row__content {
+.upgrade-row__details {
     color: var(--Gray-6, #F5F5F5);
     font-family: Inter;
     font-style: normal;
     line-height: normal;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 8px;
     align-self: stretch;
     justify-content: space-between;
@@ -41,5 +45,6 @@
 .upgrade-row__cost-and-cancel-container {
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 12px;
+    align-items: center;
 }

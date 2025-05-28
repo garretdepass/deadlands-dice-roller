@@ -21,20 +21,16 @@ const UpgrageRow = ({element, upgradesArray, setUpgradesArray}) => {
 
     return (
         <div className="upgrade-row">
-            <div className="upgrade-row__content">
-                <span className="upgrade-row__stat-name">
-                    {element.stat.name}
-                </span>
+            <div className="upgrade-row__details">
+                <span className="upgrade-row__stat-name">{element.stat.name}</span>
+                <div className="upgrade-row__upgrade-details">{returnUpgradeDetails()}</div>
+            </div>
                 <div className="upgrade-row__cost-and-cancel-container">
-                <span>
-                    <span className="upgrade-row__cost">{element.cost}</span> BP
-                </span>
-                <button className="button button_small button__button-tertiary" onClick={() => {handleDeleteClick(element)}}>x</button>
+                    <span>
+                        <span className="upgrade-row__cost">{element.cost}</span> BP
+                    </span>
+                    <button className="button button_square button__button-tertiary" onClick={() => {handleDeleteClick(element)}}>x</button>
                 </div>
-            </div>
-            <div className="upgrade-row__upgrade-details">
-                {returnUpgradeDetails()}
-            </div>
         </div>
     )
 }
