@@ -85,6 +85,8 @@ const StatUpgradeButton = ({
                
     }
 
+    const popover = document.getElementById("insufficientBountPointsPopover")
+
     const handleAttributeOrConcentrationClick = () => {
         const cost = dieCountUpgradeCost()
         if (cost <= remainingBountyPoints) {
@@ -96,6 +98,8 @@ const StatUpgradeButton = ({
                 upgradeType: "dieCount"
             }
             setUpgradesArray([...upgradesArray, newUpgrade])
+        } else {
+            popover.showPopover()
         }
     }
 
@@ -131,7 +135,6 @@ const StatUpgradeButton = ({
         return (
             <div className="stat-upgrade-button-container" ref={wrapperRef}>
                 <button className="chip-counter__button" onClick={() => handleTraitClick()} >{returnButtonText()}</button>
-                {/* need to make each menu item disable-able if insufficient BP */}
                 {isMenuVisible && <Menu 
                                     dieSidesUpgradeCost={dieSidesUpgradeCost()} 
                                     dieCountUpgradeCost={dieCountUpgradeCost()} 
@@ -149,9 +152,8 @@ const StatUpgradeButton = ({
     } else {
         return (
             <>
-            <button popovertarget={isButtonDisabled() ? "toast" : ''} className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)} 
+            <button className="chip-counter__button" onClick={() => handleAttributeOrConcentrationClick(stat)} 
             >{returnButtonText()}</button>
-            <div id="toast" popover="auto">Not enough bounty points</div>
             </>
         )
     }

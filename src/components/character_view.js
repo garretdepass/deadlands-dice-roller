@@ -1,5 +1,5 @@
 // import { forEach } from "cypress/types/lodash";
-import {React, useEffect, useState} from "react";
+import {React, useEffect, useState, useRef} from "react";
 import { Link } from 'react-router-dom';
 import RollPanel from "./roll_panel.js";
 import ChipCounterContainer from "./chip_counters_container.js";
@@ -20,6 +20,9 @@ const CharacterView = ({character, characterIndex}) => {
     const [hasEnoughBountyPoints, setHasEnoughBountyPoints] = useState(true)
     const [remainingBountyPoints, setRemainingBountyPoints] = useState(character.bountyPoints)
     const [bountyPoints, setBountyPoints] = useState(currentCharacter.bountyPoints)
+    // const [insufficientBountyPointsPopoverStatName, setInsufficientBountyPointsPopoverStatName] = useState('');
+    
+    // const insufficientBountyPointsPopover = useRef(null)
     
     useEffect (() => {
         
@@ -313,6 +316,7 @@ const CharacterView = ({character, characterIndex}) => {
                     dieCountToRoll={dieCountToRoll} 
                     dieSidesToRoll={dieSidesToRoll} />}
             </div>
+            <div id='insufficientBountPointsPopover' popover="auto">Not enough bounty points</div>
         </div>
             )
 

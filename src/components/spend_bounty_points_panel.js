@@ -14,43 +14,42 @@ const SpendBountyPointsPanel = ({
     setRemainingBountyPoints
     }) => {
 
-    const [displayedUpgrades, setDisplayedUpgrades] = useState([])
+    const [displayedUpgrades, setDisplayedUpgrades] = useState([]);
     
-    // calculate total points to spend
     const [totalBountyPointsToSpend, setTotalBountyPointsToSpend] = useState(0);
 
     const returnTotalCost = () => {
         const costsArray = upgradesArray.map((element) => {return element.cost});
-        const totalCost = costsArray.reduce((accumulator, currentValue) => accumulator + currentValue)
-        return totalCost
-    }
+        const totalCost = costsArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+        return totalCost;
+    };
 
     useEffect(() => {
         const renderUpgrades = upgradesArray.map(element => {
             return <UpgrageRow key={`${Date.now()}-${Math.random()}`} upgradesArray={upgradesArray} setUpgradesArray={setUpgradesArray} element={element}/>
-        })
+        });
 
         if (upgradesArray.length > 0) {
             
-            const runningCost = returnTotalCost()
+            const runningCost = returnTotalCost();
             if (runningCost <= character.bountyPoints) {
-                setHasEnoughBountyPoints(true)
+                setHasEnoughBountyPoints(true);
             } else {
-                setHasEnoughBountyPoints(false)
-            }
-            setDisplayedUpgrades(renderUpgrades)
-            setTotalBountyPointsToSpend(returnTotalCost)
+                setHasEnoughBountyPoints(false);
+            };
+            setDisplayedUpgrades(renderUpgrades);
+            setTotalBountyPointsToSpend(returnTotalCost);
 
         } else {
-            setDisplayedUpgrades(<div className="bounty-points-cart__empty-state">Select stats you'd like to upgrade</div>)
-        }
-        }, [upgradesArray])
+            setDisplayedUpgrades(<div className="bounty-points-cart__empty-state">Select stats you'd like to upgrade</div>);
+        };
+        }, [upgradesArray]);
 
 
     const handleBountyPointsPanelCancel = () => {
-        setUpgradesArray([])
-        setTotalBountyPointsToSpend(0)
-        setHasEnoughBountyPoints(true)
+        setUpgradesArray([]);
+        setTotalBountyPointsToSpend(0);
+        setHasEnoughBountyPoints(true);
     }
 
 
@@ -97,6 +96,7 @@ const SpendBountyPointsPanel = ({
     useEffect(() => {
         setRemainingBountyPoints(bountyPoints - totalBountyPointsToSpend)
     }, [totalBountyPointsToSpend, bountyPoints])
+
 
     return (
         <div className="panel panel__panel-right">
