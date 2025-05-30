@@ -1,0 +1,140 @@
+{
+    "name": "Peter B. Arnum",
+    "stats": {
+        "pace": 0,
+        "size": 6,
+        "grit": 2,
+        "traits": [
+            { "name": "Cognition", "dieCount": 4, "dieSides": 8,
+                "attributes": [
+                    { "name": "Artillery", "dieCount": 0 },
+                    { "name": "Arts", "dieCount": 0 },
+                    { "name": "Scrutinize", "dieCount": 2 },
+                    { "name": "Search", "dieCount": 2 },
+                    { "name": "Trackin'", "dieCount": 0 }
+            ]
+            },
+            { "name": "Deftness", "dieCount": 1, "dieSides": 10,
+                "attributes": [
+                    { "name": "Bow", "dieCount": 0 },
+                    { "name": "Filchin'", "dieCount": 1 },
+                    { "name": "Lockpickin'", "dieCount": 1 },
+                    { "name": "Shootin'", "dieCount": 5,
+                    "concentrations": [
+                        { "name": "Pistol", "dieCount": 5 }
+                    ]
+                    },
+                    { "name": "Sleight of Hand", "dieCount": 1 },
+                    { "name": "Speed Load", "dieCount": 1 },
+                    { "name": "Throwin'", "dieCount": 0 }
+                ]
+            },
+            { "name": "Knowledge", "dieCount": 3, "dieSides": 6,
+                "attributes": [
+                    { "name": "Academia", "dieCount": 1,
+                        "concentrations": [
+                            { "name": "Occult", "dieCount": 1 }
+                        ]
+                    },
+                    { "name": "Area Knowledge", "dieCount": 2,
+                        "concentrations": [
+                            { "name": "Home County", "dieCount": 2, "location": "Boston" }
+                        ]
+                    },
+                    { "name": "Demolition", "dieCount": 0 },
+                    { "name": "Disguise", "dieCount": 1 },
+                    { "name": "Language", "dieCount": 2,
+                        "concentrations": [
+                            { "name": "English", "dieCount": 2 }
+                        ]
+                    },
+                    { "name": "Mad Science", "dieCount": 0 },
+                    { "name": "Medicine", "dieCount": 0 },
+                    { "name": "Professional", "dieCount": 1,
+                        "concentrations": [
+                            { "name": "Law", "dieCount": 1 }
+                        ]
+                    },
+                    { "name": "Science", "dieCount": 1,
+                        "concentrations": [
+                            { "name": "Biology", "dieCount": 1 }
+                        ]
+                    },
+                    { "name": "Trade", "dieCount": 0 }
+                ]
+            },
+            { "name": "Mien", "dieCount": 4, "dieSides": 12,
+                "attributes": [
+                    { "name": "Animal Wranglin'", "dieCount": 0 },
+                    { "name": "Leadership", "dieCount": 1 },
+                    { "name": "Overawe", "dieCount": 0 },
+                    { "name": "Performin'", "dieCount": 2,
+                        "concentrations": [
+                            { "name": "Acting", "dieCount": 2 }
+                        ]
+                    },
+                    { "name": "Persuasion", "dieCount": 3 },
+                    { "name": "Tale Tellin'", "dieCount": 2 }
+                ]
+            },
+            { "name": "Nimbleness", "dieCount": 2, "dieSides": 8,
+                "attributes": [
+                    { "name": "Climbin'", "dieCount": 1 },
+                    { "name": "Dodge", "dieCount": 2 },
+                    { "name": "Drivin'", "dieCount": 1,
+                        "concentrations": [
+                            { "name": "Steam Wagon", "dieCount": 1 }
+                        ]
+                    },
+                    { "name": "Fightin'", "dieCount": 1,
+                        "concentrations": [
+                            { "name": "Knife'", "dieCount": 1 }
+                        ]
+                    },
+                    { "name": "Horse Ridin'", "dieCount": 0 },
+                    { "name": "Sneak", "dieCount": 3 },
+                    { "name": "Swimmin'", "dieCount": 0 },
+                    { "name": "Teamster", "dieCount": 0 }
+                ]
+            },
+            { "name": "Quickness", "dieCount": 4, "dieSides": 10,
+                "attributes": [
+                    { "name": "Quick Draw", "dieCount": 2,
+                        "concentrations": [
+                            { "name": "Pistol", "dieCount": 2 }
+                        ]
+                    }
+                ]
+            },
+            { "name": "Smarts", "dieCount": 3, "dieSides": 10,
+                "attributes": [
+                    { "name": "Bluff", "dieCount": 2 },
+                    { "name": "Gamblin'", "dieCount": 0 },
+                    { "name": "Ridicule", "dieCount": 1 },
+                    { "name": "Scroungin'", "dieCount": 0 },
+                    { "name": "Streetwise", "dieCount": 1 },
+                    { "name": "Survival", "dieCount": 0 },
+                    { "name": "Tinkerin'", "dieCount": 0 }
+                ]
+            },
+            { "name": "Spirit", "dieCount": 3, "dieSides": 8, "attributes": [
+                { "name": "Faith", "dieCount": 0 },
+                { "name": "Guts", "dieCount": 5 }
+            ]
+            },
+            { "name": "Strength", "dieCount": 2, "dieSides": 4, "type": "trait" },
+            { "name": "Vigor", "dieCount": 4, "dieSides": 6, "type": "trait" }
+        ]
+    },
+    "fateChips": {
+        "white": 0,
+        "red": 0,
+        "blue": 0,
+        "legendary": 0
+    },
+    "bountyPoints": 0,
+    "edges": [],
+    "hindrances": [],
+    "inventory": [],
+    "imageSrc": "https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/petey.png"
+}
