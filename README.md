@@ -57,7 +57,7 @@
 
    The roll panel also accounts for common modifiers. When a player rolls a stat with zero dice, their roll result receives a -4 modifier, and if a majority of dice are 1's, the player must inform the Marshal they have "gone bust".
 
-   ### Bounty points 
+   ### 💰 Bounty points 
 
    ![Bounty points view, with upgrades ready to purchase](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/bounty-points.png "Bounty points view, with upgrades ready to purchase")
    Bounty points are similar to experience points in other systems. They can be spent to upgrade stats, and the cost depends on a number of factors. This can be complicated to figure out, and the players in our group regularly needed reminders from the Marshal, so I calculated and displayed all costs within the app. 
