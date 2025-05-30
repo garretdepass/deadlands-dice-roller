@@ -2,7 +2,9 @@
 
    A minimal web app that lets does the hard work of character and roll management, so players can focus on the game. 
    
-   Want to give it a try? Visit the [staging build](https://devserver-main--dice-roller-deadlands.netlify.app/). Mess around with the functionality as much as you like. My players are using the production environment and production database.
+   Want to give it a try? Visit the [staging environment](https://devserver-main--dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. 
+   
+   Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
 ## Motivation & Problem Statement
 
@@ -54,6 +56,10 @@
 
 ## Design Decisions & Tradeoffs
 
+   **Web-only**
+   
+   The players in my group all play remotely on computers over discord, so I opted for a large-screen-only design for the first iteration. In the future, I may explore design solutions that support mobile views. It could be useful to have the roller on a second smaller screen to enable the player to primarily focus on the video call. For the MVP, the use case didn't justify the effort.
+   
    **Netlify + MongoDB Atlas**
 
    The primary focus of this project was to build react code that functioned within a working tech stack. Consequently, I biased for more pre-configured technology to support my efforts. Using Netlify and MongoDB Atlas in a starter project allowed me to get to working on core app functionality much faster than I would have been able to if I'd opted for putting together my own server and using a self-hosted instance of MongoDB.
