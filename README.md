@@ -2,7 +2,7 @@
 
    A minimal web app that lets does the hard work of character and roll management, so players can focus on the game. 
    
-   Want to give it a try? Visit the [staging build](www.example.com).
+   Want to give it a try? Visit the [staging build](https://devserver-main--dice-roller-deadlands.netlify.app/). Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
 ## Motivation & Problem Statement
 
@@ -314,6 +314,7 @@ To set this up on your own, use the template for integrating MongoDB Atlas with 
  MONGODB_DATABASE = "tasks_netlify"
  MONGODB_COLLECTION = "tasks"
 ```
+4. Add your characters to MongoDB. I've included some characters as well as a blank template in the [json](https://github.com/garretdepass/deadlands-dice-roller/tree/main/json) folder to get you started.
 5. Configure your environment variables in `netlify.toml`.
 6. Run `netlify dev` to start your local server.
 
