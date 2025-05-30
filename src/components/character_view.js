@@ -113,9 +113,10 @@ const CharacterView = ({character, characterIndex}) => {
         let newWind = currentWind
         let newBountyPoints = bountyPoints
         if (stat === "bountyPoints") {
+            if (bountyPoints > 0) {
             newBountyPoints --
             setBountyPoints(newBountyPoints)
-            await updateStat(character._id, "bountyPoints", newBountyPoints)
+            await updateStat(character._id, "bountyPoints", newBountyPoints) }
         } else if (stat === "wind") {
             if (currentWind > 0) {
                 newWind --

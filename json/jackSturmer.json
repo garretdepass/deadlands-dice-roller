@@ -112,5 +112,7 @@
     "bountyPoints": 0,
     "edges": [],
     "hindrances": [],
-    "inventory": []
+    "inventory": [],
+    "imageSrc": "https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/jack.png"
 }
+
