@@ -102,7 +102,7 @@
    This project taught me so much. 
 
    - Sharpened my skills with react.
-   - Learned about writing tests
+   <!-- - Learned about writing tests -->
    - I've written tickets and worked from tickets, but this was my first time fully designing, PMing, and engineering a project. 
       - As an engineer, I got to feel what it's like to have acceptance criteria clearly (and sometimes not so clearly) recorded by my PM brain. I got to experience the difference between a well-constructed figma component that let me copy and paste styling, and a not-so-well built component that required me to define styles, name things, and generally figure stuff out on my own. I also got to experience being given a high-complexity story that was high enough priority that it was worth taking extra time to complete.
       - As a PM, I got to feel the impact of engineering communicating feature complexity. Do we cut scope? Do we push through and deliver the value of the feature? What do we deprioritize in order to make room for the most important things? Is there anything we can shave off of this story to make it easier to ship?
