@@ -1,6 +1,6 @@
 # Deadlands Dice Roller
 
-   A minimal web app that lets does the hard work of character and roll management, so players can focus on the game. 
+   A minimal web app that does the hard work of character and roll management, so players can focus on the game. 
    
    Want to give it a try? Visit the [staging environment](https://devserver-main--dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. 
    
