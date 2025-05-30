@@ -27,12 +27,16 @@
    ### 🙋 Character selector view
    Because each character's stats are different, it's important make sure they're using the correct character.
    
+   ![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/character-selector.png "The character selector view")
+
    An earlier version of this app had a character selector that was on the top of the character sheet with the first player in the array selected by default. This caused some confusion, because players could select dice and roll them without switching to the correct character. Consequently, I pulled out the character selector to a mandatory first step with its own screen.
 
    Our DM (or "Marshal" in Deadlands) *loves* keeping track of stats, so this serves the added benefit of giving him the ability to see anyone's stats instantly.
 
    ### 📊 Character Sheet
    After selecting a character, that character's stats are automatically shown. These are pulled directly from MongoDB, and persist when the page is refreshed. 
+
+   ![The character sheet view, displaying all of this characters stats.](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/character-sheet.png "The character sheet view, displaying all of this characters stats.")
    
    <!-- The Character view includes:
    * Traits, attributes, and concentrations that can be rolled
@@ -41,7 +45,11 @@
    * Fate Chips that affect gameplay in various ways. These can be incremented or decremented, and persist on page reload. -->
 
    ### 🎲 Dice rolling panel
+   
    This is the core functionality of this web app. A player can select any rollable stat and the correct number of dice with the correct number of sides will appear. Pressing `Roll Dice` rolls all the dice and scores according to unique Deadlands rules.
+
+   ![Two instances of the roll panel. One with an ace and one with some score modifiers applied](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/roll-panel.png "Two instances of the roll panel. One with an ace and one with some score modifiers applied")
+   
    
    According to the Player handbook:
 
@@ -50,6 +58,8 @@
    The roll panel also accounts for common modifiers. When a player rolls a stat with zero dice, their roll result receives a -4 modifier, and if a majority of dice are 1's, the player must inform the Marshal they have "gone bust".
 
    ### Bounty points 
+
+   ![Bounty points view, with upgrades ready to purchase](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/bounty-points.png "Bounty points view, with upgrades ready to purchase")
    Bounty points are similar to experience points in other systems. They can be spent to upgrade stats, and the cost depends on a number of factors. This can be complicated to figure out, and the players in our group regularly needed reminders from the Marshal, so I calculated and displayed all costs within the app. 
    
    I also created a "shopping cart" that shows the remaining bounty points and the upgrades a player wants before they confirm and spend their points. These upgrades can be added or removed, and a notification appears if players try to spend more points than they have.
