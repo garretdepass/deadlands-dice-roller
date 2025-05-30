@@ -313,7 +313,8 @@ const CharacterView = ({character, characterIndex}) => {
                     remainingBountyPoints={remainingBountyPoints}
                     setRemainingBountyPoints={setRemainingBountyPoints}/>
                     : <RollPanel 
-                    statNameToRoll={statNameToRoll} 
+                    statNameToRoll={statNameToRoll}
+                    setStatNameToRoll={setStatNameToRoll} 
                     dieCountToRoll={dieCountToRoll} 
                     dieSidesToRoll={dieSidesToRoll} />}
             </div>

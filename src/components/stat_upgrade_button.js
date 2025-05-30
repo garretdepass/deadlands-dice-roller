@@ -79,10 +79,7 @@ const StatUpgradeButton = ({
                     }
                 } 
             }
-        }
-
-
-               
+        }               
     }
 
     const popover = document.getElementById("insufficientBountPointsPopover")

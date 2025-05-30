@@ -4,7 +4,7 @@ import "./roll_panel.css"
 import "../App.css"
 
 
-const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
+const RollPanel = ({ statNameToRoll, setStatNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
     
     const [diceSection, setDiceSection] = useState(null);
     const [isUnskilled, setIsUnskilled] = useState(false);
@@ -113,7 +113,6 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
                     <div className="dice-section_highest-roll-text">Highest roll</div>    
                 </div>
             </div>
-
             :
             <div key={`thread-${threadIndex}`} className="dice-section__die-thread">
                 <div className="dice-section__die-thread-inner">
@@ -147,10 +146,11 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
         setDiceSection(renderDiceThreads(threads, newHighestThread))
     }
 
-    // const handleClearDice = () => {
-    //     setDiceSection(null);
-    //     statNameToRoll = null;
-    // }
+    const handleClearDice = () => {
+        // setDiceSection(null);
+        setStatNameToRoll(null);
+        setIsRollButtonDisabled(true)
+    }
 
     return (
         <div className="panel panel__panel-right">
@@ -169,9 +169,9 @@ const RollPanel = ({ statNameToRoll, dieCountToRoll, dieSidesToRoll }) => {
                 <div className="result-section__roll-result">Roll result: {highestRollResult !== null ? <span className="result-section__roll-result-value">{highestRollResult}</span> : ""} </div>
             </div>
             <div className="panel-right__button-row">
-                {/* <button className="button button__button-secondary" onClick={() => {handleClearDice()}}>
+                <button className="button button_large button_fill-width button__button-secondary" onClick={() => {handleClearDice()}} disabled={isRollButtonDisabled}>
                     Clear
-                </button> */}
+                </button>
                 <button className="button button_large button_fill-width button__button-primary"onClick={() => {handleRollDice(dieCountToRoll, dieSidesToRoll)}} disabled={isRollButtonDisabled}>
                     {isRollButtonDisabled ? "Select a stat to roll" : "Roll Dice"}
                 </button>

@@ -126,7 +126,7 @@ code {
 .button__button-primary:disabled {
   background-color: #484660;
   border: 2px solid #484660;
-  opacity: 75%;
+  opacity: 50%;
 }
 
 .button__button-secondary {
@@ -138,6 +138,16 @@ code {
 .button__button-secondary:hover {
   background: var(--blue-3, #142A48);
   color: var(--Gray-6, #F5F5F5);
+}
+
+.button__button-secondary:disabled {
+  color: #484660;
+  border: 2px solid #484660;
+  opacity: 75%;
+}
+
+.button__button-secondary:disabled:hover {
+  background: transparent;
 }
 
 .button__button-tertiary {
