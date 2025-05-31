@@ -95,11 +95,13 @@
     Bonus: Link to tests, CI/CD pipeline setup, or coverage reports. -->
 
 ## What's Next
-   Based on feedback from my group, my near-term roadmap includes:
+   I'm blessed with a passionate, vocal user base. Based on feedback from my group, my near-term roadmap includes:
 
    1. Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the way chips are used.
-   1. Track equipment
+   1. A Marshal view - the Marshal can benefit from seeing some things in aggregate, like the total number of fate chips in play.
+   1. Track equipment - firearms, supplies, artifacts, etc...
    1. Track edges and hindrances. These are quirks about player characters that have impacts on gameplay. I'd like to add their modifiers to rolls. Each is unique, and will require its own logic.
+   1. Support magic mechanics - complicated rules that make use of a shuffled deck of cards to cast spells
    1. Upload, store, and change character images
    1. Add concentrations - useful if a character learns a new language or starts shooting with a new type of gun.
    1. Create a new character
@@ -111,10 +113,11 @@
 
    This project taught me so much. It's sharpened my skills with react, and given me a lot of cycles solving different types of problems.
 
-   From a workflow perspective, it's been novel as well. Historically, I've both written tickets and worked from tickets, but this was my first time fully designing, PMing, and engineering a project. 
-      - As an engineer, I got to feel what it's like to have acceptance criteria clearly (and sometimes not so clearly) recorded by my PM brain. I got to experience the difference between a well-constructed figma component that let me copy and paste styling, and a not-so-well built component that required me to define styles, name things, and generally figure stuff out on my own. I also got to experience being given a high-complexity story that was high enough priority that it was worth taking extra time to complete.
-      - As a PM, I got to feel the impact of engineering communicating feature complexity. Do we cut scope? Do we push through and deliver the value of the feature? What do we deprioritize in order to make room for the most important things? Is there anything we can shave off of this story to make it easier to ship?
-      - As a designer, I got to experiment with more of a "go fast and do less" approach than I'm used to. I've always strived to put together well-crafted deliverables with engineering in mind but, in a situation where I'm wearing all the hats, deprioritizing this felt like the right tradeoff.
+   From a workflow perspective, it's been novel as well. Historically, I've both written tickets and worked from tickets, but this was my first time fully designing, PMing, and engineering a project.
+
+   - **As an engineer**, I got to feel what it's like to have acceptance criteria clearly (and sometimes not so clearly) recorded by my PM brain. I got to experience the difference between a well-constructed figma component that let me copy and paste styling, and a not-so-well built component that required me to define styles, name things, and generally figure stuff out on my own. I also got to experience being given a high-complexity story that was high enough priority that it was worth taking extra time to complete.
+   - **As a PM**, I got to feel the impact of engineering communicating feature complexity. Do we cut scope? Do we push through and deliver the value of the feature? What do we deprioritize in order to make room for the most important things? Is there anything we can shave off of this story to make it easier to ship?
+   - **As a designer**, I got to experiment with more of a "go fast and do less" approach than I'm used to. I've always strived to put together well-crafted deliverables with engineering in mind but, in a situation where I'm wearing all the hats, deprioritizing this felt like the right tradeoff.
 
 
 ## Code Highlights
@@ -123,7 +126,7 @@
    When spending bounty points, in order to update a stat in the database, I needed each stat upgrade to reference a specific place in that character's JSON document. I wanted this to be a generic function that could apply regardless of whether the player is updating a Trait, an attribute (which is a child of a trait), or a concentration (which is a child of an attribute). 
    
    Within [stat_upgrade_button.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/stat_upgrade_button.js), I created a function that returns any stat's index dynamically. I then set the output of that function to a property of an object that is created for any stat the player wants to upgrade. I then added that object to an array that populates the shopping cart.
-   
+   ```javascript
       const jsonStatIndex = () => {
 
          for (let traitCounter = 0; traitCounter < character.stats.traits.length; traitCounter ++) {
@@ -166,12 +169,13 @@
             popover.showPopover()
          }
       }
-
+   ```
 
    ### Rolling dice
 
    The way Deadlands handles dice rolling is rather unusual, so the code to handle it was a lot of fun to write! Within [roll_panel.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/roll_panel.js), it starts by creating an array of dice to roll based on which stat the player selects. This is used to display the pre-rolled state.
-
+   
+   ```javascript
       const generateDiceArray = (dieCountToRoll, dieSidesToRoll) => {
         setHighestRollResult(null)
         setIsBust(false)
@@ -189,9 +193,11 @@
         };
         return dice;
     }; 
+   ```
 
    Then it defines what a rolled value is
-    
+   
+   ```javascript
     const returnRolledDieValue = (totalSides) => {return(Math.ceil(Math.random() * totalSides))}
     
    and rolls dice based on the stat selected by the player. Each roll is added to an array, with any exploding dice added to that array.
@@ -218,9 +224,11 @@
         };
         return allRolledThreads;
     }
+   ```
 
    Then each array is evaluated for which one returned the highest total
-    
+
+   ```javascript 
     const findHighestThread = (array) => {
         const allThreadTotals = [];
         
@@ -243,9 +251,11 @@
         })
         return highestThread   
     }
+   ```
 
    And the roll is evaluated to see if the player went bust
 
+   ```javascript
     const checkForBust = (array) => {
         let totalDice = 0;
         let numberOfOnes = 0;
@@ -261,18 +271,22 @@
             setIsBust(false);
         };
     }
+   ```
 
    Then for each die, JSX is generated to render the die shapes
 
+   ```javascript
     const returnDie = (thread, isInHighThread) => {
         const die = Array.isArray(thread) ? thread.map((value, valueIndex) => (
             <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={value} isInHighThread={isInHighThread} />
         )) : <Die key={generateKey()} dieSides={dieSidesToRoll} dieFace={thread} isInHighThread={isInHighThread}/>
         return die;
     }
+   ```
 
    and each thread is rendered in JSX, with the highest thread getting special styling.
 
+   ```javascript
     const renderDiceThreads = (array, newHighestThread) => {
         const jsx = Array.isArray(array) ? array.map((thread, threadIndex) => (
             newHighestThread.index === threadIndex ?
@@ -293,9 +307,11 @@
         )) : <div>missing array</div>
         return jsx
     }
+   ```
 
    Finally, it's all pulled together in `handleRollDice`.
 
+   ```javascript
     const handleRollDice = (dieCountToRoll, dieSidesToRoll) => {
         const threads = returnRolledDiceArray(dieCountToRoll, dieSidesToRoll)
         const newHighestThread = findHighestThread(threads)
@@ -306,6 +322,7 @@
         checkForBust(threads)
         setDiceSection(renderDiceThreads(threads, newHighestThread))
     }
+   ```
 
 ## Want to deploy your own?
 
