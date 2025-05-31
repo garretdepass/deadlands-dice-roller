@@ -2,7 +2,7 @@
 
    A minimal web app designed to be used with the table top role playing game Deadlands. It does the hard work of character and roll management, so players can focus on the game. 
    
-   Want to give it a try? Visit the [staging environment](https://devserver-main--dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. 
+   Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. 
    
    Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
