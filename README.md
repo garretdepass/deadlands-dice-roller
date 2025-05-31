@@ -1,12 +1,12 @@
 # Deadlands Dice Roller
 
-   A minimal web app that does the hard work of character and roll management, so players can focus on the game. 
+   A minimal web app designed to be used with the table top role playing game Deadlands. It does the hard work of character and roll management, so players can focus on the game. 
    
    Want to give it a try? Visit the [staging environment](https://devserver-main--dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. 
    
    Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
-## Motivation & Problem Statement
+## What problem is this solving?
 
    I initally started building this for my wife. Our gaming group meets regularly, and my wife had put together a patchwork of custom tools to let her play -- a spreadsheet to manage her stats, random dice rollers not designed for the mechanics of this specific game, and discord to track things like experience points and fate chips. I saw how much toil she was putting in to play the game, so I decided to figure out something to make her life easier.
 
