@@ -8,9 +8,13 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/.netlify/functions/get_characters");
-      const data = await response.json();
-      setCharacters(data);
+      try {
+        const response = await fetch("/.netlify/functions/get_characters");
+        const data = await response.json();
+        setCharacters(data);
+      } catch {
+        console.log("test error");
+      }
     };
     fetchData();
   }, []);
@@ -18,7 +22,7 @@ function App() {
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route index element={<HomeView />} />
+        <Route index element={<HomeView characters={characters} />} />
         {characters.map((character, characterIndex) => (
           <Route
             key={character.name}

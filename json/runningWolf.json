@@ -1,124 +1,149 @@
 {
-    "name": "Running Wolf",
-    "occupation": "Pomo tracker",
-    "stats": {
-        "pace": 9,
-        "size": 6,
-        "grit": 2,
-        "traits": [
-            { "name": "Cognition", "dieCount": 4, "dieSides": 12,
-                "attributes": [
-                    { "name": "Artillery", "dieCount": 0},
-                    { "name": "Arts", "dieCount": 0},
-                    { "name": "Scrutinize", "dieCount": 1},
-                    { "name": "Search", "dieCount": 2},
-                    { "name": "Trackin'", "dieCount": 3}
-                ]
-            },
-
-            { "name": "Deftness", "dieCount": 3, "dieSides": 10, 
-                "attributes": [
-                    { "name": "Bow","dieCount": 4},
-                    { "name": "Filchin'","dieCount": 0 },
-                    { "name": "Lockpickin'","dieCount": 0 },
-                    { "name": "Shootin'","dieCount": 0 },
-                    { "name": "Sleight of hand", "dieCount": 0 },
-                    { "name": "SpeedLoad", "dieCount": 0 },
-                    { "name": "Throwin'", "dieCount": 0 }
-              ]
-            },
-
-            { "name": "Knowledge", "dieCount": 1, "dieSides": 4,
-                "attributes": [
-                    
-                    { "name": "Academia", "dieCount": 0 },
-                    { "name": "Area Knowledge",
-                      "concentrations": [
-                          { "name": "Home County", "dieCount": 2, "location": "No Man's County" }
-                        ]
-                    },
-                    { "name": "Demolition", "dieCount": 0 },
-                    { "name": "Disguise", "dieCount": 0 },
-                    { "name": "Language",
-                      "concentrations": [
-                        { "name": "Pomo", "dieCount": 2 },
-                        { "name": "Indian Sign Language", "dieCount": 2 },
-                        { "name": "English", "dieCount": 1 }
-                        ]
-                    },
-                    { "name": "Mad Science", "dieCount": 0 },
-                    { "name": "Medicine", "dieCount": 0 },
-                    { "name": "Professional", "dieCount": 0 },
-                    { "name": "Science", "dieCount": 0 },
-                    { "name": "Trade", "dieCount": 0 }
-                ]
-            },
-
-            { "name": "Mien", "dieCount": 4, "dieSides": 6,
-                "attributes": [      
-                    { "name": "Animal Wranglin'", "dieCount": 0 },
-                    { "name": "Leadership", "dieCount": 0 },
-                    { "name": "Overawe", "dieCount": 0 },
-                    { "name": "Performin'", "dieCount": 0 },
-                    { "name": "Persuasion", "dieCount": 0 },
-                    { "name": "Tale Tellin'", "dieCount": 0 }
-                ]
-            },
-
-            { "name": "Nimbleness", "dieCount": 4, "dieSides": 10,
-                "attributes": [
-                    
-                    { "name": "Climbin'", "dieCount": 2 },
-                    { "name": "Dodge", "dieCount": 3 },
-                    { "name": "Drivin'", "dieCount": 0 },
-                    { "name": "Fightin'", "dieCount": 1 },
-                    { "name": "Horse Ridin'", "dieCount": 0 },
-                    { "name": "Sneak", "dieCount": 3 },
-                    { "name": "Swimmin'", "dieCount": 2 },
-                    { "name": "Teamster", "dieCount": 0 }
-                ]
-            },
-
-            { "name": "Quickness", "dieCount": 4, "dieSides": 10,
-                "attributes": [
-                    { "name": "Quick Draw", "dieCount": 0 }
-                ]
-            },
-
-            { "name": "Smarts", "dieCount": 3, "dieSides": 10,
-                "attributes": [
-                    { "name": "Bluff", "dieCount": 1 },
-                    { "name": "Gamblin'", "dieCount": 0 },
-                    { "name": "Ridicule", "dieCount": 0 },
-                    { "name": "Scroungin'", "dieCount": 3 },
-                    { "name": "Streetwise", "dieCount": 0 },
-                    { "name": "Survival", "dieCount": 3 },
-                    { "name": "Tinkerin'", "dieCount": 0 }
-                ]
-            },
-
-            { "name": "Spirit", "dieCount": 2, "dieSides": 12,
-                "attributes": [
-                    { "name": "Faith", "dieCount": 2 },
-                    { "name": "Guts", "dieCount": 5 }
-                ]
-            },
-
-            { "name": "Strength", "dieCount": 3, "dieSides": 8 },
-
-            { "name": "Vigor", "dieCount": 1, "dieSides": 10 }
+  "name": "Running Wolf",
+  "occupation": "Pomo tracker",
+  "stats": {
+    "pace": 9,
+    "size": 6,
+    "grit": 2,
+    "traits": [
+      {
+        "name": "Cognition",
+        "dieCount": 4,
+        "dieSides": 12,
+        "attributes": [
+          { "name": "Artillery", "dieCount": 0 },
+          { "name": "Arts", "dieCount": 0 },
+          { "name": "Scrutinize", "dieCount": 1 },
+          { "name": "Search", "dieCount": 2 },
+          { "name": "Trackin'", "dieCount": 3 }
         ]
+      },
 
-    },
-    "fateChips": {
-        "white": 2,
-        "red": 2,
-        "blue": 1,
-        "legendary": 0
-    },
-    "bountyPoints": 0,
-    "edges": [],
-    "hindrances": [],
-    "inventory": [],
-    "imageSrc": "https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/running-wolf.png"
+      {
+        "name": "Deftness",
+        "dieCount": 3,
+        "dieSides": 10,
+        "attributes": [
+          { "name": "Bow", "dieCount": 4 },
+          { "name": "Filchin'", "dieCount": 0 },
+          { "name": "Lockpickin'", "dieCount": 0 },
+          { "name": "Shootin'", "dieCount": 0 },
+          { "name": "Sleight of hand", "dieCount": 0 },
+          { "name": "SpeedLoad", "dieCount": 0 },
+          { "name": "Throwin'", "dieCount": 0 }
+        ]
+      },
+
+      {
+        "name": "Knowledge",
+        "dieCount": 1,
+        "dieSides": 4,
+        "attributes": [
+          { "name": "Academia", "dieCount": 0 },
+          {
+            "name": "Area Knowledge",
+            "concentrations": [
+              {
+                "name": "Home County",
+                "dieCount": 2,
+                "location": "No Man's County"
+              }
+            ]
+          },
+          { "name": "Demolition", "dieCount": 0 },
+          { "name": "Disguise", "dieCount": 0 },
+          {
+            "name": "Language",
+            "concentrations": [
+              { "name": "Pomo", "dieCount": 2 },
+              { "name": "Indian Sign Language", "dieCount": 2 },
+              { "name": "English", "dieCount": 1 }
+            ]
+          },
+          { "name": "Mad Science", "dieCount": 0 },
+          { "name": "Medicine", "dieCount": 0 },
+          { "name": "Professional", "dieCount": 0 },
+          { "name": "Science", "dieCount": 0 },
+          { "name": "Trade", "dieCount": 0 }
+        ]
+      },
+
+      {
+        "name": "Mien",
+        "dieCount": 4,
+        "dieSides": 6,
+        "attributes": [
+          { "name": "Animal Wranglin'", "dieCount": 0 },
+          { "name": "Leadership", "dieCount": 0 },
+          { "name": "Overawe", "dieCount": 0 },
+          { "name": "Performin'", "dieCount": 0 },
+          { "name": "Persuasion", "dieCount": 0 },
+          { "name": "Tale Tellin'", "dieCount": 0 }
+        ]
+      },
+
+      {
+        "name": "Nimbleness",
+        "dieCount": 4,
+        "dieSides": 10,
+        "attributes": [
+          { "name": "Climbin'", "dieCount": 2 },
+          { "name": "Dodge", "dieCount": 3 },
+          { "name": "Drivin'", "dieCount": 0 },
+          { "name": "Fightin'", "dieCount": 1 },
+          { "name": "Horse Ridin'", "dieCount": 0 },
+          { "name": "Sneak", "dieCount": 3 },
+          { "name": "Swimmin'", "dieCount": 2 },
+          { "name": "Teamster", "dieCount": 0 }
+        ]
+      },
+
+      {
+        "name": "Quickness",
+        "dieCount": 4,
+        "dieSides": 10,
+        "attributes": [{ "name": "Quick Draw", "dieCount": 0 }]
+      },
+
+      {
+        "name": "Smarts",
+        "dieCount": 3,
+        "dieSides": 10,
+        "attributes": [
+          { "name": "Bluff", "dieCount": 1 },
+          { "name": "Gamblin'", "dieCount": 0 },
+          { "name": "Ridicule", "dieCount": 0 },
+          { "name": "Scroungin'", "dieCount": 3 },
+          { "name": "Streetwise", "dieCount": 0 },
+          { "name": "Survival", "dieCount": 3 },
+          { "name": "Tinkerin'", "dieCount": 0 }
+        ]
+      },
+
+      {
+        "name": "Spirit",
+        "dieCount": 2,
+        "dieSides": 12,
+        "attributes": [
+          { "name": "Faith", "dieCount": 2 },
+          { "name": "Guts", "dieCount": 5 }
+        ]
+      },
+
+      { "name": "Strength", "dieCount": 3, "dieSides": 8 },
+
+      { "name": "Vigor", "dieCount": 1, "dieSides": 10 }
+    ]
+  },
+  "fateChips": {
+    "white": 2,
+    "red": 2,
+    "blue": 1,
+    "legendary": 0
+  },
+  "bountyPoints": 0,
+  "edges": [],
+  "hindrances": [],
+  "inventory": [],
+  "imageSrc": "https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/running-wolf.png"
 }
