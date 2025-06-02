@@ -39,9 +39,10 @@ const HomeView = () => {
   };
 
   return (
-    <div>
+    <div className="view">
       <h1>Who's Playing?</h1>
       <div className="character-grid">{renderCharacterGrid()}</div>
+      <div className="footer">Made by ✋🏻 Made with ❤️</div>
     </div>
   );
 };

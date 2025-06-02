@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.character-grid {
+  flex: 1;
+}
+
 .character-grid a {
   text-decoration: none;
 }
