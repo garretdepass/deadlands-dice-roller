@@ -2,28 +2,26 @@
   --blue-0: #000812;
   --blue-1: #010e22;
   --blue-2: #06162e;
-  --blue-3: #142A48;
-  --blue-4: #223E65;
-  --blue-5: #43689B;
-  --blue-6: #84B1F0;
+  --blue-3: #142a48;
+  --blue-4: #223e65;
+  --blue-5: #43689b;
+  --blue-6: #84b1f0;
 
-  --Gray-6: #F5F5F5;
+  --Gray-6: #f5f5f5;
 
-  --buttons-button-blue: #004CB3;
+  --buttons-button-blue: #004cb3;
   --buttons-button-red: #980000;
-  --buttons-button-white: #CCCCCC;
-
+  --buttons-button-white: #cccccc;
 }
-
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--Gray-6, #F5F5F5);
+  color: var(--Gray-6, #f5f5f5);
   background: var(--blue-0, #010914);
 }
 
@@ -55,14 +53,12 @@ body {
   align-self: stretch;
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-
-.app{
+.app {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,18 +66,17 @@ code {
   margin: 20px;
 }
 
- h1{
+h1 {
   /* text align center */
   text-align: center;
 }
-.search-bar{
+.search-bar {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px;
-  gap:20px;
+  gap: 20px;
 }
-
 
 .button {
   display: flex;
@@ -112,15 +107,15 @@ code {
 }
 
 .button__button-primary {
-  background: var(--buttons-button-blue, #004CB3);
-  border: 2px solid var(--buttons-button-blue, #004CB3);
-  color: #F5F5F5;
+  background: var(--buttons-button-blue, #004cb3);
+  border: 2px solid var(--buttons-button-blue, #004cb3);
+  color: #f5f5f5;
 }
 
 .button__button-primary:hover {
   background: #0060e8;
   border: 2px solid #0060e8;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .button__button-primary:disabled {
@@ -131,13 +126,13 @@ code {
 
 .button__button-secondary {
   background: transparent;
-  border: 2px solid var(--blue-6, #84B1F0);
-  color: var(--blue-6, #84B1F0);
+  border: 2px solid var(--blue-6, #84b1f0);
+  color: var(--blue-6, #84b1f0);
 }
 
 .button__button-secondary:hover {
-  background: var(--blue-3, #142A48);
-  color: var(--Gray-6, #F5F5F5);
+  background: var(--blue-3, #142a48);
+  color: var(--Gray-6, #f5f5f5);
 }
 
 .button__button-secondary:disabled {

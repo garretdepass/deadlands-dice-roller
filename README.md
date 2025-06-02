@@ -99,12 +99,12 @@
 
    1. Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the way chips are used.
    1. A Marshal view - the Marshal can benefit from seeing some things in aggregate, like the total number of fate chips in play.
-   1. Track equipment - firearms, supplies, artifacts, etc...
-   1. Track edges and hindrances. These are quirks about player characters that have impacts on gameplay. I'd like to add their modifiers to rolls. Each is unique, and will require its own logic.
-   1. Support magic mechanics - complicated rules that make use of a shuffled deck of cards to cast spells
+   1. Equipment tracking - firearms, supplies, artifacts, etc...
+   1. Edges and hindrances. These are quirks about player characters that have impacts on gameplay. I'd like to add their modifiers to rolls. Each is unique, and will require its own logic.
+   1. Magic mechanics - complicated rules that make use of a shuffled deck of cards to cast spells
    1. Upload, store, and change character images
-   1. Add concentrations - useful if a character learns a new language or starts shooting with a new type of gun.
-   1. Create a new character
+   1. Players adding new concentrations - useful if a character learns a new language or starts shooting with a new type of gun.
+   1. Players create a new character - valuable if a character dies, or if a new player joins the game
    1. Visual polish - I'd like to take a measured visual pass and make the experience feel more refined.
    
    Beyond adding basic functionality, I also think it would be interesting to explore releasing this as a product other gaming groups can use. It feels like there's a niche in this product category that I could fill. Depending on interest, I may explore releasing another similar lightweight dice roller for other game systems with a broader player base.
@@ -199,9 +199,11 @@
    
    ```javascript
     const returnRolledDieValue = (totalSides) => {return(Math.ceil(Math.random() * totalSides))}
-    
-   and rolls dice based on the stat selected by the player. Each roll is added to an array, with any exploding dice added to that array.
+   ```
 
+   and rolls dice based on the stat selected by the player. Each roll is added to an array, with any highest possible rolls added to that array (a common term for this in RPGS is exploding dice).
+
+   ```javascript
     const returnRolledDiceArray = (dieCountToRoll, dieSidesToRoll) => {
         let threadCount = 0;
         isUnskilled === true ? threadCount = 1 : threadCount = dieCountToRoll;

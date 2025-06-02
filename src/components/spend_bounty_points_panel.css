@@ -1,28 +1,28 @@
 .bounty-points-cart {
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    flex: 1 0 0;
-    width: 100%;
-    gap: 16px
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex: 1 0 0;
+  width: 100%;
+  gap: 16px;
 }
 
 .bounty-points-cart__remaining-points {
-text-align: center;
-font-family: Inter;
-font-size: 20px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .bounty-points-cart__remaining-points-value {
-    color: var(--blue-6)
+  color: var(--blue-6);
 }
 
 .bounty-points-cart__empty-state {
-    align-content: center;
-    text-align: center;
-    flex: 1 0 0;
-    color: var(--blue-6);
+  align-content: center;
+  text-align: center;
+  flex: 1 0 0;
+  color: var(--blue-6);
 }

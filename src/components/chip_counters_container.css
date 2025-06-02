@@ -1,86 +1,86 @@
 .chip-counters-container {
-    display: flex;
-    gap: 32px;
+  display: flex;
+  gap: 32px;
 }
 
 .chip-counter {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .chip-counter__chip {
-    height: 48px;
-    width: 48px;
+  height: 48px;
+  width: 48px;
 }
 
 .chip-counter__chip-number {
-    margin-top: -38px;
-    text-align: center;
-    width: 100%;
-    font-family: Inter;
-    font-style: normal;
-    line-height: normal;
-    font-weight: 700;
+  margin-top: -38px;
+  text-align: center;
+  width: 100%;
+  font-family: Inter;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 700;
 }
 
 .chip-counter__chip-number_red {
-    color: white;
+  color: white;
 }
 
 .chip-counter__chip-number_blue {
-    color: white;
+  color: white;
 }
 
 .chip-counter__chip-number_white {
-    color: black;
+  color: black;
 }
 
 .chip-counter__chip-number_legend {
-    color: white;
+  color: white;
 }
 
 .chip-counter__chip-shape {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 }
 
 .chip-counter__chip-shape_red {
-    fill: var(--buttons-button-red, #980000);
+  fill: var(--buttons-button-red, #980000);
 }
 
 .chip-counter__chip-shape_blue {
-    fill: var(--buttons-button-blue, #004CB3);
+  fill: var(--buttons-button-blue, #004cb3);
 }
 
 .chip-counter__chip-shape_white {
-    fill: var(--buttons-button-white, #CCCCCC);
+  fill: var(--buttons-button-white, #cccccc);
 }
 
 .chip-counter__chip-shape_legend {
-    fill: rgb(207, 138, 10);
+  fill: rgb(207, 138, 10);
 }
 
 .chip-counter__button-container {
-    display: flex;
+  display: flex;
 }
 
 .chip-counter__button-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .chip-counter__button {
-    width: 40px;
-    height: 24px;
-    border-radius: 4px;
-    background: #0C1F39;
-    border: solid 0px;
-    color: #84B1F0;
-    font-weight: 700;
-    font-size: 16px;
+  width: 40px;
+  height: 24px;
+  border-radius: 4px;
+  background: #0c1f39;
+  border: solid 0px;
+  color: #84b1f0;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .chip-counter__button:hover {
-    background: #1d4070;
+  background: #1d4070;
 }

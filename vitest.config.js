@@ -1,15 +1,15 @@
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import dotenv from 'dotenv';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import dotenv from "dotenv";
 
-dotenv.config({ path: '.env.test' });
+dotenv.config({ path: ".env.test" });
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    setupFiles: 'src/setupTests.js',
-    environment: 'jsdom',
+    setupFiles: "src/setupTests.js",
+    environment: "jsdom",
     globals: true,
-    exclude: ['.netlify/**', 'node_modules/**', 'dist/**']
+    exclude: [".netlify/**", "node_modules/**", "dist/**"],
   },
 });

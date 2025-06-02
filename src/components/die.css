@@ -1,84 +1,81 @@
 .die-section__die {
-    height: 64px;
-    width: 64px;
-    
+  height: 64px;
+  width: 64px;
 }
 
 .die-section__die-number {
-    position: relative;
-    display: flex;
-    height: 64px;
-    width: 64px;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 700;
-    font-style: normal;
-    line-height: normal;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
+  position: relative;
+  display: flex;
+  height: 64px;
+  width: 64px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 .die-section__die-number_d-4 {
-    top: -60px;
+  top: -60px;
 }
 
 .die-section__die-number_d-6 {
-    top: -62px;
+  top: -62px;
 }
 
 .die-section__die-number_d-8 {
-    top: -71px;
+  top: -71px;
 }
 
 .die-section__die-number_d-10 {
-    top: -75px;
+  top: -75px;
 }
 
 .die-section__die-number_d-12 {
-    top: -69px;
+  top: -69px;
 }
 
 .die-section__die-number_d-20 {
-    top: -69px;
+  top: -69px;
 }
 
 .die-section__die-shape {
-    position: relative;
-    z-index: 0;
+  position: relative;
+  z-index: 0;
 }
 
 .die-section__dieshape_low-thread path {
-    fill: var(--blue-3, #142A48);
+  fill: var(--blue-3, #142a48);
 }
 .die-section__dieshape_high-thread path {
-    fill: var(--blue-5, #43689B);
-
+  fill: var(--blue-5, #43689b);
 }
-
 
 .die-section__die-shape_d-4 {
 }
 
 .die-section__die-shape_d-6 {
-    top: 3px;
-    left: 2px;
+  top: 3px;
+  left: 2px;
 }
 
 .die-section__die-shape_d-8 {
-    top: -1px;
-    left: 8px;
+  top: -1px;
+  left: 8px;
 }
 
 .die-section__die-shape_d-10 {
-    top: -4px;
+  top: -4px;
 }
 
 .die-section__die-shape_d-12 {
-    top: -1px;
-    left: 3px;
+  top: -1px;
+  left: 3px;
 }
 
 .die-section__die-shape_d-20 {
-    top: -1px;
-    left: 3px;
+  top: -1px;
+  left: 3px;
 }
