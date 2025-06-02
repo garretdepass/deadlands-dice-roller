@@ -89,16 +89,19 @@ Several different components are speaking to each other in this app. When I star
 
 While this is working, it's not the most elegant or maintainable. Before adding any additional functionality, I'd like to refactor this pattern and apply contexts to eliminate the need to pass states up and down.
 
-<!-- ## Testing & Quality
+## Testing & Quality
+
+I initially planned to work fully in TDD, but ran into issues early on with trying to configure Vitest. After a couple days trying to get it right, I decided to circle back on writing tests after getting some basic functionality up. I recently got my first tests running and passing. I've added test coverage to my roadmap. Tech debt is best if it's payed off incrementally. I worry that if I wait longer to add test coverage, the complexity will become too costly.
 
     Optional but valuable: Describe your testing strategy, if any.
 
-    Bonus: Link to tests, CI/CD pipeline setup, or coverage reports. -->
+    Bonus: Link to tests, CI/CD pipeline setup, or coverage reports.
 
 ## What's Next
 
 I'm blessed with a passionate, vocal user base. Based on feedback from my group, my near-term roadmap includes:
 
+1.  Tech debt - add contexts and test coverage
 1.  Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the way chips are used.
 1.  A Marshal view - the Marshal can benefit from seeing some things in aggregate, like the total number of fate chips in play.
 1.  Equipment tracking - firearms, supplies, artifacts, etc...
