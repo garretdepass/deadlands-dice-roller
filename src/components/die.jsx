@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./die.css";
-import D4Shape from "./die_shapes/d4.js";
-import D6Shape from "./die_shapes/d6.js";
-import D8Shape from "./die_shapes/d8.js";
-import D10Shape from "./die_shapes/d10.js";
-import D12Shape from "./die_shapes/d12.js";
-import D20Shape from "./die_shapes/d20.js";
+import D4Shape from "./die_shapes/d4";
+import D6Shape from "./die_shapes/d6";
+import D8Shape from "./die_shapes/d8";
+import D10Shape from "./die_shapes/d10";
+import D12Shape from "./die_shapes/d12";
+import D20Shape from "./die_shapes/d20";
 
 const Die = ({ dieSides, dieFace, isInHighThread }) => {
   const returnDieShape = () => {

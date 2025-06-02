@@ -1,10 +1,10 @@
 // import { forEach } from "cypress/types/lodash";
 import { React, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import RollPanel from "./roll_panel.js";
-import ChipCounterContainer from "./chip_counters_container.js";
-import StatUpgradeButton from "./stat_upgrade_button.js";
-import SpendBountyPointsPanel from "./spend_bounty_points_panel.js";
+import RollPanel from "./roll_panel";
+import ChipCounterContainer from "./chip_counters_container";
+import StatUpgradeButton from "./stat_upgrade_button";
+import SpendBountyPointsPanel from "./spend_bounty_points_panel";
 
 import "./character_view.css";
 import "../App.css";

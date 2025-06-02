@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UpgrageRow from "./upgrade_row.js";
+import UpgrageRow from "./upgrade_row";
 import "./spend_bounty_points_panel.css";
 
 const SpendBountyPointsPanel = ({

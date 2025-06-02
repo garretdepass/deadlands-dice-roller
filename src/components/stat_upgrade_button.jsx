@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import Menu from "./menu.js";
+import Menu from "./menu";
 import "./stat_upgrade_button.css";
 
 const StatUpgradeButton = ({

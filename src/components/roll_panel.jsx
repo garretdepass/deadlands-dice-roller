@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Die from "./die.js";
+import Die from "./die";
 import "./roll_panel.css";
 import "../App.css";
 
