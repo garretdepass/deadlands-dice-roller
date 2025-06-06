@@ -27,25 +27,36 @@ Different readers care about different things. Here's a few quick links to help 
 - [What I learned](#what-i-learned)
 
 <br/>
+<br/>
 
 # What problem is this solving?
 
-I initally started building this for my wife. We have a gaming group that plays [Deadlands](https://en.wikipedia.org/wiki/Deadlands) remotely, and over the last year my wife collected a patchwork of tools to use while playing. She uses Google Sheets to manage her stats, random dice rollers (not designed for the complex mechanics of this specific game), and discord to track things like experience points and fate chips. It was a lot to keep track of.
+I initally started building this for my wife. We have a gaming group that plays [Deadlands](https://en.wikipedia.org/wiki/Deadlands) remotely, and over the last year my wife collected a patchwork of tools to use while playing. She uses Google Sheets to manage her stats, dice rollers (not designed for the complex mechanics of this specific game), calculator apps, and discord to track things like experience points and fate chips. It was a lot to keep track of.
 
 Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry weren't right either. They were all too expensive, too poorly designed, or suffered from feature bloat. I decided I could build something better for her specific needs.
 
 <br/>
+<br/>
 
 # Tech Stack
 
-**React** - React felt like a great fit for this project. In addition to being lightweight and fast, I'm excited about exploring React Native in the future, and this felt like a good step in that direction.
+## React
 
-**Vitest** - I explored using both Jest and Vitest, but given that Vitest fully supports ESM and instant updates, it felt like a better choice for testing.
+React felt like a great fit for this project. In addition to being lightweight and fast, I'm excited about exploring React Native in the future, and this felt like a good step in that direction.
 
-**MongoDB** - I chose MongoDB (vs something like MySQL) primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, some may specialize in driving steam wagons. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
+## Vitest
 
-**Netlify** - The focus of this project was to get functionality up and running quickly, so I looked into serverless deployment platforms like Netlify and Vercel. I liked that Netlify has built-in authentication, which could make it easier to support player login in the future, and didn't need things like SSR support that Vercel offers. I decided to use a Netlify + MongoDB Atlas starter project to expedite configuration and spend more of my time on feature development.
+I explored using both Jest and Vitest, but given that Vitest fully supports ESM and instant updates, it felt like a better choice for testing.
 
+## MongoDB
+
+I chose MongoDB (vs something like MySQL) primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, others may specialize in flying zepelins. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
+
+## Netlify
+
+The focus of this project was to get functionality up and running quickly, so I looked into serverless deployment platforms like Netlify and Vercel. I liked that Netlify has built-in authentication, which could make it easier to support player login in the future, and didn't need things like SSR support that Vercel offers. I decided to use a Netlify + MongoDB Atlas starter project to expedite configuration and spend more of my time on feature development.
+
+<br/>
 <br/>
 
 # Key Features
@@ -56,15 +67,15 @@ Because each character's stats are different, it's important make sure they're u
 
 ![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-selector.png "The character selector view")
 
-An earlier version of this app had a character selector that was on the top of the character sheet with the first player in the array selected by default. This caused some confusion, because players could select dice and roll them without switching to the correct character. Consequently, I pulled out the character selector to a mandatory first step with its own screen.
-
-Our DM (or "Marshal" in Deadlands) _loves_ keeping track of stats, so this serves the added benefit of giving him the ability to see anyone's stats instantly.
+An earlier version of this app had a character selector that was on the top of the character sheet with the first player in the array selected by default. This caused some confusion. Players were rolling dice based on the wrong character's stats. Consequently, I pulled out the character selector to a mandatory first step with its own screen.
 
 ## 📊 Character Sheet
 
 After selecting a character, that character's stats are automatically shown. These are pulled directly from MongoDB, and persist when the page is refreshed.
 
 ![The character sheet view, displaying all of this characters stats.](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-sheet.png "The character sheet view, displaying all of this characters stats.")
+
+Our DM (or "Marshal" in Deadlands) _loves_ keeping track of stats, so this serves the added benefit of giving him the ability to see anyone's stats instantly.
 
 ## 🎲 Dice rolling panel
 
@@ -76,7 +87,7 @@ According to the Player handbook:
 
 > Trait and Aptitude rolls are open-ended. This means if you roll the maximum number on any of your dice, you can roll that die again and add the next roll to that die’s current total. The maximum number on a die is called the “Ace.” You can keep rolling the die and adding it to the running total as long as you keep getting Aces. If you should get Aces on several of your individual dice, you need to keep track of each series of dice rolls separately. When you’re done, the series that got the highest total is the number you should give to the Marshal.
 
-The roll panel also accounts for common modifiers. When a player rolls a stat with zero dice, their roll result receives a -4 modifier, and if a majority of dice are 1's, the player must inform the Marshal they have "gone bust".
+Building this logic was a lot of fun. The roll panel also accounts for common modifiers. When a player rolls a stat with zero dice, their roll result receives a -4 modifier, and if a majority of dice are 1's, the player must inform the Marshal they have "gone bust".
 
 ## 💰 Bounty points
 
@@ -86,41 +97,46 @@ Bounty points are similar to experience points in other systems. They can be spe
 I also created a "shopping cart" that shows the remaining bounty points and the upgrades a player wants before they confirm and spend their points. These upgrades can be added or removed, and a notification appears if players try to spend more points than they have.
 
 <br/>
+<br/>
 
 # Design Decisions & Tradeoffs
 
-**Web-only**
+## Web-only
 
 The players in my group all play remotely on computers over discord, so I opted for a large-screen-only design for the first iteration. In the future, I may explore design solutions that support mobile views. It could be useful to have the roller on a second smaller screen to enable the player to primarily focus on the video call. For the MVP, the use case didn't justify the effort.
 
-**Netlify + MongoDB Atlas**
+## Netlify + MongoDB Atlas
 
 The primary focus of this project was to build react code that functioned within a working tech stack. Consequently, I biased for more pre-configured technology to support my efforts. Using Netlify and MongoDB Atlas in a starter project allowed me to get to working on core app functionality much faster than I would have been able to if I'd opted for putting together my own server and using a self-hosted instance of MongoDB.
 
 The biggest tradeoff here is that I very much learn by doing, so I wasn't able to experience building the full stack here. I was certainly exposed to some necessary configuration, and I got to learn about MongoDB, but I didn't get the deep understanding that comes with building the infrastructure from scratch. In a future project, I'd like to spin up my own server to really get a sense of what that part of the process is like.
 
-**Minimal UI design phase**
+## Minimal UI design phase
 
 I also deprioritized a deep dive into the UI design up front. I did enough in figma to feel like I had a strong understanding of the basic layout and functionality, but I knew that complications would reveal themselves during the build that were not apparent to me in the design phase. This path proved valid, and got me to coding faster. It also allowed me to learn more about how the logic needed to work than I could have in Figma.
 
 Of course, the tradeoff is that there's overall less visual polish than I'd like. Visual polish has a subconscious impact on overall perceived quality. While it's okay to deprioritize this for early product work, getting things looking sharp is important as the product matures. I've put a full design pass into my future roadmap below.
 
-**Passing too many states between nested components**
+## Passing too many states between nested components
 
 Several different components are speaking to each other in this app. When I started, just the character sheet and roll panel needed to communicate, so this was a fine pattern. It was fast, simple, and added minimal complexity given the scope of the codebase at the time. However, when I added additional functionality, I found myself passing states up and down multiple layers of nested components.
 
 While this is working, it's not the most elegant or maintainable. Before adding any additional functionality, I'd like to refactor this pattern and apply contexts to eliminate the need to pass states up and down.
 
+<br/>
+<br/>
+
 # Testing and AI
 
-### Use of AI
+## Use of AI
 
 **All code in use is written by hand, not copy + pasted.** I can articulate how all parts of the codebase work, though some of the serverless functions are still a little fuzzy since I adapted them from the Netlify starter project. I used ChatGPT occasionally as a pairing partner, but only in so far as to help me get unstuck or provide feedback on my implementation decisions.
 
-### Testing
+## Testing
 
 I initially planned to work fully in TDD, but ran into issues early, trying to configure Vitest. After a couple days trying to get it right, I decided to circle back on writing tests after getting the initial MVP up. I recently got my first tests running and passing. I've added test coverage to my roadmap. Tech debt is best paid off just in time. If I wait longer to add test coverage, It will be more difficult to introduce features without the risk of breaking existing functionality.
 
+<br/>
 <br/>
 
 # Future Roadmap
@@ -140,6 +156,7 @@ After I released the MVP, the rest of the group saw what I'd built and asked to 
 
 Beyond adding basic functionality, I also think it would be interesting to explore releasing this as a product other gaming groups can use. It feels like there's a niche in this product category that I could fill. Depending on interest, I may explore releasing another similar lightweight dice roller for other game systems with a broader player base.
 
+<br/>
 <br/>
 
 # Code Highlights
@@ -388,6 +405,7 @@ const handleRollDice = (dieCountToRoll, dieSidesToRoll) => {
 };
 ```
 
+<br/>
 <br/>
 
 # What I Learned
