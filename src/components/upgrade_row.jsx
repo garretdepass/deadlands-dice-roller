@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./upgrade_row.css";
 import "../App.css";
 
-const UpgrageRow = ({ element, upgradesArray, setUpgradesArray }) => {
+const UpgrageRow = ({
+  element,
+  upgradesArray,
+  setUpgradesArray,
+  setRemainingBountyPoints,
+}) => {
   const returnUpgradeDetails = () => {
     if (element.upgradeType === "dieSides") {
       return (
@@ -30,6 +35,7 @@ const UpgrageRow = ({ element, upgradesArray, setUpgradesArray }) => {
       }
     }
     setUpgradesArray(newArray);
+    setRemainingBountyPoints((previousValue) => previousValue + element.cost);
   };
 
   return (

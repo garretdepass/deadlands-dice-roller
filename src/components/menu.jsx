@@ -13,6 +13,7 @@ const Menu = ({
   character,
   jsonStatIndex,
   remainingBountyPoints,
+  setRemainingBountyPoints,
 }) => {
   const cost = (upgradeType) => {
     if (upgradeType === "dieCount") {
@@ -41,6 +42,7 @@ const Menu = ({
         upgradeType: upgradeType,
       };
       setUpgradesArray([...upgradesArray, newUpgrade]);
+      setRemainingBountyPoints((previousValue) => previousValue - upgradeCost);
     }
   };
 

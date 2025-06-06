@@ -11,6 +11,7 @@ const StatUpgradeButton = ({
   character,
   hasEnoughBountyPoints,
   remainingBountyPoints,
+  setRemainingBountyPoints,
 }) => {
   const returnButtonText = () => {
     switch (statType) {
@@ -100,7 +101,9 @@ const StatUpgradeButton = ({
         jsonStatIndex: jsonStatIndex(),
         upgradeType: "dieCount",
       };
-      setUpgradesArray([...upgradesArray, newUpgrade]);
+
+      setUpgradesArray((previousArray) => [...previousArray, newUpgrade]);
+      setRemainingBountyPoints((previousValue) => previousValue - cost);
     } else {
       popover.showPopover();
     }
@@ -154,6 +157,7 @@ const StatUpgradeButton = ({
             character={character}
             jsonStatIndex={jsonStatIndex()}
             remainingBountyPoints={remainingBountyPoints}
+            setRemainingBountyPoints={setRemainingBountyPoints}
           />
         )}
       </div>

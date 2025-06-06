@@ -165,7 +165,7 @@ Beyond adding basic functionality, I also think it would be interesting to explo
 
 When spending bounty points, in order to update a stat in the database, I needed each stat upgrade to reference a specific place in that character's JSON document. I wanted this to be a generic function that could apply regardless of whether the player is updating a Trait, an attribute (which is a child of a trait), or a concentration (which is a child of an attribute).
 
-Within [stat_upgrade_button.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/stat_upgrade_button.js), I created a function that returns any stat's index dynamically.
+Within [stat_upgrade_button.jsx](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/stat_upgrade_button.jsx), I created a function that returns any stat's index dynamically.
 
 ```javascript
 const jsonStatIndex = () => {
@@ -221,6 +221,7 @@ const handleAttributeOrConcentrationClick = () => {
       upgradeType: "dieCount",
     };
     setUpgradesArray([...upgradesArray, newUpgrade]);
+    setRemainingBountyPoints((previousValue) => previousValue - cost);
   } else {
     popover.showPopover();
   }
@@ -229,7 +230,7 @@ const handleAttributeOrConcentrationClick = () => {
 
 ## Rolling dice
 
-The way Deadlands handles dice rolling is rather unusual, so the code to handle it was a lot of fun to write! Within [roll_panel.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/roll_panel.js), it starts by creating an array of dice to roll based on which stat the player selects. This is used to display the pre-rolled state.
+The way Deadlands handles dice rolling is rather unusual, so the code to handle it was a lot of fun to write! Within [roll_panel.jsx](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/roll_panel.jsx), it starts by creating an array of dice to roll based on which stat the player selects. This is used to display the pre-rolled state.
 
 ```javascript
 const generateDiceArray = (dieCountToRoll, dieSidesToRoll) => {
