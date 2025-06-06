@@ -165,7 +165,7 @@ Beyond adding basic functionality, I also think it would be interesting to explo
 
 When spending bounty points, in order to update a stat in the database, I needed each stat upgrade to reference a specific place in that character's JSON document. I wanted this to be a generic function that could apply regardless of whether the player is updating a Trait, an attribute (which is a child of a trait), or a concentration (which is a child of an attribute).
 
-Within [stat_upgrade_button.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/stat_upgrade_button.js), I created a function that returns any stat's index dynamically. I then set the output of that function to a property of an object that is created for any stat the player wants to upgrade. I then added that object to an array that populates the shopping cart.
+Within [stat_upgrade_button.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/stat_upgrade_button.js), I created a function that returns any stat's index dynamically.
 
 ```javascript
 const jsonStatIndex = () => {
@@ -203,7 +203,11 @@ const jsonStatIndex = () => {
     }
   }
 };
+```
 
+I then set the output of that function to a property of an object that is created for any stat the player wants to upgrade, and added that object to an array that populates the shopping cart.
+
+```javascript
 const popover = document.getElementById("insufficientBountPointsPopover");
 
 const handleAttributeOrConcentrationClick = () => {
