@@ -34,7 +34,7 @@ const CharacterView = ({ character, characterIndex }) => {
     };
     fetchData();
 
-    setRemainingBountyPoints(currentCharacter.bountyPoints);
+    // setRemainingBountyPoints(currentCharacter.bountyPoints);
   }, [upgradesArray]);
 
   useEffect(() => {
@@ -101,6 +101,7 @@ const CharacterView = ({ character, characterIndex }) => {
     if (stat === "bountyPoints") {
       newBountyPoints++;
       setBountyPoints(newBountyPoints);
+      setRemainingBountyPoints((previousValue) => previousValue + 1);
       await updateStat(character._id, "bountyPoints", newBountyPoints);
     } else if (stat === "wind") {
       if (returnTotalWind() > currentWind) {
@@ -117,6 +118,7 @@ const CharacterView = ({ character, characterIndex }) => {
       if (bountyPoints > 0) {
         newBountyPoints--;
         setBountyPoints(newBountyPoints);
+        setRemainingBountyPoints((previousValue) => previousValue - 1);
         await updateStat(character._id, "bountyPoints", newBountyPoints);
       }
     } else if (stat === "wind") {
@@ -161,6 +163,7 @@ const CharacterView = ({ character, characterIndex }) => {
                 setUpgradesArray={setUpgradesArray}
                 character={character}
                 remainingBountyPoints={remainingBountyPoints}
+                setRemainingBountyPoints={setRemainingBountyPoints}
               />
             )}
           </div>
@@ -188,6 +191,7 @@ const CharacterView = ({ character, characterIndex }) => {
                 setUpgradesArray={setUpgradesArray}
                 character={character}
                 remainingBountyPoints={remainingBountyPoints}
+                setRemainingBountyPoints={setRemainingBountyPoints}
               />
             )}
           </div>

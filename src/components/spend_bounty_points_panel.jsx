@@ -35,6 +35,7 @@ const SpendBountyPointsPanel = ({
           upgradesArray={upgradesArray}
           setUpgradesArray={setUpgradesArray}
           element={element}
+          setRemainingBountyPoints={setRemainingBountyPoints}
         />
       );
     });
@@ -60,6 +61,7 @@ const SpendBountyPointsPanel = ({
   const handleBountyPointsPanelCancel = () => {
     setUpgradesArray([]);
     setTotalBountyPointsToSpend(0);
+    setRemainingBountyPoints(bountyPoints);
     setHasEnoughBountyPoints(true);
   };
 
@@ -102,13 +104,8 @@ const SpendBountyPointsPanel = ({
       setBountyPoints(remainingBountyPoints);
       setUpgradesArray([]);
       setTotalBountyPointsToSpend(0);
-      setRemainingBountyPoints(0);
     }
   };
-
-  useEffect(() => {
-    setRemainingBountyPoints(bountyPoints - totalBountyPointsToSpend);
-  }, [totalBountyPointsToSpend, bountyPoints]);
 
   return (
     <div className="panel panel__panel-right">
