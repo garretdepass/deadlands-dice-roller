@@ -1,56 +1,74 @@
-# Deadlands Dice Roller
+# Overview
 
 A minimal web app designed to be used with the table top role playing game Deadlands. It does the hard work of character and roll management, so players can focus on the game.
 
-Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best.
+Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
-Mess around with the functionality as much as you like. My players are using the production environment and production database.
+### Sections
 
-## What problem is this solving?
+Different readers care about different things. Here's a few quick links to help you navigate.
 
-I initally started building this for my wife. Our gaming group meets regularly, and my wife had put together a patchwork of custom tools to let her play -- a spreadsheet to manage her stats, random dice rollers not designed for the mechanics of this specific game, and discord to track things like experience points and fate chips. I saw how much toil she was putting in to play the game, so I decided to figure out something to make her life easier.
+🚀 Looking to learn about what this product is?
 
-Existing solutions didn't fit what she needed. They were all some combination of too heavy weight (roll20 suffers severely from feature bloat), too outdated, or too expensive. I decided I could build something better for her specific needs.
+- [Problem this is solving](#what-problem-is-this-solving)
+- [Key features](#key-features)
 
-After I released the MVP, the rest of the group saw what I'd built and asked to be added too. Now we're all using it, and I'm collecting feedback to inform future iterations.
+🤓 Want to dig into the technical details?
 
-## Tech Stack
+- [Tech stack](#tech-stack)
+- [Code highlights](#code-highlights)
+- [Testing and AI](#testing-and-ai)
 
-**React** - React felt like a great fit for this project. Lots of different components that need to speak to each other and rerender quickly.
+🧑‍🎓 Curious about my takeaways?
 
-**MongoDB** - I chose MongoDB primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, some may specialize in driving steam wagons. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
+- [Future roadmap](#future-roadmap)
+- [What I learned](#what-i-learned)
 
-**Netlify** - The focus of this project was to get functionality up and running quickly. I decided to use a Netlify + MongoDB Atlas starter project to expedite configuration and spend more of my time on feature development.
+<br/>
 
-## Key Features
+# What problem is this solving?
 
-### 🙋 Character selector view
+I initally started building this for my wife. We have a gaming group that plays [Deadlands](https://en.wikipedia.org/wiki/Deadlands) remotely, and over the last year my wife collected a patchwork of tools to use while playing. She uses Google Sheets to manage her stats, random dice rollers (not designed for the complex mechanics of this specific game), and discord to track things like experience points and fate chips. It was a lot to keep track of.
+
+Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry were'n't right either. They were all too expensive, too poorly designed, or suffered from feature bloat. I decided I could build something better for her specific needs.
+
+<br/>
+
+# Tech Stack
+
+**React** - React felt like a great fit for this project. In addition to being lightweight and fast, I'm excited about exploring React Native in the future, and this felt like a good step in that direction.
+
+**Vitest** - I explored using both Jest and Vitest, but given that Vitest fully supports ESM and instant updates, it felt like a better choice for testing.
+
+**MongoDB** - I chose MongoDB (vs something like MySQL) primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, some may specialize in driving steam wagons. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
+
+**Netlify** - The focus of this project was to get functionality up and running quickly, so I looked into serverless deployment platforms like Netlify and Vercel. I liked that Netlify has built-in authentication, which could make it easier to support player login in the future, and didn't need things like SSR support that Vercel offers. I decided to use a Netlify + MongoDB Atlas starter project to expedite configuration and spend more of my time on feature development.
+
+<br/>
+
+# Key Features
+
+## 🙋 Character selector view
 
 Because each character's stats are different, it's important make sure they're using the correct character.
 
-![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/character-selector.png "The character selector view")
+![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-selector.png "The character selector view")
 
 An earlier version of this app had a character selector that was on the top of the character sheet with the first player in the array selected by default. This caused some confusion, because players could select dice and roll them without switching to the correct character. Consequently, I pulled out the character selector to a mandatory first step with its own screen.
 
 Our DM (or "Marshal" in Deadlands) _loves_ keeping track of stats, so this serves the added benefit of giving him the ability to see anyone's stats instantly.
 
-### 📊 Character Sheet
+## 📊 Character Sheet
 
 After selecting a character, that character's stats are automatically shown. These are pulled directly from MongoDB, and persist when the page is refreshed.
 
-![The character sheet view, displaying all of this characters stats.](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/character-sheet.png "The character sheet view, displaying all of this characters stats.")
+![The character sheet view, displaying all of this characters stats.](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-sheet.png "The character sheet view, displaying all of this characters stats.")
 
-   <!-- The Character view includes:
-   * Traits, attributes, and concentrations that can be rolled
-   * Non-rollable traits that still affect gameplay
-   * A wind tracker, which is similar to hit points in other systems. Total wind is calculated off of Spirit and Vigor. The current wind is not loaded from MongoDB, because the group resets wind at the beginning of each session.
-   * Fate Chips that affect gameplay in various ways. These can be incremented or decremented, and persist on page reload. -->
-
-### 🎲 Dice rolling panel
+## 🎲 Dice rolling panel
 
 This is the core functionality of this web app. A player can select any rollable stat and the correct number of dice with the correct number of sides will appear. Pressing `Roll Dice` rolls all the dice and scores according to unique Deadlands rules.
 
-![Two instances of the roll panel. One with an ace and one with some score modifiers applied](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/roll-panel.png "Two instances of the roll panel. One with an ace and one with some score modifiers applied")
+![Two instances of the roll panel. One with an ace and one with some score modifiers applied](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/roll-panel.png "Two instances of the roll panel. One with an ace and one with some score modifiers applied")
 
 According to the Player handbook:
 
@@ -58,14 +76,16 @@ According to the Player handbook:
 
 The roll panel also accounts for common modifiers. When a player rolls a stat with zero dice, their roll result receives a -4 modifier, and if a majority of dice are 1's, the player must inform the Marshal they have "gone bust".
 
-### 💰 Bounty points
+## 💰 Bounty points
 
-![Bounty points view, with upgrades ready to purchase](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/images/screenshots/bounty-points.png "Bounty points view, with upgrades ready to purchase")
+![Bounty points view, with upgrades ready to purchase](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/bounty-points.png "Bounty points view, with upgrades ready to purchase")
 Bounty points are similar to experience points in other systems. They can be spent to upgrade stats, and the cost depends on a number of factors. This can be complicated to figure out, and the players in our group regularly needed reminders from the Marshal, so I calculated and displayed all costs within the app.
 
 I also created a "shopping cart" that shows the remaining bounty points and the upgrades a player wants before they confirm and spend their points. These upgrades can be added or removed, and a notification appears if players try to spend more points than they have.
 
-## Design Decisions & Tradeoffs
+<br/>
+
+# Design Decisions & Tradeoffs
 
 **Web-only**
 
@@ -89,19 +109,23 @@ Several different components are speaking to each other in this app. When I star
 
 While this is working, it's not the most elegant or maintainable. Before adding any additional functionality, I'd like to refactor this pattern and apply contexts to eliminate the need to pass states up and down.
 
-## Testing & Quality
+# Testing and AI
 
-I initially planned to work fully in TDD, but ran into issues early on with trying to configure Vitest. After a couple days trying to get it right, I decided to circle back on writing tests after getting some basic functionality up. I recently got my first tests running and passing. I've added test coverage to my roadmap. Tech debt is best if it's payed off incrementally. I worry that if I wait longer to add test coverage, the complexity will become too costly.
+### Use of AI
 
-    Optional but valuable: Describe your testing strategy, if any.
+**All code in use is written by hand, not copy + pasted.** I can articulate how all parts of the codebase work, though some of the serverless functions are still a little fuzzy since I adapted them from the Netlify starter project. I used ChatGPT occasionally as a pairing partner, but only in so far as to help me get unstuck or provide feedback on my implementation decisions.
 
-    Bonus: Link to tests, CI/CD pipeline setup, or coverage reports.
+### Testing
 
-## What's Next
+I initially planned to work fully in TDD, but ran into issues early, trying to configure Vitest. After a couple days trying to get it right, I decided to circle back on writing tests after getting the initial MVP up. I recently got my first tests running and passing. I've added test coverage to my roadmap. Tech debt is best paid off just in time. If I wait longer to add test coverage, It will be more difficult to introduce features without the risk of breaking existing functionality.
 
-I'm blessed with a passionate, vocal user base. Based on feedback from my group, my near-term roadmap includes:
+<br/>
 
-1.  Tech debt - add contexts and test coverage
+# Future Roadmap
+
+After I released the MVP, the rest of the group saw what I'd built and asked to be added too. Now we're all using it, and I'm collecting feedback to inform future iterations. My near-term roadmap includes:
+
+1.  Tech debt - add contexts and test coverage.
 1.  Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the way chips are used.
 1.  A Marshal view - the Marshal can benefit from seeing some things in aggregate, like the total number of fate chips in play.
 1.  Equipment tracking - firearms, supplies, artifacts, etc...
@@ -114,21 +138,11 @@ I'm blessed with a passionate, vocal user base. Based on feedback from my group,
 
 Beyond adding basic functionality, I also think it would be interesting to explore releasing this as a product other gaming groups can use. It feels like there's a niche in this product category that I could fill. Depending on interest, I may explore releasing another similar lightweight dice roller for other game systems with a broader player base.
 
-## What I Learned
+<br/>
 
-All code in use is written by hand, not copy + pasted. If it's functioning, I know how it works. I used LLMs occasionally as a pairing partner, but only in so far as to help me get unstuck or provide feedback on my implementation decisions. I found it very useful to break down parts of React I didn't yet understand. I also used LLMs to evaluate options for the initial tech stack since I was unfamiliar with server/database configuration.
+# Code Highlights
 
-I find code fascinating, and enjoy the process of learning how it works. This project sharpened my skills with react, and gave me a lot of cycles solving different types of problems.
-
-From a workflow perspective, it's been novel as well. Historically, I've both written tickets and worked from tickets, but this was my first time fully designing, PMing, and engineering a project.
-
-- **As an engineer**, I got to feel what it's like to have acceptance criteria clearly (and sometimes not so clearly) recorded by my PM brain. I got to experience the difference between a well-constructed figma component that let me copy and paste styling, and a not-so-well built component that required me to define styles, name things, and generally figure stuff out on my own. I also got to experience being given a high-complexity story that was high enough priority that it was worth taking extra time to complete.
-- **As a PM**, I got to feel the impact of engineering communicating feature complexity. Do we cut scope? Do we push through and deliver the value of the feature? What do we deprioritize in order to make room for the most important things? Is there anything we can shave off of this story to make it easier to ship?
-- **As a designer**, I got to experiment with more of a "go fast and do less" approach than I'm used to. I've always strived to put together well-crafted deliverables with engineering in mind but, in a situation where I'm wearing all the hats, deprioritizing this felt like the right tradeoff.
-
-## Code Highlights
-
-### Spending bounty points
+## Spending bounty points
 
 When spending bounty points, in order to update a stat in the database, I needed each stat upgrade to reference a specific place in that character's JSON document. I wanted this to be a generic function that could apply regardless of whether the player is updating a Trait, an attribute (which is a child of a trait), or a concentration (which is a child of an attribute).
 
@@ -190,7 +204,7 @@ const handleAttributeOrConcentrationClick = () => {
 };
 ```
 
-### Rolling dice
+## Rolling dice
 
 The way Deadlands handles dice rolling is rather unusual, so the code to handle it was a lot of fun to write! Within [roll_panel.js](https://github.com/garretdepass/deadlands-dice-roller/blob/main/src/components/roll_panel.js), it starts by creating an array of dice to roll based on which stat the player selects. This is used to display the pre-rolled state.
 
@@ -372,43 +386,22 @@ const handleRollDice = (dieCountToRoll, dieSidesToRoll) => {
 };
 ```
 
-## Want to deploy your own?
+<br/>
 
-To set this up on your own, use the template for integrating MongoDB Atlas with a Netlify site using serverless functions.
+# What I Learned
 
-![Netlift and MongoDB](./images/netlify+mdb.png)
+I find code fascinating, and enjoy the process of learning how it works. This project sharpened my skills with react, and gave me a lot of cycles solving different types of problems.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mongodb-developer/netlify-mongodb-starter)
+From a workflow perspective, it's been novel as well. Historically, I've both written tickets and worked from tickets, but this was my first time fully designing, PMing, and engineering a project.
 
-[![End-to-End Tests](https://github.com/mongodb-developer/netlify-mongodb-starter/actions/workflows/main.yml/badge.svg)](https://github.com/mongodb-developer/netlify-mongodb-starter/actions/workflows/main.yml)
+### As an engineer
 
-### Setup
+I got to feel what it's like to have acceptance criteria clearly (and sometimes not so clearly) recorded by my PM brain. I got to experience the difference between a well-constructed figma component that let me copy and paste styling, and a not-so-well built component that required me to define styles, name things, and generally figure stuff out on my own. I also got to experience being given a high-complexity story that was high enough priority that it was worth taking extra time to complete.
 
-1. Clone this repository.
-2. Install dependencies with `npm install`.
-3. Set up your MongoDB Atlas database and get your URI. (Verify IP access is appropriate for your website IP)
-   - You will need to setup the needed envioronment variables in `.env.local` or your site secrets:
+### As a product manager
 
-```
- MONGODB_URI = "<YOUR MONGODB | MONGODB ATLAS URI>"
- MONGODB_DATABASE = "tasks_netlify"
- MONGODB_COLLECTION = "tasks"
-```
+I got to feel the impact of engineering communicating feature complexity. Do we cut scope? Do we push through and deliver the value of the feature? What do we deprioritize in order to make room for the most important things? Is there anything we can shave off of this story to make it easier to ship?
 
-4. Add your characters to MongoDB. I've included some characters as well as a blank template in the [json](https://github.com/garretdepass/deadlands-dice-roller/tree/main/json) folder to get you started.
-5. Configure your environment variables in `netlify.toml`.
-6. Run `netlify dev` to start your local server.
+### As a designer
 
-### Deploying to Netlify
-
-#### Set website secrets from .env.local
-
-```
-netlify env:import .env.local
-```
-
-Or use the Netlify ui once web site is available and redeploy.
-
-Click the deploy button above and connect to your website.
-`-OR-`
-Push this repository to your GitHub and link it to a new Netlify site. Set up environment variables in the Netlify UI.
+I got to experiment with more of a "go fast and do less" approach than I'm used to. I've always strived to put together well-crafted deliverables with engineering in mind but, in a situation where I'm wearing all the hats, deprioritizing this felt like the right tradeoff.
