@@ -2,6 +2,8 @@
 
 A minimal web app designed to be used with the table top role playing game Deadlands. It does the hard work of character and roll management, so players can focus on the game.
 
+![A looping gif that demonstrates the core functionality of this web app](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/demo.gif "A looping gif that demonstrates the core functionality of this web app")
+
 Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. Mess around with the functionality as much as you like. My players are using the production environment and production database.
 
 ### Sections
@@ -30,7 +32,7 @@ Different readers care about different things. Here's a few quick links to help 
 
 I initally started building this for my wife. We have a gaming group that plays [Deadlands](https://en.wikipedia.org/wiki/Deadlands) remotely, and over the last year my wife collected a patchwork of tools to use while playing. She uses Google Sheets to manage her stats, random dice rollers (not designed for the complex mechanics of this specific game), and discord to track things like experience points and fate chips. It was a lot to keep track of.
 
-Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry were'n't right either. They were all too expensive, too poorly designed, or suffered from feature bloat. I decided I could build something better for her specific needs.
+Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry weren't right either. They were all too expensive, too poorly designed, or suffered from feature bloat. I decided I could build something better for her specific needs.
 
 <br/>
 
