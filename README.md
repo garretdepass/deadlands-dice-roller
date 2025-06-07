@@ -48,7 +48,7 @@ Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry weren't right eit
 
 ## React
 
-React felt like a great fit for this project. In addition to being lightweight and fast, I'm excited about exploring React Native in the future, and this felt like a good step in that direction.
+I looked at React, Angular, and Vue. Though the other options had some elements I liked (ARIA-enabled components in Angular, for instance) React won out. In addition to being lightweight, fast, and broadly adopted in the industry, I'm also excited that knowledge here would help me explore React Native in the future.
 
 ## Vitest
 
