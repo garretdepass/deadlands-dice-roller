@@ -66,9 +66,16 @@ code {
   margin: 20px;
 }
 
-h1 {
-  /* text align center */
+.text__centered {
   text-align: center;
+}
+
+h1 {
+  font-family: Inter;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .search-bar {
   display: flex;

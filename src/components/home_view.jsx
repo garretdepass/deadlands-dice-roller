@@ -27,9 +27,30 @@ const HomeView = ({ characters }) => {
     );
   };
 
+  const handleLogoMouseEnter = () => {
+    const logoSquare = document.getElementsByClassName(
+      "Rollr-logo__rectangle-shape"
+    )[0];
+    logoSquare.classList.add("Rollr-logo__rectangle-shape_animated");
+    setTimeout(() => {
+      logoSquare.classList.remove("Rollr-logo__rectangle-shape_animated");
+      // logoSquare.className = "Rollr-logo__rectangle-shape";
+    }, 1000);
+  };
+
   return (
     <div className="view">
-      <h1>Who's Playing?</h1>
+      <h2
+        className="welcome-text text__centered"
+        onMouseEnter={handleLogoMouseEnter}
+      >
+        Welcome to{" "}
+        <span className="Rollr-logo">
+          Rollr
+          <div className="Rollr-logo__rectangle-shape" />
+        </span>
+      </h2>
+      <h1 className="text__centered">Who's Playing?</h1>
       <div className="character-grid">{renderCharacterGrid()}</div>
       <div className="footer">Made by ✋🏻 Made with ❤️</div>
     </div>

@@ -1,3 +1,51 @@
+.welcome-text {
+  display: flex;
+  margin: 74px auto;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 24px;
+  align-items: center;
+}
+
+.Rollr-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  background: var(--blue-3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  gap: 2px;
+}
+
+.Rollr-logo__rectangle-shape {
+  background-color: orange;
+  height: 8px;
+  width: 8px;
+  border-radius: 2px;
+}
+
+.Rollr-logo__rectangle-shape_animated {
+  animation: 2.1s logo-rectangle-spin;
+}
+
+@keyframes logo-rectangle-spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  5% {
+    rotate: -35deg;
+  }
+
+  10% {
+    rotate: -35deg;
+  }
+
+  75% {
+    rotate: 1440deg;
+  }
+}
+
 .character-grid-inner {
   margin: 0 auto;
   max-width: 800px;
