@@ -1,20 +1,22 @@
-# Overview
+<br/>
 
-A minimal web app designed to be used with the table top role playing game Deadlands. It does the hard work of character and roll management, so players can focus on the game.
+<img src="public/images/rollr-logo.png" width=20%>
+
+<br/>
+
+Rollr is minimal web app designed for use with the tabletop roleplaying game, Deadlands. It streamlines character and roll management so players can focus on the game.
 
 ![A looping gif that demonstrates the core functionality of this web app](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/demo.gif "A looping gif that demonstrates the core functionality of this web app")
 
-Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). It's currently not built for mobile, so viewing on a computer is best. Mess around with the functionality as much as you like. My players are using the production environment and production database.
+Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). Currently not built for mobile, viewing on a computer is best. Test the functionality as much as you like. My players are using the production environment and database.
 
 <br/>
 
 ## Sections
 
-Different readers care about different things. Here's a few quick links to help you navigate.
+🚀 Looking to learn what this product is?
 
-🚀 Looking to learn about what this product is?
-
-- [Problem this is solving](#what-problem-is-this-solving)
+- [Challenge](#challenge)
 - [Key features](#key-features)
 
 🤓 Want to dig into the technical details?
@@ -35,30 +37,30 @@ Different readers care about different things. Here's a few quick links to help 
 <br/>
 <br/>
 
-# What problem is this solving?
+# Challenge
 
-I initally started building this for my wife. We have a gaming group that plays [Deadlands](https://en.wikipedia.org/wiki/Deadlands) remotely, and over the last year my wife collected a patchwork of tools to use while playing. She uses Google Sheets to manage her stats, dice rollers (not designed for the complex mechanics of this specific game), calculator apps, and discord to track things like experience points and fate chips. It was a lot to keep track of.
+My wife and I are part of a remote tabletop roleplaying group that plays an older system called [Deadlands](https://en.wikipedia.org/wiki/Deadlands). Over the last year my wife collected a patchwork of tools to use while playing: Google Sheets to manage stats, dice rollers not designed for the complex mechanics of the game, calculator apps, and Discord to track things like experience points and Fate Chips.
 
-Virtual tabletop platforms like Roll20, D&D Beyond, or Foundry weren't right either. They were all too expensive, too poorly designed, or suffered from feature bloat. I decided I could build something better for her specific needs.
+We wanted a more cohesive solution, but we found existing virtual tabletop platforms like Roll20, D&D Beyond, and Foundry were too expensive, poorly designed, or suffered from feature bloat. I decided I could build something better for our group’s specific needs.
 
 <br/>
 <br/>
 
 # Tech Stack
 
-## React
+## Front End: React
 
-I looked at React, Angular, and Vue. Though the other options had some elements I liked (ARIA-enabled components in Angular, for instance) React won out. In addition to being lightweight, fast, and broadly adopted in the industry, I'm also excited that knowledge here would help me explore React Native in the future.
+I looked at React, Angular, and Vue. Though other options had some elements I liked (ARIA-enabled components in Angular, for instance) React won out because it's lightweight, fast, and broadly adopted in the industry, I'm also excited that facility with react would help me work with React Native in the future.
 
-## Vitest
+## Testing: Vitest
 
 I explored using both Jest and Vitest, but given that Vitest fully supports ESM and instant updates, it felt like a better choice for testing.
 
-## MongoDB
+## Database: MongoDB
 
-I chose MongoDB (vs something like MySQL) primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, others may specialize in flying zepelins. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
+I chose MongoDB over MySQL primarily because of the schema-less document model. While character sheets have similar structure, they can vary significantly on details. Some characters may know 5 languages, others may specialize in flying zepelins. I wanted to create a system that would be friendly to players' characters as they grow and evolve.
 
-## Netlify
+## Back End: Netlify
 
 The focus of this project was to get functionality up and running quickly, so I looked into serverless deployment platforms like Netlify and Vercel. I liked that Netlify has built-in authentication, which could make it easier to support player login in the future, and didn't need things like SSR support that Vercel offers. I decided to use a Netlify + MongoDB Atlas starter project to expedite configuration and spend more of my time on feature development.
 
@@ -69,31 +71,34 @@ The focus of this project was to get functionality up and running quickly, so I 
 
 ## 🙋 Character selector view
 
-Because each character's stats are different, it's important make sure they're using the correct character.
+Each player character's stats are different, so it's vital the correct character is selected.
 
-![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-selector.png "The character selector view")
+An earlier version of this app had a character selector on the top of the character sheet with the first player selected by default–confusing! Players were rolling dice based on the wrong character's stats, so I pulled out the character selector as a mandatory first step.
 
-An earlier version of this app had a character selector that was on the top of the character sheet with the first player in the array selected by default. This caused some confusion. Players were rolling dice based on the wrong character's stats. Consequently, I pulled out the character selector to a mandatory first step with its own screen.
+![The character selector view](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/home-view.png "The character selector view")
 
-## 📊 Character Sheet
+<br/>
 
-Selecting a character displays their character sheet.
+## 🎲 Character Sheet
+
+Selecting a character displays the player’s character sheet.
+
+The gamerunner, or"Marshal" in our Weird West setting, loves tracking stats. Live updated character sheets give him the ability to check any character’s stats instantly.
+
+A player can select any rollable stat and Rollr rolls the correct polyhedral dice and displays the final rolls. This accommodates the complex roll logic of Deadlands, and accounts for common modifiers to roll results. See [rolling dice](#rolling-dice) to dig into the code.
 
 ![The character sheet view, displaying all of this characters stats.](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/character-sheet.png "The character sheet view, displaying all of this characters stats.")
 
-Our DM (or "Marshal" in Deadlands) _loves_ keeping track of stats, so this serves the added benefit of giving him the ability to see anyone's stats instantly.
+<br/>
 
-## 🎲 Dice rolling panel
+## 💰 Bounty Points
 
-A player can select any rollable stat and roll the corresponding number of dice with the correct number of sides. This accounts for the complex roll logic in Deadlands, as well as common modifiers to roll results. See [rolling dice](#rolling-dice) for more on this.
+Bounty Points are similar to experience points in other systems. They can be spent to upgrade stats. This happens most sessions, so I needed to build a feature set to avoid manual database updates every time a player spends a bounty point. This wasn’t in the original scope, but it was so valuable that it justified the added complexity.
 
-![Two instances of the roll panel. One with an ace and one with some score modifiers applied](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/roll-panel.png "Two instances of the roll panel. One with an ace and one with some score modifiers applied")
+I built a “Spend Bounty Points” mode that:
 
-## 💰 Bounty points
-
-Bounty points are similar to experience points in other systems. They can be spent to upgrade stats, and the cost depends on a number of factors. This can be complicated to figure out, and the players in our group regularly needed reminders from the Marshal, so I calculated and displayed all costs within the app.
-
-I also created a "shopping cart" that shows the remaining bounty points and the upgrades a player wants before they confirm and spend their points. These upgrades can be added or removed, and a notification appears if players try to spend more points than they have.
+- Allows players to select which stats they’d like to upgrade. Upgrade cost depends on a few factors. The players in our group regularly need rules reminders from the Marshal, so I calculated and displayed all costs within the app.
+- Displays a "shopping cart" that shows the remaining bounty points and the upgrades a player wants before they confirm and spend their points. These upgrades can be added or removed, and a notification appears if players try to spend more points than they have.
 
 ![Bounty points view, with upgrades ready to purchase](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/bounty-points.png "Bounty points view, with upgrades ready to purchase")
 
@@ -104,13 +109,7 @@ I also created a "shopping cart" that shows the remaining bounty points and the 
 
 ## Web-only
 
-The players in my group all play remotely on computers over discord, so I opted for a large-screen-only design to get the first iteration live more quickly. I'm monitoring feedback from my players to see if I need to prioritize a mobile view later.
-
-## Netlify + MongoDB Atlas
-
-The primary focus of this project was to build react code that functioned within a working tech stack. Consequently, I decided on Netlify and MongoDB Atlas in a starter project. This let me get working on core app functionality much faster than I would have been able to if I'd spun up my own server and self-hosted MongoDB.
-
-Unfortunately, that meant I wasn't able to experience building the full stack. I was exposed to some necessary configuration and I got to learn about MongoDB, but I'd like to spin up my own server in a future project to get a sense of what the full process is like.
+Our group plays remotely on desktop over Discord, so I opted for a large-screen-only design to get the first iteration live more quickly. I'm monitoring feedback from my players to see if I need to prioritize a mobile view later.
 
 ## Minimal UI design phase
 
@@ -145,7 +144,7 @@ I initially planned to work fully in TDD, but ran into issues early while trying
 After I released the MVP, the rest of the group saw what I'd built and asked to be added too. Now we're all using it, and I'm collecting feedback. My users are vocal, so I've had to prioritize. The very near term roadmap includes:
 
 1.  Tech debt - add contexts and test coverage.
-1.  Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the way chips are used.
+1.  Fate chip functionality - these have functional impacts on rolls, and can be exchanged for Bounty Points. I'd like to make them fully functional with menus that clearly explain the complex ways chips are used.
 1.  Visual polish - I'd like to take a measured visual pass and make the experience feel more refined.
 
 I have a very full set of not-yet-prioritized features to work through after these.
