@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UpgrageRow from "./upgrade_row";
+import { CharacterContext } from "../contexts/characterContext";
 import "./spend_bounty_points_panel.css";
 
 const SpendBountyPointsPanel = ({
   upgradesArray,
   setUpgradesArray,
-  character,
   hasEnoughBountyPoints,
   setHasEnoughBountyPoints,
   bountyPoints,
@@ -13,6 +13,7 @@ const SpendBountyPointsPanel = ({
   remainingBountyPoints,
   setRemainingBountyPoints,
 }) => {
+  const character = useContext(CharacterContext);
   const [displayedUpgrades, setDisplayedUpgrades] = useState([]);
 
   const [totalBountyPointsToSpend, setTotalBountyPointsToSpend] = useState(0);
@@ -66,7 +67,6 @@ const SpendBountyPointsPanel = ({
   };
 
   const updateCharacterStats = async (_id, key, value) => {
-    // Call the Netlify function
     const response = await fetch("/.netlify/functions/update_character", {
       method: "POST",
       body: JSON.stringify({ _id, key, value }),

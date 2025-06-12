@@ -244,3 +244,24 @@
     transform: translateX(0px);
   }
 }
+
+@media (max-width: 1440px) {
+  .character-sheet {
+    overflow-y: scroll;
+  }
+
+  .character-sheet__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+
+  .horizontal-block {
+    height: 70%;
+  }
+
+  .non-rollable-stats {
+    flex-direction: column;
+  }
+}
