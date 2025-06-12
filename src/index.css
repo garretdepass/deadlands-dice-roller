@@ -12,6 +12,7 @@
   --buttons-button-blue: #004cb3;
   --buttons-button-red: #980000;
   --buttons-button-white: #cccccc;
+  overflow: hidden;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--Gray-6, #f5f5f5);
   background: var(--blue-0, #010914);
+  overflow: hidden;
 }
 
 .view {
@@ -173,4 +175,21 @@ h1 {
   text-align: center;
   padding: 24px;
   color: var(--blue-6);
+}
+
+@media (max-width: 724px) {
+  .panel__panel-right {
+    position: absolute;
+  }
+
+  .panel__panel-right_mobile-inactive {
+    top: 100vh;
+  }
+
+  .panel__panel-right_mobile-active {
+    top: 6vh;
+    height: 88vh;
+    width: -moz-available;
+    left: 0;
+  }
 }

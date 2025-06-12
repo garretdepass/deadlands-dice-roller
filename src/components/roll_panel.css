@@ -114,3 +114,6 @@
 .result-section__penalty-impact {
   color: orange;
 }
+
+@media (max-width: 724px) {
+}

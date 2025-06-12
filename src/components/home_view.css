@@ -80,10 +80,6 @@
 
 .character-card:hover {
   background-color: var(--blue-4);
-
-  /* -webkit-box-shadow:0px 0px 17px 3px rgba(132,177,240,1);
--moz-box-shadow: 0px 0px 17px 3px rgba(132,177,240,1);
-box-shadow: 0px 0px 17px 3px rgba(132,177,240,0.5); */
 }
 
 .character-card__character-image {
@@ -96,10 +92,3 @@ box-shadow: 0px 0px 17px 3px rgba(132,177,240,0.5); */
 .character-card__character-name {
   color: white;
 }
-
-/* .restaurant-delete-button button {
-display: flex;
-justify-content: flex-end;
-background-color: lightcoral
-
-} */

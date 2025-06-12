@@ -188,13 +188,17 @@ const RollPanel = ({
   };
 
   const handleClearDice = () => {
-    // setDiceSection(null);
+    const rollPanel = document.getElementsByClassName("panel__panel-right")[0];
+    const windowSize = window.innerWidth;
+    if (windowSize < 724) {
+      rollPanel.classList.remove("panel__panel-right_mobile-active");
+    }
     setStatNameToRoll(null);
     setIsRollButtonDisabled(true);
   };
 
   return (
-    <div className="panel panel__panel-right">
+    <div className="panel panel__panel-right panel__panel-right_mobile-inactive">
       <div className="roll-panel__title">
         {statNameToRoll
           ? `Rolling for ${statNameToRoll}`

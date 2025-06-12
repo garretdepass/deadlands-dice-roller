@@ -71,6 +71,11 @@ const CharacterView = ({ character, characterIndex }) => {
   const generateKey = () => `${Date.now()}-${Math.random()}`;
 
   const handleStatClick = (clickedStat, clickedTrait) => {
+    const rollPanel = document.getElementsByClassName("panel__panel-right")[0];
+    const windowSize = window.innerWidth;
+    if (windowSize < 724) {
+      rollPanel.classList.add("panel__panel-right_mobile-active");
+    }
     setStatNameToRoll(clickedStat.name);
     setDieCountToRoll(clickedStat.dieCount);
     setDieSidesToRoll(clickedTrait.dieSides);

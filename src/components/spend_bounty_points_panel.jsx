@@ -108,7 +108,7 @@ const SpendBountyPointsPanel = ({
   };
 
   return (
-    <div className="panel panel__panel-right">
+    <div className="panel panel__panel-right .panel__panel-right_mobile-inactive">
       <div className="bounty-points-cart__remaining-points">
         Remaining Bounty Points:{" "}
         <span className="bounty-points-cart__remaining-points-value">
