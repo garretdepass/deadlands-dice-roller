@@ -180,6 +180,7 @@ h1 {
 @media (max-width: 724px) {
   .panel__panel-right {
     position: absolute;
+    left: 0;
   }
 
   .panel__panel-right_mobile-inactive {
@@ -187,9 +188,9 @@ h1 {
   }
 
   .panel__panel-right_mobile-active {
-    top: 6vh;
-    height: 88vh;
-    width: -moz-available;
-    left: 0;
+    top: 0;
+    margin-top: 64px;
+    height: calc(100vh - 112px);
+    width: calc(100vw - 48px);
   }
 }
