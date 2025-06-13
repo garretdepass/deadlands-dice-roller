@@ -144,6 +144,11 @@
   padding-left: 32px;
 }
 
+.button__button-increment-container {
+  display: flex;
+  gap: 4px;
+}
+
 [popover]:popover-open {
   opacity: 1;
   transform: translateX(-8px);
@@ -191,9 +196,14 @@
   }
 
   .non-rollable-stats {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 16px;
     align-items: stretch;
     padding: unset;
+  }
+
+  .non-rollable-stats__inner-left {
+    gap: 24px;
+    flex-wrap: wrap;
   }
 }

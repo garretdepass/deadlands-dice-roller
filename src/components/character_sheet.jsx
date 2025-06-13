@@ -64,14 +64,19 @@ const CharacterSheet = ({
   };
 
   const handleClickSpend = () => {
-    if (isSpendingBountyPoints) {
-      setIsSpendingBountyPoints(false);
-      //   setStatUpgradeButton(null);
-      setSpendButtonText("Stop Spending");
-    } else {
+    const chipCountersContainer = document.getElementsByClassName(
+      "chip-counters-container"
+    )[0];
+    const windowSize = window.innerWidth;
+
+    if (!isSpendingBountyPoints) {
       setIsSpendingBountyPoints(true);
-      //   setStatUpgradeButton(<StatUpgradeButton />);
-      setSpendButtonText("Spend Bounty Points");
+      setSpendButtonText("Stop Spending");
+      chipCountersContainer.style = "display: none";
+    } else {
+      setIsSpendingBountyPoints(false);
+      setSpendButtonText("Spend");
+      chipCountersContainer.style = "display: flex";
     }
   };
 
@@ -276,15 +281,15 @@ const CharacterSheet = ({
               <span className="stat-accent-color"> {currentWind}</span> /
               <span className="stat-accent-color">{returnTotalWind()}</span>
             </div>
-            <div className="chip-counter__button-container">
+            <div className="button__button-increment-container">
               <button
-                className="chip-counter__button"
+                className="button button__button-increment"
                 onClick={() => handleIncrementClick("wind")}
               >
                 +
               </button>
               <button
-                className="chip-counter__button"
+                className="button button__button-increment"
                 onClick={() => handleDecrementClick("wind")}
               >
                 -
@@ -295,15 +300,15 @@ const CharacterSheet = ({
         <div className="non-rollable-stats__bounty-points">
           Bounty Points:{" "}
           <span className="stat-accent-color">{bountyPoints}</span>
-          <div className="chip-counter__button-container">
+          <div className="button__button-increment-container">
             <button
-              className="chip-counter__button"
+              className="button button__button-increment"
               onClick={() => handleIncrementClick("bountyPoints")}
             >
               +
             </button>
             <button
-              className="chip-counter__button"
+              className="button button__button-increment"
               onClick={() => handleDecrementClick("bountyPoints")}
             >
               -

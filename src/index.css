@@ -27,6 +27,10 @@ body {
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 .view {
   height: 100vh;
   display: flex;
@@ -164,6 +168,22 @@ h1 {
 
 .button__button-tertiary:hover {
   background: var(--blue-5);
+}
+
+.button__button-increment {
+  padding-bottom: 2px;
+  width: 40px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--blue-3);
+  border: 0 transparent;
+  color: var(--blue-6);
+  font-weight: 900;
+}
+
+.button__button-increment:hover {
+  background: var(--blue-5);
+  color: var(--Gray-6);
 }
 
 .divider__horizontal {

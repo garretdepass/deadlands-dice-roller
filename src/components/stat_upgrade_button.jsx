@@ -152,7 +152,7 @@ const StatUpgradeButton = ({
         // ref={wrapperRef}
       >
         <button
-          className="chip-counter__button"
+          className="button button__button-increment"
           onClick={() => handleTraitClick()}
         >
           {returnButtonText()}
@@ -185,7 +185,7 @@ const StatUpgradeButton = ({
     return (
       <>
         <button
-          className="chip-counter__button"
+          className="button button__button-increment"
           onClick={() => handleAttributeOrConcentrationClick(stat)}
         >
           {returnButtonText()}

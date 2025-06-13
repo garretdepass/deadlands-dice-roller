@@ -36,7 +36,7 @@
 
 .dice-section-inner {
   display: flex;
-  /* gap: 8px; */
+  margin-top: 16px;
   flex-direction: row;
   flex-wrap: wrap;
   align-self: stretch;

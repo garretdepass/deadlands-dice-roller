@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import UpgrageRow from "./upgrade_row";
 import { CharacterContext } from "../contexts/characterContext";
 import "./spend_bounty_points_panel.css";
@@ -107,15 +107,24 @@ const SpendBountyPointsPanel = ({
     }
   };
 
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
+
   return (
-    <div className="panel panel__panel-right .panel__panel-right_mobile-inactive">
+    <div className="panel spend-bounty-points-panel panel__panel-right_mobile-inactive">
       <div className="bounty-points-cart__remaining-points">
         Remaining Bounty Points:{" "}
         <span className="bounty-points-cart__remaining-points-value">
           {remainingBountyPoints}
         </span>
       </div>
-      <div className="bounty-points-cart">{displayedUpgrades}</div>
+      <div className="bounty-points-cart">
+        {displayedUpgrades}
+        <AlwaysScrollToBottom />
+      </div>
       <div className="panel-right__button-row">
         <button
           className="button button_large button_fill-width button__button-secondary"
