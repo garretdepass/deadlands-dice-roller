@@ -7,6 +7,7 @@ import "./character_sheet.css";
 const CharacterSheet = ({
   isSpendingBountyPoints,
   bountyPoints,
+  setBountyPoints,
   setStatNameToRoll,
   setDieSidesToRoll,
   setDieCountToRoll,
@@ -16,7 +17,6 @@ const CharacterSheet = ({
   remainingBountyPoints,
   setRemainingBountyPoints,
   characterIndex,
-  setBountyPoints,
 }) => {
   const [character, setCharacter] = useState(useContext(CharacterContext));
   const [spendButtonText, setSpendButtonText] = useState("Spend");

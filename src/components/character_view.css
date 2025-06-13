@@ -89,3 +89,10 @@
     width: unset;
   }
 }
+
+@media (max-width: 525px) {
+  .character-indicator__name-container {
+    flex-direction: column;
+    gap: 0px;
+  }
+}

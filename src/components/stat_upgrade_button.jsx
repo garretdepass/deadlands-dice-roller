@@ -117,9 +117,9 @@ const StatUpgradeButton = ({
 
   const cost = (upgradeType) => {
     if (upgradeType === "dieCount") {
-      return dieCountUpgradeCost;
+      return dieCountUpgradeCost();
     } else if (upgradeType === "dieSides") {
-      return dieSidesUpgradeCost;
+      return dieSidesUpgradeCost();
     }
   };
 
@@ -129,9 +129,9 @@ const StatUpgradeButton = ({
       popover.showPopover();
     } else {
       if (upgradeType === "dieCount") {
-        upgradeCost = dieCountUpgradeCost;
+        upgradeCost = dieCountUpgradeCost();
       } else {
-        upgradeCost = dieSidesUpgradeCost;
+        upgradeCost = dieSidesUpgradeCost();
       }
 
       const newUpgrade = {
@@ -142,6 +142,7 @@ const StatUpgradeButton = ({
       };
       setUpgradesArray([...upgradesArray, newUpgrade]);
       setRemainingBountyPoints((previousValue) => previousValue - upgradeCost);
+      setIsMenuVisible(false);
     }
   };
 
@@ -166,7 +167,9 @@ const StatUpgradeButton = ({
               }}
             >
               <div className="menu__menu-item-label">Add an additional die</div>
-              <div className="menu__menu-item-cost">{dieCountUpgradeCost}</div>
+              <div className="menu__menu-item-cost">
+                {dieCountUpgradeCost()}
+              </div>
             </div>
             <div
               className="menu__menu-item"
@@ -175,7 +178,9 @@ const StatUpgradeButton = ({
               }}
             >
               <div className="menu__menu-item-label">Upgrade die type</div>
-              <div className="menu__menu-item-cost">{dieSidesUpgradeCost}</div>
+              <div className="menu__menu-item-cost">
+                {dieSidesUpgradeCost()}
+              </div>
             </div>
           </Menu>
         )}

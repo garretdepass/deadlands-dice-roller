@@ -43,7 +43,7 @@ const SpendBountyPointsPanel = ({
 
     if (upgradesArray.length > 0) {
       const runningCost = returnTotalCost();
-      if (runningCost <= character.bountyPoints) {
+      if (runningCost <= bountyPoints) {
         setHasEnoughBountyPoints(true);
       } else {
         setHasEnoughBountyPoints(false);

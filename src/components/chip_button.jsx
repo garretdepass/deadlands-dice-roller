@@ -30,20 +30,24 @@ const ChipButton = ({ color }) => {
       newChipCount
     );
     setChipCount(newChipCount);
+    setIsMenuVisible(false);
   };
 
   const handleDecrementClick = async () => {
-    const newChipCount = chipCount - 1;
-    await updateCharacterChips(
-      character._id,
-      `fateChips.${color}`,
-      newChipCount
-    );
-    setChipCount(newChipCount);
+    if (chipCount > 0) {
+      const newChipCount = chipCount - 1;
+      await updateCharacterChips(
+        character._id,
+        `fateChips.${color}`,
+        newChipCount
+      );
+      setChipCount(newChipCount);
+      setIsMenuVisible(false);
+    }
   };
 
   return (
-    <div>
+    <div className="chip-button-container">
       <button
         className={`button__chip-button button__chip-button_${color}`}
         onClick={handleChipButtonClick}
@@ -51,12 +55,12 @@ const ChipButton = ({ color }) => {
         {chipCount}
       </button>
       {isMenuVisible && (
-        <Menu setIsMenuVisible={setIsMenuVisible}>
+        <Menu setIsMenuVisible={setIsMenuVisible} verticalPosition="over">
           <div className="menu__menu-item" onClick={handleIncrementClick}>
-            Add one
+            Add chip
           </div>
           <div className="menu__menu-item" onClick={handleDecrementClick}>
-            Remove one
+            Remove chip
           </div>
         </Menu>
       )}
