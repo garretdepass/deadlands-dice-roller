@@ -1,5 +1,6 @@
 import { React, useState, useContext } from "react";
 import { CharacterContext } from "../contexts/characterContext";
+import "./chip_button.css";
 import Menu from "./menu";
 
 const ChipButton = ({ color }) => {
@@ -44,7 +45,7 @@ const ChipButton = ({ color }) => {
   return (
     <div>
       <button
-        className={`button__chip-button_${color}`}
+        className={`button__chip-button button__chip-button_${color}`}
         onClick={handleChipButtonClick}
       >
         {chipCount}
@@ -52,10 +53,10 @@ const ChipButton = ({ color }) => {
       {isMenuVisible && (
         <Menu setIsMenuVisible={setIsMenuVisible}>
           <div className="menu__menu-item" onClick={handleIncrementClick}>
-            test1
+            Add one
           </div>
           <div className="menu__menu-item" onClick={handleDecrementClick}>
-            test2
+            Remove one
           </div>
         </Menu>
       )}

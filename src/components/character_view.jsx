@@ -67,7 +67,7 @@ const CharacterView = ({ character, characterIndex }) => {
             characterIndex={characterIndex}
             setBountyPoints={setBountyPoints}
           />
-          <div>
+          <div className="column__column-right">
             {isSpendingBountyPoints ? (
               <SpendBountyPointsPanel
                 upgradesArray={upgradesArray}
@@ -88,9 +88,7 @@ const CharacterView = ({ character, characterIndex }) => {
                 dieSidesToRoll={dieSidesToRoll}
               />
             )}
-            <div className="non-rollable-stats__inner-left">
-              <ChipCounterContainer character={character} />
-            </div>
+            <ChipCounterContainer character={character} />
           </div>
         </div>
         <div id="insufficientBountPointsPopover" popover="auto">

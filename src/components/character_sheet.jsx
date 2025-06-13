@@ -2,6 +2,7 @@ import { React, useState, useEffect, useContext } from "react";
 import ChipCounterContainer from "./chip_counters_container";
 import StatUpgradeButton from "./stat_upgrade_button";
 import { CharacterContext } from "../contexts/characterContext";
+import "./character_sheet.css";
 
 const CharacterSheet = ({
   isSpendingBountyPoints,
@@ -52,10 +53,10 @@ const CharacterSheet = ({
   const generateKey = () => `${Date.now()}-${Math.random()}`;
 
   const handleStatClick = (clickedStat, clickedTrait) => {
-    const rollPanel = document.getElementsByClassName("panel__panel-right")[0];
+    const rollPanel = document.getElementsByClassName("roll-panel")[0];
     const windowSize = window.innerWidth;
-    if (windowSize < 724) {
-      rollPanel.classList.add("panel__panel-right_mobile-active");
+    if (windowSize < 724 && !isSpendingBountyPoints) {
+      rollPanel.classList.add("roll-panel__mobile-active");
     }
     setStatNameToRoll(clickedStat.name);
     setDieCountToRoll(clickedStat.dieCount);
@@ -234,55 +235,27 @@ const CharacterSheet = ({
 
   const renderCharacterSheet = () => {
     return (
-      <div className="panel character-sheet">
-        <div className="character-sheet__inner">
-          {renderStatGroup(`Cognition`)}
-          {renderStatGroup(`Deftness`)}
-          {renderStatGroup(`Mien`)}
-          {renderStatGroup(`Knowledge`)}
-          {renderStatGroup(`Smarts`)}
-          {renderStatGroup(`Nimbleness`)}
-          <div className="stat-set">
-            {renderStatGroup(`Quickness`)}
-            {renderStatGroup(`Spirit`)}
-            {renderStatGroup(`Strength`)}
-            {renderStatGroup(`Vigor`)}
-          </div>
+      <div className="rollable-stats">
+        {renderStatGroup(`Cognition`)}
+        {renderStatGroup(`Deftness`)}
+        {renderStatGroup(`Mien`)}
+        {renderStatGroup(`Knowledge`)}
+        {renderStatGroup(`Smarts`)}
+        {renderStatGroup(`Nimbleness`)}
+        <div className="stat-set">
+          {renderStatGroup(`Quickness`)}
+          {renderStatGroup(`Spirit`)}
+          {renderStatGroup(`Strength`)}
+          {renderStatGroup(`Vigor`)}
         </div>
       </div>
     );
   };
 
   const [characterSheet, setCharacterSheet] = useState(renderCharacterSheet());
+
   return (
-    <div>
-      <nav className="nav">
-        <div className="non-rollable-stats__bounty-points">
-          Bounty Points:{" "}
-          <span className="stat-accent-color">{bountyPoints}</span>
-          <div className="chip-counter__button-container">
-            <button
-              className="chip-counter__button"
-              onClick={() => handleIncrementClick("bountyPoints")}
-            >
-              +
-            </button>
-            <button
-              className="chip-counter__button"
-              onClick={() => handleDecrementClick("bountyPoints")}
-            >
-              -
-            </button>
-          </div>
-          <button
-            id="spendButton"
-            className="button button_large button__button-secondary"
-            onClick={handleClickSpend}
-          >
-            {spendButtonText}
-          </button>
-        </div>
-      </nav>
+    <div className="panel character-sheet">
       <div className="non-rollable-stats">
         <div className="non-rollable-stats__inner-left">
           <div>
@@ -318,6 +291,31 @@ const CharacterSheet = ({
               </button>
             </div>
           </div>
+        </div>
+        <div className="non-rollable-stats__bounty-points">
+          Bounty Points:{" "}
+          <span className="stat-accent-color">{bountyPoints}</span>
+          <div className="chip-counter__button-container">
+            <button
+              className="chip-counter__button"
+              onClick={() => handleIncrementClick("bountyPoints")}
+            >
+              +
+            </button>
+            <button
+              className="chip-counter__button"
+              onClick={() => handleDecrementClick("bountyPoints")}
+            >
+              -
+            </button>
+          </div>
+          <button
+            id="spendButton"
+            className="button button_large button__button-secondary"
+            onClick={handleClickSpend}
+          >
+            {spendButtonText}
+          </button>
         </div>
       </div>
       {renderCharacterSheet()}
