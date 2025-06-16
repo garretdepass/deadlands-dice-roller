@@ -9,7 +9,6 @@ export async function handler(event, context) {
     const collection = database.collection(process.env.MONGODB_COLLECTION);
 
     const data = await collection.find().toArray();
-
     return {
       statusCode: 200,
       body: JSON.stringify(data),

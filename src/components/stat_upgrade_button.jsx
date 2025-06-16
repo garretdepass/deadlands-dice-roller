@@ -26,28 +26,6 @@ const StatUpgradeButton = ({
   };
 
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const wrapperRef = useRef(null);
-
-  const useClickOutside = (ref, onClickOutside) => {
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (ref.current && !ref.current.contains(event.target)) {
-          onClickOutside();
-        }
-      };
-      // Bind
-      document.addEventListener("mousedown", handleClickOutside);
-
-      return () => {
-        // dispose
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref, onClickOutside]);
-  };
-
-  useClickOutside(wrapperRef, () => {
-    setIsMenuVisible(false);
-  });
 
   const handleTraitClick = () => {
     isMenuVisible ? setIsMenuVisible(false) : setIsMenuVisible(true);
@@ -127,38 +105,74 @@ const StatUpgradeButton = ({
     }
   };
 
-  const isButtonDisabled = () => {
-    const cost = dieCountUpgradeCost();
+  const cost = (upgradeType) => {
+    if (upgradeType === "dieCount") {
+      return dieCountUpgradeCost();
+    } else if (upgradeType === "dieSides") {
+      return dieSidesUpgradeCost();
+    }
+  };
 
-    if (cost > remainingBountyPoints) {
-      return true;
+  const handleMenuUpgradeClick = (upgradeType) => {
+    let upgradeCost;
+    if (cost(upgradeType) > remainingBountyPoints) {
+      popover.showPopover();
     } else {
-      return false;
+      if (upgradeType === "dieCount") {
+        upgradeCost = dieCountUpgradeCost();
+      } else {
+        upgradeCost = dieSidesUpgradeCost();
+      }
+
+      const newUpgrade = {
+        cost: upgradeCost,
+        stat: stat,
+        jsonStatIndex: jsonStatIndex(),
+        upgradeType: upgradeType,
+      };
+      setUpgradesArray([...upgradesArray, newUpgrade]);
+      setRemainingBountyPoints((previousValue) => previousValue - upgradeCost);
+      setIsMenuVisible(false);
     }
   };
 
   if (statType === "trait") {
     return (
-      <div className="stat-upgrade-button-container" ref={wrapperRef}>
+      <div
+        className="stat-upgrade-button-container"
+        // ref={wrapperRef}
+      >
         <button
-          className="chip-counter__button"
+          className="button button__button-increment"
           onClick={() => handleTraitClick()}
         >
           {returnButtonText()}
         </button>
         {isMenuVisible && (
-          <Menu
-            dieSidesUpgradeCost={dieSidesUpgradeCost()}
-            dieCountUpgradeCost={dieCountUpgradeCost()}
-            stat={stat}
-            upgradesArray={upgradesArray}
-            setUpgradesArray={setUpgradesArray}
-            statType={statType}
-            character={character}
-            jsonStatIndex={jsonStatIndex()}
-            remainingBountyPoints={remainingBountyPoints}
-            setRemainingBountyPoints={setRemainingBountyPoints}
-          />
+          <Menu setIsMenuVisible={setIsMenuVisible}>
+            <div
+              className="menu__menu-item"
+              onClick={() => {
+                handleMenuUpgradeClick("dieCount");
+              }}
+            >
+              <div className="menu__menu-item-label">Add an additional die</div>
+              <div className="menu__menu-item-cost">
+                {dieCountUpgradeCost()}
+              </div>
+            </div>
+            <div
+              className="menu__menu-item"
+              onClick={() => {
+                handleMenuUpgradeClick("dieSides");
+              }}
+            >
+              <div className="menu__menu-item-label">Upgrade die type</div>
+              <div className="menu__menu-item-cost">
+                {dieSidesUpgradeCost()}
+              </div>
+            </div>
+          </Menu>
         )}
       </div>
     );
@@ -166,8 +180,9 @@ const StatUpgradeButton = ({
     return (
       <>
         <button
-          className="chip-counter__button"
+          className="button button__button-increment"
           onClick={() => handleAttributeOrConcentrationClick(stat)}
+          onTouchEnd={(event) => event.target.classList.remove("hover")}
         >
           {returnButtonText()}
         </button>

@@ -1,3 +1,6 @@
+.home-view {
+  overflow: scroll;
+}
 .welcome-text {
   display: flex;
   margin: 74px auto;
@@ -47,11 +50,11 @@
 }
 
 .character-grid-inner {
-  margin: 0 auto;
-  max-width: 800px;
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
+  margin: 48px 80px;
   justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .character-grid {
@@ -66,40 +69,27 @@
   font-family: Inter;
   font-style: normal;
   line-height: normal;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 316px;
-  margin: 18px;
+  width: 20vw;
   border-radius: 4px;
-  overflow: hidden;
-
   padding: 8px;
+  max-width: 320px;
+  min-width: 200px;
 }
 
 .character-card:hover {
   background-color: var(--blue-4);
-
-  /* -webkit-box-shadow:0px 0px 17px 3px rgba(132,177,240,1);
--moz-box-shadow: 0px 0px 17px 3px rgba(132,177,240,1);
-box-shadow: 0px 0px 17px 3px rgba(132,177,240,0.5); */
 }
 
 .character-card__character-image {
-  height: 300px;
   width: 100%;
   background-size: cover;
   border-radius: 4px;
+  aspect-ratio: 1;
 }
 
 .character-card__character-name {
   color: white;
 }
-
-/* .restaurant-delete-button button {
-display: flex;
-justify-content: flex-end;
-background-color: lightcoral
-
-} */

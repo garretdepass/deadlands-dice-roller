@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import UpgrageRow from "./upgrade_row";
+import { CharacterContext } from "../contexts/characterContext";
 import "./spend_bounty_points_panel.css";
 
 const SpendBountyPointsPanel = ({
   upgradesArray,
   setUpgradesArray,
-  character,
   hasEnoughBountyPoints,
   setHasEnoughBountyPoints,
   bountyPoints,
@@ -13,6 +13,7 @@ const SpendBountyPointsPanel = ({
   remainingBountyPoints,
   setRemainingBountyPoints,
 }) => {
+  const character = useContext(CharacterContext);
   const [displayedUpgrades, setDisplayedUpgrades] = useState([]);
 
   const [totalBountyPointsToSpend, setTotalBountyPointsToSpend] = useState(0);
@@ -42,7 +43,7 @@ const SpendBountyPointsPanel = ({
 
     if (upgradesArray.length > 0) {
       const runningCost = returnTotalCost();
-      if (runningCost <= character.bountyPoints) {
+      if (runningCost <= bountyPoints) {
         setHasEnoughBountyPoints(true);
       } else {
         setHasEnoughBountyPoints(false);
@@ -66,7 +67,6 @@ const SpendBountyPointsPanel = ({
   };
 
   const updateCharacterStats = async (_id, key, value) => {
-    // Call the Netlify function
     const response = await fetch("/.netlify/functions/update_character", {
       method: "POST",
       body: JSON.stringify({ _id, key, value }),
@@ -87,13 +87,14 @@ const SpendBountyPointsPanel = ({
   };
 
   const handleSpendPointsClick = async () => {
+    console.log(upgradesArray);
     if (hasEnoughBountyPoints) {
-      const remainingBountyPoints =
-        character.bountyPoints - totalBountyPointsToSpend;
+      const remainingBountyPoints = bountyPoints - totalBountyPointsToSpend;
       for (let i = 0; i < upgradesArray.length; i++) {
         const currentUpgrade = upgradesArray[i];
         const statToUpdate = `${currentUpgrade.jsonStatIndex}.${currentUpgrade.upgradeType}`;
         const valueToUpdate = returnValueToUpdate(currentUpgrade);
+        console.log(statToUpdate + " " + valueToUpdate);
         await updateCharacterStats(character._id, statToUpdate, valueToUpdate);
       }
       await updateCharacterStats(
@@ -107,21 +108,31 @@ const SpendBountyPointsPanel = ({
     }
   };
 
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
+
   return (
-    <div className="panel panel__panel-right">
+    <div className="panel spend-bounty-points-panel panel__panel-right_mobile-inactive">
       <div className="bounty-points-cart__remaining-points">
         Remaining Bounty Points:{" "}
         <span className="bounty-points-cart__remaining-points-value">
           {remainingBountyPoints}
         </span>
       </div>
-      <div className="bounty-points-cart">{displayedUpgrades}</div>
+      <div className="bounty-points-cart">
+        {displayedUpgrades}
+        <AlwaysScrollToBottom />
+      </div>
       <div className="panel-right__button-row">
         <button
+          disabled={upgradesArray.length === 0}
           className="button button_large button_fill-width button__button-secondary"
           onClick={handleBountyPointsPanelCancel}
         >
-          Cancel
+          Clear
         </button>
         <button
           disabled={!hasEnoughBountyPoints || upgradesArray.length === 0}

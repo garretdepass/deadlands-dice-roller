@@ -39,7 +39,7 @@ const HomeView = ({ characters }) => {
   };
 
   return (
-    <div className="view">
+    <div className="view home-view">
       <h2
         className="welcome-text text__centered"
         onMouseEnter={handleLogoMouseEnter}

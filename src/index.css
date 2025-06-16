@@ -12,6 +12,7 @@
   --buttons-button-blue: #004cb3;
   --buttons-button-red: #980000;
   --buttons-button-white: #cccccc;
+  overflow: hidden;
 }
 
 body {
@@ -23,12 +24,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--Gray-6, #f5f5f5);
   background: var(--blue-0, #010914);
+  overflow: hidden;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 16px) env(safe-area-inset-left, 0);
+}
+
+.hidden {
+  display: none;
 }
 
 .view {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100dvh;
 }
 
 .panel {
@@ -162,6 +170,22 @@ h1 {
 
 .button__button-tertiary:hover {
   background: var(--blue-5);
+}
+
+.button__button-increment {
+  padding-bottom: 2px;
+  width: 40px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--blue-3);
+  border: 0 transparent;
+  color: var(--blue-6);
+  font-weight: 900;
+}
+
+.button__button-increment:hover {
+  background: var(--blue-5);
+  color: var(--Gray-6);
 }
 
 .divider__horizontal {

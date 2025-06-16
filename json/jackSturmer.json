@@ -99,8 +99,8 @@
       },
       {
         "name": "Smarts",
-        "dieCount": 0,
-        "dieSides": 0,
+        "dieCount": 1,
+        "dieSides": 10,
         "attributes": [
           { "name": "Bluff", "dieCount": 0 },
           { "name": "Gamblin'", "dieCount": 0 },

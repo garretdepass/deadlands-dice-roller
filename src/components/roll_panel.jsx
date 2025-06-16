@@ -136,7 +136,7 @@ const RollPanel = ({
           >
             <div className="dice-section__die-thread-inner dice-section__die-thread-inner_highest">
               {returnDie(thread, true)}
-              <div className="dice-section_highest-roll-text">Highest roll</div>
+              <div className="dice-section_highest-roll-text">Best roll</div>
             </div>
           </div>
         ) : (
@@ -188,13 +188,18 @@ const RollPanel = ({
   };
 
   const handleClearDice = () => {
-    // setDiceSection(null);
+    const rollPanel = document.getElementsByClassName("roll-panel")[0];
+    const windowSize = window.innerWidth;
+    if (windowSize < 724) {
+      rollPanel.classList.remove("roll-panel__mobile-active");
+    }
+    setHighestRollResult(null);
     setStatNameToRoll(null);
     setIsRollButtonDisabled(true);
   };
 
   return (
-    <div className="panel panel__panel-right">
+    <div className="panel roll-panel roll-panel__mobile-inactive">
       <div className="roll-panel__title">
         {statNameToRoll
           ? `Rolling for ${statNameToRoll}`

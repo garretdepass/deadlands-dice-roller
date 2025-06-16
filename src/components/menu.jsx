@@ -1,71 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./menu.css";
 import { use } from "react";
 
 const Menu = ({
+  children,
   menuRef,
-  dieCountUpgradeCost,
-  dieSidesUpgradeCost,
-  stat,
-  upgradesArray,
-  setUpgradesArray,
-  statType,
-  character,
-  jsonStatIndex,
-  remainingBountyPoints,
-  setRemainingBountyPoints,
+  setIsMenuVisible,
+  verticalPosition = "under",
+  horizontalPosition = "left",
 }) => {
-  const cost = (upgradeType) => {
-    if (upgradeType === "dieCount") {
-      return dieCountUpgradeCost;
-    } else if (upgradeType === "dieSides") {
-      return dieSidesUpgradeCost;
-    }
-  };
-  const popover = document.getElementById("insufficientBountPointsPopover");
+  const wrapperRef = useRef(null);
 
-  const handleMenuUpgradeClick = (upgradeType) => {
-    let upgradeCost;
-    if (cost(upgradeType) > remainingBountyPoints) {
-      popover.showPopover();
-    } else {
-      if (upgradeType === "dieCount") {
-        upgradeCost = dieCountUpgradeCost;
-      } else {
-        upgradeCost = dieSidesUpgradeCost;
-      }
-
-      const newUpgrade = {
-        cost: upgradeCost,
-        stat: stat,
-        jsonStatIndex: jsonStatIndex,
-        upgradeType: upgradeType,
+  const useClickOutside = (ref, onClickOutside) => {
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          onClickOutside();
+        }
       };
-      setUpgradesArray([...upgradesArray, newUpgrade]);
-      setRemainingBountyPoints((previousValue) => previousValue - upgradeCost);
-    }
+      // Bind
+      document.addEventListener("mousedown", handleClickOutside);
+
+      return () => {
+        // dispose
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref, onClickOutside]);
   };
+
+  useClickOutside(wrapperRef, () => {
+    setIsMenuVisible(false);
+  });
 
   return (
-    <div className="menu" ref={menuRef}>
-      <div
-        className="menu__menu-item"
-        onClick={() => {
-          handleMenuUpgradeClick("dieCount");
-        }}
-      >
-        <div className="menu__menu-item-label">Add an additional die</div>
-        <div className="menu__menu-item-cost">{dieCountUpgradeCost}</div>
-      </div>
-      <div
-        className="menu__menu-item"
-        onClick={() => {
-          handleMenuUpgradeClick("dieSides");
-        }}
-      >
-        <div className="menu__menu-item-label">Upgrade die type</div>
-        <div className="menu__menu-item-cost">{dieSidesUpgradeCost}</div>
-      </div>
+    <div
+      className={`menu menu_${verticalPosition} menu_${horizontalPosition}`}
+      ref={wrapperRef}
+    >
+      {children}
     </div>
   );
 };

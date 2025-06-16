@@ -5,8 +5,6 @@
   border-radius: 4px;
   background: var(--blue-4, #223e65);
   position: relative;
-  right: 160px;
-  top: 5px;
   color: var(--Gray-6, #f5f5f5);
   font-family: Inter;
   font-size: 14px;
@@ -14,6 +12,18 @@
   line-height: normal;
   width: 200px;
   overflow: hidden;
+}
+
+.menu_left {
+  right: 160px;
+}
+
+.menu_under {
+  top: 5px;
+}
+
+.menu_over {
+  bottom: 120px;
 }
 
 .menu__menu-item {
@@ -32,4 +42,23 @@
 .menu__menu-item-label {
   font-weight: 700;
   width: 152px;
+}
+
+@media (max-width: 525px) {
+  .menu {
+    position: fixed;
+    top: calc(100dvh - 120px);
+    width: calc(100dvw - 48px);
+    left: 0;
+    height: 120px;
+    padding: 24px;
+    z-index: 10;
+    transition: top 300ms;
+  }
+
+  @starting-style {
+    .menu {
+      top: 100vh;
+    }
+  }
 }
