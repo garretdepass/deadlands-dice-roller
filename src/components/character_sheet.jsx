@@ -64,19 +64,28 @@ const CharacterSheet = ({
   };
 
   const handleClickSpend = () => {
-    const chipCountersContainer = document.getElementsByClassName(
-      "chip-counters-container"
-    )[0];
+    const chipCountersContainer = document.querySelector(
+      ".chip-counters-container"
+    );
+    const nonRollableInnerLeft = document.querySelector(
+      ".non-rollable-stats__inner-left"
+    );
     const windowSize = window.innerWidth;
 
     if (!isSpendingBountyPoints) {
       setIsSpendingBountyPoints(true);
       setSpendButtonText("Stop Spending");
-      chipCountersContainer.style = "display: none";
+      chipCountersContainer.style.display = "none";
+      if (windowSize < 525) {
+        nonRollableInnerLeft.style.display = "none";
+      }
     } else {
       setIsSpendingBountyPoints(false);
       setSpendButtonText("Spend");
-      chipCountersContainer.style = "display: flex";
+      chipCountersContainer.style.display = "flex";
+      if (windowSize < 525) {
+        nonRollableInnerLeft.style.display = "flex";
+      }
     }
   };
 

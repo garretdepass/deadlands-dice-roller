@@ -105,16 +105,6 @@ const StatUpgradeButton = ({
     }
   };
 
-  const isButtonDisabled = () => {
-    const cost = dieCountUpgradeCost();
-
-    if (cost > remainingBountyPoints) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const cost = (upgradeType) => {
     if (upgradeType === "dieCount") {
       return dieCountUpgradeCost();
@@ -137,7 +127,7 @@ const StatUpgradeButton = ({
       const newUpgrade = {
         cost: upgradeCost,
         stat: stat,
-        jsonStatIndex: jsonStatIndex,
+        jsonStatIndex: jsonStatIndex(),
         upgradeType: upgradeType,
       };
       setUpgradesArray([...upgradesArray, newUpgrade]);
@@ -192,6 +182,7 @@ const StatUpgradeButton = ({
         <button
           className="button button__button-increment"
           onClick={() => handleAttributeOrConcentrationClick(stat)}
+          onTouchEnd={(event) => event.target.classList.remove("hover")}
         >
           {returnButtonText()}
         </button>

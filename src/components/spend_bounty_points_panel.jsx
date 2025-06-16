@@ -87,13 +87,14 @@ const SpendBountyPointsPanel = ({
   };
 
   const handleSpendPointsClick = async () => {
+    console.log(upgradesArray);
     if (hasEnoughBountyPoints) {
-      const remainingBountyPoints =
-        character.bountyPoints - totalBountyPointsToSpend;
+      const remainingBountyPoints = bountyPoints - totalBountyPointsToSpend;
       for (let i = 0; i < upgradesArray.length; i++) {
         const currentUpgrade = upgradesArray[i];
         const statToUpdate = `${currentUpgrade.jsonStatIndex}.${currentUpgrade.upgradeType}`;
         const valueToUpdate = returnValueToUpdate(currentUpgrade);
+        console.log(statToUpdate + " " + valueToUpdate);
         await updateCharacterStats(character._id, statToUpdate, valueToUpdate);
       }
       await updateCharacterStats(

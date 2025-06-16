@@ -6,5 +6,9 @@ export default defineConfig({
     globals: true,
     setupFiles: "src/setupTests.js",
   },
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+  },
   plugins: [react()],
 });

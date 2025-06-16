@@ -47,8 +47,8 @@
 @media (max-width: 525px) {
   .menu {
     position: fixed;
-    top: calc(100vh - 120px);
-    width: calc(100vw - 48px);
+    top: calc(100dvh - 120px);
+    width: calc(100dvw - 48px);
     left: 0;
     height: 120px;
     padding: 24px;
