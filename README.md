@@ -8,7 +8,7 @@ Rollr is minimal web app designed for use with the tabletop roleplaying game, De
 
 ![A looping gif that demonstrates the core functionality of this web app](https://raw.githubusercontent.com/garretdepass/deadlands-dice-roller/refs/heads/main/public/images/screenshots/demo.gif "A looping gif that demonstrates the core functionality of this web app")
 
-Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/). Currently not built for mobile, viewing on a computer is best. Test the functionality as much as you like. My players are using the production environment and database.
+Want to give it a try? Visit the [staging environment](https://dice-roller-deadlands.netlify.app/) on web or mobile. Test the functionality as much as you like. My players are using the production environment and database.
 
 <br/>
 
