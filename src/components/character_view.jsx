@@ -72,7 +72,6 @@ const CharacterView = ({ character, characterIndex }) => {
               <SpendBountyPointsPanel
                 upgradesArray={upgradesArray}
                 setUpgradesArray={setUpgradesArray}
-                // character={currentCharacter}
                 hasEnoughBountyPoints={hasEnoughBountyPoints}
                 setHasEnoughBountyPoints={setHasEnoughBountyPoints}
                 bountyPoints={bountyPoints}

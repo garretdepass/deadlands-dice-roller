@@ -128,10 +128,11 @@ const SpendBountyPointsPanel = ({
       </div>
       <div className="panel-right__button-row">
         <button
+          disabled={upgradesArray.length === 0}
           className="button button_large button_fill-width button__button-secondary"
           onClick={handleBountyPointsPanelCancel}
         >
-          Cancel
+          Clear
         </button>
         <button
           disabled={!hasEnoughBountyPoints || upgradesArray.length === 0}
